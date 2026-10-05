@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/core/bootstrap.php';
 
 $act = $_GET['act'] ?? 'client';
