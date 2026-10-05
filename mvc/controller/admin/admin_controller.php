@@ -6,7 +6,18 @@ final class AdminRouter
     {
         $action = $_GET['admin'] ?? 'home';
 
-        echo 'ADMIN - ' . htmlspecialchars($action);
+        $routes = [
+            'home' => [
+                AdminHomeController::class,
+                __DIR__ . '/home_controller.php'
+            ],
+        ];
+
+        ActionRouter::dispatch(
+            $action,
+            $routes,
+            [$action]
+        );
     }
 }
 
