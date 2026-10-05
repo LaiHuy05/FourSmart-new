@@ -94,4 +94,20 @@ final class CartModel
             $detailId
         );
     }
+    public static function detailBelongsToUser(
+    int $detailId,
+    int $userId
+): bool {
+    $result = Database::one(
+        'SELECT COUNT(*) AS total
+         FROM cartdetail cd
+         JOIN cart c ON c.gh_id = cd.id_gh
+         WHERE cd.cd_id = ?
+         AND c.id_tk = ?',
+        $detailId,
+        $userId
+    );
+
+    return (int) ($result['total'] ?? 0) > 0;
+}
 }
