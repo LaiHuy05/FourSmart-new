@@ -6,7 +6,18 @@ final class ClientRouter
     {
         $action = $_GET['client'] ?? 'home';
 
-        echo 'CLIENT - ' . htmlspecialchars($action);
+        $routes = [
+            'home' => [
+                ClientHomeController::class,
+                __DIR__ . '/home_controller.php'
+            ],
+        ];
+
+        ActionRouter::dispatch(
+            $action,
+            $routes,
+            [$action]
+        );
     }
 }
 
