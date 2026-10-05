@@ -1,0 +1,9 @@
+.vscode/
+.idea/
+.env
+
+.DS_Store
+Thumbs.db
+
+mvc/upload/*
+!mvc/upload/.gitkeep
