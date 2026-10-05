@@ -2,4 +2,10 @@
 
 require_once __DIR__ . '/core/bootstrap.php';
 
-echo 'FourSmart đang chạy';
+$act = $_GET['act'] ?? 'client';
+
+if ($act === 'admin') {
+    require __DIR__ . '/controller/admin/admin_controller.php';
+} else {
+    require __DIR__ . '/controller/client/client_controller.php';
+}
