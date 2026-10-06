@@ -11,7 +11,10 @@ final class ClientRouter
                 ClientHomeController::class,
                 __DIR__ . '/home_controller.php'
             ],
-
+            'category' => [
+              ClientCategoryController::class,
+              __DIR__ . '/category_controller.php'
+            ],
             'productDetail' => [
                 ClientProductController::class,
                 __DIR__ . '/product_controller.php'

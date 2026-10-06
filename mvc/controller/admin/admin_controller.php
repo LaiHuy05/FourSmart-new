@@ -36,6 +36,25 @@ final class AdminRouter
                 AdminCategoryController::class,
                 __DIR__ . '/category_controller.php'
             ],
+            'productList' => [
+                AdminProductController::class,
+                __DIR__ . '/product_controller.php'
+            ],
+
+            'productAdd' => [
+                AdminProductController::class,
+                __DIR__ . '/product_controller.php'
+            ],
+
+            'productUpdate' => [
+                AdminProductController::class,
+                __DIR__ . '/product_controller.php'
+            ],
+
+            'productDelete' => [
+                AdminProductController::class,
+                __DIR__ . '/product_controller.php'
+            ],
             'orderList' => [
                 AdminOrderController::class,
                 __DIR__ . '/order_controller.php'
