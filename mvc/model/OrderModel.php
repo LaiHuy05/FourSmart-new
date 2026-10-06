@@ -120,4 +120,24 @@ public static function updateStatus(
         $id
     );
 }
+public static function detailsByOrder(
+    int $orderId,
+    int $userId
+): array {
+    return Database::query(
+        'SELECT
+            od.*,
+            p.sp_name,
+            p.sp_price
+         FROM orderdetail od
+         JOIN `order` o
+            ON o.dh_id = od.id_dh
+         JOIN product p
+            ON p.sp_id = od.id_sp
+         WHERE od.id_dh = ?
+         AND o.id_tk = ?',
+        $orderId,
+        $userId
+    );
+}
 }
