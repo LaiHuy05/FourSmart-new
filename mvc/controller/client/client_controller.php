@@ -41,6 +41,26 @@ final class ClientRouter
                 ClientCartController::class,
                 __DIR__ . '/cart_controller.php'
             ],
+
+            'login' => [
+                ClientAuthController::class,
+                __DIR__ . '/auth_controller.php'
+            ],
+
+            'register' => [
+                ClientAuthController::class,
+                __DIR__ . '/auth_controller.php'
+            ],
+
+            'orderHistory' => [
+                ClientOrderController::class,
+                __DIR__ . '/order_controller.php'
+            ],
+
+            'orderDetail' => [
+                ClientOrderController::class,
+                __DIR__ . '/order_controller.php'
+            ],
         ];
 
         ActionRouter::dispatch(
