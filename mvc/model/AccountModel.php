@@ -80,4 +80,38 @@ final class AccountModel
           $roleId
       );
   }
+  public static function verifyPassword(
+    array $account,
+    string $password
+): bool {
+    $storedPassword = (string) ($account['tk_password'] ?? '');
+
+    if ($storedPassword === '') {
+        return false;
+    }
+
+    if (password_verify($password, $storedPassword)) {
+        return true;
+    }
+
+    // Hỗ trợ tạm tài khoản cũ còn lưu mật khẩu thường
+    if (hash_equals($storedPassword, $password)) {
+        $newHash = password_hash(
+            $password,
+            PASSWORD_BCRYPT
+        );
+
+        Database::execute(
+            'UPDATE account
+             SET tk_password = ?
+             WHERE tk_id = ?',
+            $newHash,
+            (int) $account['tk_id']
+        );
+
+        return true;
+    }
+
+    return false;
+}
 }
