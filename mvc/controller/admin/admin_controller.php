@@ -1,5 +1,10 @@
 <?php
 
+require_once __DIR__
+    . '/../../middleware/require_admin.php';
+
+require_admin();
+
 final class AdminRouter
 {
     public static function run(): void
