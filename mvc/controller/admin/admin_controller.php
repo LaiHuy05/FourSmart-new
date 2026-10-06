@@ -36,6 +36,20 @@ final class AdminRouter
                 AdminCategoryController::class,
                 __DIR__ . '/category_controller.php'
             ],
+            'orderList' => [
+                AdminOrderController::class,
+                __DIR__ . '/order_controller.php'
+            ],
+
+            'orderDetail' => [
+                AdminOrderController::class,
+                __DIR__ . '/order_controller.php'
+            ],
+
+            'orderStatus' => [
+                AdminOrderController::class,
+                __DIR__ . '/order_controller.php'
+            ],
         ];
 
         ActionRouter::dispatch(
