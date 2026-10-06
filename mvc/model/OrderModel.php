@@ -199,4 +199,31 @@ public static function totalRevenue(): float
 
     return (float) ($result['total'] ?? 0);
 }
+public static function ordersByStatus(): array
+{
+    return Database::query(
+        'SELECT
+            dh_status,
+            COUNT(*) AS total
+         FROM `order`
+         GROUP BY dh_status
+         ORDER BY total DESC'
+    );
+}
+
+public static function topSellingProducts(): array
+{
+    return Database::query(
+        'SELECT
+            p.sp_id,
+            p.sp_name,
+            SUM(od.ct_quantity) AS sold_quantity
+         FROM orderdetail od
+         JOIN product p
+            ON p.sp_id = od.id_sp
+         GROUP BY p.sp_id, p.sp_name
+         ORDER BY sold_quantity DESC
+         LIMIT 5'
+    );
+}
 }
