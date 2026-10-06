@@ -79,6 +79,10 @@ final class ClientRouter
               ClientCommentController::class,
               __DIR__ . '/comment_controller.php'
             ],
+            'checkout' => [
+              ClientCheckoutController::class,
+              __DIR__ . '/checkout_controller.php'
+            ],
         ];
 
         ActionRouter::dispatch(
