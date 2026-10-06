@@ -140,4 +140,19 @@ public static function detailsByOrder(
         $userId
     );
 }
+public static function detailsByOrderId(
+    int $orderId
+): array {
+    return Database::query(
+        'SELECT
+            od.*,
+            p.sp_name,
+            p.sp_price
+         FROM orderdetail od
+         JOIN product p
+            ON p.sp_id = od.id_sp
+         WHERE od.id_dh = ?',
+        $orderId
+    );
+}
 }
