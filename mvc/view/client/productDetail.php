@@ -123,6 +123,61 @@
     </button>
 
 </form>
+<hr>
 
+<h2>Bình luận</h2>
+
+<?php if (isset($_SESSION['user_id'])): ?>
+
+<form
+    action="?client=commentAdd"
+    method="POST"
+>
+    <input
+        type="hidden"
+        name="csrf_token"
+        value="<?= htmlspecialchars(Csrf::token()) ?>"
+    >
+
+    <input
+        type="hidden"
+        name="product_id"
+        value="<?= (int) $product['sp_id'] ?>"
+    >
+
+    <textarea
+        name="content"
+        required
+    ></textarea>
+
+    <button type="submit">
+        Gửi bình luận
+    </button>
+</form>
+
+<?php else: ?>
+
+<p>
+    <a href="?client=login">
+        Đăng nhập để bình luận
+    </a>
+</p>
+
+<?php endif; ?>
+
+<?php foreach ($comments as $comment): ?>
+
+<div>
+    <strong>
+        <?= htmlspecialchars($comment['tk_user']) ?>
+    </strong>
+
+    <p>
+        <?= nl2br(
+            htmlspecialchars($comment['bl_content'])
+        ) ?>
+    </p>
+</div>
+<?php endforeach; ?>
 </body>
 </html>

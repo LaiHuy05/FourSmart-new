@@ -20,6 +20,7 @@ final class ClientProductController
 
         $colors = ProductVariantModel::colorsByProduct($id);
         $memories = ProductVariantModel::memoriesByProduct($id);
+        $comments = CommentModel::byProduct($id);
 
         include __DIR__ . '/../../view/client/productDetail.php';
     }
