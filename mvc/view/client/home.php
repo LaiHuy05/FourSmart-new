@@ -35,27 +35,37 @@
                     (int) $category['dm_id']
                 ): ?>
 
-                    <div>
+<div>
 
-                        <h3>
-                            <?= htmlspecialchars(
-                                $product['sp_name'],
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </h3>
+    <h3>
+        <a href="?client=productDetail&id=<?= (int) $product['sp_id'] ?>">
+            <?= htmlspecialchars(
+                $product['sp_name'],
+                ENT_QUOTES,
+                'UTF-8'
+            ) ?>
+        </a>
+    </h3>
 
-                        <p>
-                            <?= number_format(
-                                $product['sp_price'],
-                                0,
-                                ',',
-                                '.'
-                            ) ?>
-                            VNĐ
-                        </p>
+    <p>
+        <?= number_format(
+            $product['sp_price'],
+            0,
+            ',',
+            '.'
+        ) ?>
+        VNĐ
+    </p>
 
-                    </div>
+    <p>
+        <a href="?client=productDetail&id=<?= (int) $product['sp_id'] ?>">
+            Xem chi tiết
+        </a>
+    </p>
+
+</div>
+
+<hr>
 
                 <?php endif; ?>
 
