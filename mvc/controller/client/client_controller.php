@@ -75,6 +75,10 @@ final class ClientRouter
               ClientAuthController::class,
               __DIR__ . '/auth_controller.php'
             ],
+            'commentAdd' => [
+              ClientCommentController::class,
+              __DIR__ . '/comment_controller.php'
+            ],
         ];
 
         ActionRouter::dispatch(
