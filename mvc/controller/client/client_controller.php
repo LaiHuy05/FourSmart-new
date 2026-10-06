@@ -61,6 +61,20 @@ final class ClientRouter
                 ClientOrderController::class,
                 __DIR__ . '/order_controller.php'
             ],
+            'profile' => [
+              ClientProfileController::class,
+              __DIR__ . '/profile_controller.php'
+            ],
+
+            'profileUpdate' => [
+              ClientProfileController::class,
+              __DIR__ . '/profile_controller.php'
+            ],
+
+            'logout' => [
+              ClientAuthController::class,
+              __DIR__ . '/auth_controller.php'
+            ],
         ];
 
         ActionRouter::dispatch(
