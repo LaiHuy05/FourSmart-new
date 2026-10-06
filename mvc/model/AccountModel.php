@@ -145,4 +145,57 @@ public static function updateProfile(
       $id
   );
 }
+public static function roles(): array
+{
+    return Database::query(
+        'SELECT * FROM role'
+    );
+}
+
+public static function usernameExistsForOtherUser(
+    string $username,
+    int $userId
+): bool {
+    $result = Database::one(
+        'SELECT COUNT(*) AS total
+         FROM account
+         WHERE tk_user = ?
+         AND tk_id <> ?',
+        $username,
+        $userId
+    );
+
+    return (int) ($result['total'] ?? 0) > 0;
+}
+
+public static function updateAdmin(
+    int $id,
+    string $username,
+    string $email,
+    string $address,
+    int $roleId
+): void {
+    Database::execute(
+        'UPDATE account
+         SET tk_user = ?,
+             tk_email = ?,
+             tk_address = ?,
+             id_role = ?
+         WHERE tk_id = ?',
+        $username,
+        $email,
+        $address,
+        $roleId,
+        $id
+    );
+}
+
+public static function delete(int $id): void
+{
+    Database::execute(
+        'DELETE FROM account
+         WHERE tk_id = ?',
+        $id
+    );
+}
 }
