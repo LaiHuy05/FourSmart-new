@@ -19,13 +19,15 @@
 
         <section>
 
-            <h2>
-                <?= htmlspecialchars(
-                    $category['dm_name'],
-                    ENT_QUOTES,
-                    'UTF-8'
-                ) ?>
-            </h2>
+        <h2>
+    <a href="?client=category&id=<?= (int) $category['dm_id'] ?>">
+        <?= htmlspecialchars(
+            $category['dm_name'],
+            ENT_QUOTES,
+            'UTF-8'
+        ) ?>
+    </a>
+</h2>
 
             <?php foreach ($products as $product): ?>
 
