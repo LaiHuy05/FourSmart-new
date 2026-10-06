@@ -141,7 +141,11 @@
             <hr>
 
         <?php endforeach; ?>
-
+            <p>
+    <a href="?client=checkout">
+        Tiến hành thanh toán
+    </a>
+</p>
     <?php endif; ?>
 
 </body>
