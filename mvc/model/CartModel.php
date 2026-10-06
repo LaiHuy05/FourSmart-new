@@ -110,4 +110,29 @@ final class CartModel
 
     return (int) ($result['total'] ?? 0) > 0;
 }
+public static function detailsWithProductsByCart(
+    int $cartId
+): array {
+    return Database::query(
+        'SELECT
+            cd.*,
+            p.sp_name,
+            p.sp_price
+         FROM cartdetail cd
+         JOIN product p
+            ON p.sp_id = cd.id_sp
+         WHERE cd.id_gh = ?',
+        $cartId
+    );
+}
+
+public static function clearDetails(
+    int $cartId
+): void {
+    Database::execute(
+        'DELETE FROM cartdetail
+         WHERE id_gh = ?',
+        $cartId
+    );
+}
 }
