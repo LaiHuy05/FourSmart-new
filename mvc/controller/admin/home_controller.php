@@ -4,6 +4,14 @@ final class AdminHomeController
 {
     public static function handle(string $action): void
     {
-        include __DIR__ . '/../../view/admin/home.php';
+        $totalOrders = OrderModel::totalOrders();
+
+        $totalRevenue = OrderModel::totalRevenue();
+
+        $monthlyRevenue =
+            OrderModel::currentYearMonthlyRevenue();
+
+        include __DIR__
+            . '/../../view/admin/home.php';
     }
 }

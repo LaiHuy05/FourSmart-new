@@ -155,4 +155,48 @@ public static function detailsByOrderId(
         $orderId
     );
 }
+public static function currentYearMonthlyRevenue(): array
+{
+    $rows = Database::query(
+        'SELECT
+            MONTH(dh_orderdate) AS month_no,
+            SUM(dh_totalamount) AS revenue
+         FROM `order`
+         WHERE YEAR(dh_orderdate) = YEAR(CURDATE())
+         GROUP BY MONTH(dh_orderdate)
+         ORDER BY MONTH(dh_orderdate)'
+    );
+
+    $months = array_fill(1, 12, 0);
+
+    foreach ($rows as $row) {
+        $months[(int) $row['month_no']]
+            = (float) $row['revenue'];
+    }
+
+    return $months;
+}
+
+public static function totalOrders(): int
+{
+    $result = Database::one(
+        'SELECT COUNT(*) AS total
+         FROM `order`'
+    );
+
+    return (int) ($result['total'] ?? 0);
+}
+
+public static function totalRevenue(): float
+{
+    $result = Database::one(
+        'SELECT COALESCE(
+            SUM(dh_totalamount),
+            0
+         ) AS total
+         FROM `order`'
+    );
+
+    return (float) ($result['total'] ?? 0);
+}
 }
