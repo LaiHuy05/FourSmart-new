@@ -50,6 +50,30 @@ final class AdminRouter
                 AdminOrderController::class,
                 __DIR__ . '/order_controller.php'
             ],
+            'accountList' => [
+                AdminAccountController::class,
+                __DIR__ . '/account_controller.php'
+            ],
+
+            'accountUpdate' => [
+                AdminAccountController::class,
+                __DIR__ . '/account_controller.php'
+            ],
+
+            'accountDelete' => [
+                AdminAccountController::class,
+                __DIR__ . '/account_controller.php'
+            ],
+
+            'commentList' => [
+                AdminCommentController::class,
+                __DIR__ . '/comment_controller.php'
+            ],
+
+            'commentDelete' => [
+                AdminCommentController::class,
+                __DIR__ . '/comment_controller.php'
+            ],
         ];
 
         ActionRouter::dispatch(
