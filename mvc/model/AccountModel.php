@@ -114,4 +114,35 @@ final class AccountModel
 
     return false;
 }
+public static function emailExistsForOtherUser(
+  string $email,
+  int $userId
+): bool {
+  $result = Database::one(
+      'SELECT COUNT(*) AS total
+       FROM account
+       WHERE tk_email = ?
+       AND tk_id <> ?',
+      $email,
+      $userId
+  );
+
+  return (int) ($result['total'] ?? 0) > 0;
+}
+
+public static function updateProfile(
+  int $id,
+  string $email,
+  string $address
+): void {
+  Database::execute(
+      'UPDATE account
+       SET tk_email = ?,
+           tk_address = ?
+       WHERE tk_id = ?',
+      $email,
+      $address,
+      $id
+  );
+}
 }

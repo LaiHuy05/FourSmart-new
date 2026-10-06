@@ -8,11 +8,12 @@ final class ClientAuthController
             case 'login':
                 self::login();
                 break;
-
             case 'register':
                 self::register();
                 break;
-
+            case 'logout':
+                self::logout();
+                break;
             default:
                 http_response_code(404);
                 exit('Chức năng tài khoản không tồn tại');
@@ -129,4 +130,27 @@ final class ClientAuthController
         include __DIR__
             . '/../../view/client/login/register.php';
     }
+    private static function logout(): void
+  {
+    $_SESSION = [];
+
+    if (ini_get('session.use_cookies')) {
+        $params = session_get_cookie_params();
+
+        setcookie(
+            session_name(),
+            '',
+            time() - 42000,
+            $params['path'],
+            $params['domain'],
+            $params['secure'],
+            $params['httponly']
+        );
+    }
+
+    session_destroy();
+
+    header('Location: ?client=login');
+    exit;
+  }
 }
