@@ -10,6 +10,11 @@ final class AdminHomeController
 
         $monthlyRevenue =
             OrderModel::currentYearMonthlyRevenue();
+        $orderStatusSummary =
+            OrderModel::ordersByStatus();
+
+        $topSellingProducts =
+            OrderModel::topSellingProducts();
 
         include __DIR__
             . '/../../view/admin/home.php';

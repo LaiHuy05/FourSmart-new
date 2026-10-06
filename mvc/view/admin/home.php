@@ -62,6 +62,50 @@
 <?php endforeach; ?>
 
 </table>
+    <h2>Đơn hàng theo trạng thái</h2>
 
+<table border="1">
+    <tr>
+        <th>Trạng thái</th>
+        <th>Số đơn</th>
+    </tr>
+
+    <?php foreach ($orderStatusSummary as $item): ?>
+
+        <tr>
+            <td>
+                <?= htmlspecialchars($item['dh_status']) ?>
+            </td>
+
+            <td>
+                <?= (int) $item['total'] ?>
+            </td>
+        </tr>
+
+    <?php endforeach; ?>
+</table>
+
+<h2>Top 5 sản phẩm bán chạy</h2>
+
+<table border="1">
+    <tr>
+        <th>Sản phẩm</th>
+        <th>Đã bán</th>
+    </tr>
+
+    <?php foreach ($topSellingProducts as $product): ?>
+
+        <tr>
+            <td>
+                <?= htmlspecialchars($product['sp_name']) ?>
+            </td>
+
+            <td>
+                <?= (int) $product['sold_quantity'] ?>
+            </td>
+        </tr>
+
+    <?php endforeach; ?>
+</table>
 </body>
 </html>
