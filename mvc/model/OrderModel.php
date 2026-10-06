@@ -28,4 +28,96 @@ final class OrderModel
             $userId
         );
     }
+    public static function create(
+    string $name,
+    string $email,
+    string $phone,
+    string $address,
+    string $country,
+    string $city,
+    string $district,
+    string $commune,
+    string $message,
+    string $status,
+    float $totalAmount,
+    int $accountId,
+    int $quantity,
+    string $orderCode
+): string {
+    return Database::insert(
+        'INSERT INTO `order` (
+            dh_nameUser,
+            dh_emailUser,
+            dh_phoneUser,
+            dh_addressUser,
+            dh_countryPay,
+            dh_cityPay,
+            dh_districtPay,
+            dh_communePay,
+            dh_messagePay,
+            dh_orderdate,
+            dh_status,
+            dh_totalamount,
+            id_tk,
+            sp_quantity,
+            dh_ma
+         )
+         VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?, ?,
+            CURRENT_TIMESTAMP,
+            ?, ?, ?, ?, ?
+         )',
+        $name,
+        $email,
+        $phone,
+        $address,
+        $country,
+        $city,
+        $district,
+        $commune,
+        $message,
+        $status,
+        $totalAmount,
+        $accountId,
+        $quantity,
+        $orderCode
+    );
+}
+
+public static function addDetail(
+    int $orderId,
+    int $productId,
+    int $quantity,
+    string $memory,
+    string $color
+): void {
+    Database::execute(
+        'INSERT INTO orderdetail(
+            id_dh,
+            id_sp,
+            ct_quantity,
+            od_option,
+            od_optionColor
+         )
+         VALUES (?, ?, ?, ?, ?)',
+        $orderId,
+        $productId,
+        $quantity,
+        $memory,
+        $color
+    );
+}
+
+public static function updateStatus(
+    int $id,
+    string $status
+): void {
+    Database::execute(
+        'UPDATE `order`
+         SET dh_status = ?
+         WHERE dh_id = ?',
+        $status,
+        $id
+    );
+}
 }
