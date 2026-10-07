@@ -10,6 +10,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Thêm sản phẩm</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+<link rel="stylesheet" href="view/assets/css/product.css">
 </head>
 
 <body>

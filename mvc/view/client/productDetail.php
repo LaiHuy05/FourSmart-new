@@ -3,6 +3,7 @@
 /** @var array $product */
 /** @var array $colors */
 /** @var array $memories */
+/** @var array $comments */
 
 ?>
 <!DOCTYPE html>
@@ -11,6 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+<link rel="stylesheet" href="view/assets/css/product.css">
 </head>
 
 <body>
