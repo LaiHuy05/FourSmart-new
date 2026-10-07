@@ -11,6 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+<link rel="stylesheet" href="view/assets/css/product.css">
 </head>
 
 <body>
