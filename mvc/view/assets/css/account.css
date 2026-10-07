@@ -1,0 +1,144 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 16px;
+  background:
+      linear-gradient(
+          135deg,
+          #eff6ff,
+          #f8fafc
+      );
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 430px;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h1 {
+  margin-bottom: 8px;
+  text-align: center;
+  color: #111827;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.auth-card button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.auth-link {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.profile-wrapper {
+  max-width: 760px;
+  margin: 40px auto;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.profile-name {
+  padding: 15px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  margin-bottom: 22px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.account-table td:last-child,
+.comment-table td:last-child {
+  white-space: nowrap;
+}
+
+.account-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.account-actions form {
+  display: inline-block;
+  margin: 0;
+}
+
+.comment-content {
+  max-width: 420px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.admin-form {
+  max-width: 650px;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.admin-form h1 {
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .auth-card {
+      padding: 22px;
+  }
+
+  .profile-wrapper {
+      margin: 20px 10px;
+  }
+
+  .profile-actions {
+      flex-direction: column;
+  }
+
+  .profile-actions .btn,
+  .profile-actions button {
+      width: 100%;
+  }
+
+  .admin-header {
+      align-items: flex-start;
+      flex-direction: column;
+  }
+}

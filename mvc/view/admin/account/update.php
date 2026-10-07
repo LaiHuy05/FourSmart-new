@@ -12,6 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Cập nhật tài khoản</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+<link rel="stylesheet" href="view/assets/css/account.css">
 </head>
 
 <body>
