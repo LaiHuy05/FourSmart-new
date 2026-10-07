@@ -198,4 +198,32 @@ public static function delete(int $id): void
         $id
     );
 }
+public static function hasRelatedData(int $id): bool
+{
+    $cart = Database::one(
+        'SELECT COUNT(*) AS total
+         FROM cart
+         WHERE id_tk = ?',
+        $id
+    );
+
+    $orders = Database::one(
+        'SELECT COUNT(*) AS total
+         FROM `order`
+         WHERE id_tk = ?',
+        $id
+    );
+
+    $comments = Database::one(
+        'SELECT COUNT(*) AS total
+         FROM comment
+         WHERE id_tk = ?',
+        $id
+    );
+
+    return
+        (int) ($cart['total'] ?? 0) > 0
+        || (int) ($orders['total'] ?? 0) > 0
+        || (int) ($comments['total'] ?? 0) > 0;
+}
 }

@@ -119,6 +119,14 @@ final class AdminAccountController
         }
 
         if ($id > 0) {
+          if (AccountModel::hasRelatedData($id)) {
+            http_response_code(409);
+        
+            exit(
+                'Không thể xóa tài khoản vì đang có '
+                . 'giỏ hàng, đơn hàng hoặc bình luận'
+            );
+        }
             AccountModel::delete($id);
         }
 
