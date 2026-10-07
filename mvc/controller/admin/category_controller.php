@@ -119,8 +119,18 @@ final class AdminCategoryController
 
         $id = (int) ($_POST['id'] ?? 0);
 if ($id > 0) {
-            CategoryModel::delete($id);
-        }
+
+    if (CategoryModel::hasProducts($id)) {
+        http_response_code(409);
+
+        exit(
+            'Không thể xóa danh mục '
+            . 'đang chứa sản phẩm'
+        );
+    }
+
+    CategoryModel::delete($id);
+}
 
         header(
             'Location: ?act=admin&admin=categoryList'
