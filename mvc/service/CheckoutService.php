@@ -72,6 +72,23 @@ final class CheckoutService
 
         try {
             $connection->beginTransaction();
+            foreach ($items as $item) {
+
+    $productId = (int) $item['id_sp'];
+    $quantity = (int) $item['cd_quantity'];
+
+    if (
+        !ProductModel::hasStock(
+            $productId,
+            $quantity
+        )
+    ) {
+        throw new RuntimeException(
+            'Sản phẩm không đủ số lượng tồn kho'
+        );
+    }
+}
+
 
             $orderId = OrderModel::create(
                 trim($customer['name']),
@@ -98,6 +115,10 @@ final class CheckoutService
                     (string) $item['cd_option'],
                     (string) $item['cd_optionColor']
                 );
+                ProductModel::decreaseStock(
+    (int) $item['id_sp'],
+    (int) $item['cd_quantity']
+);
             }
 
             CartModel::clearDetails($cartId);
