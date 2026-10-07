@@ -13,6 +13,8 @@
     <title>
         <?= htmlspecialchars($category['dm_name']) ?>
     </title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/home-category.css">
 </head>
 
 <body>
