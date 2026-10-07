@@ -13,6 +13,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Thanh toán</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+<link rel="stylesheet" href="view/assets/css/cart-checkout.css">
 </head>
 
 <body>
