@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lý danh mục</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/home-category.css">
 </head>
 
 <body>
