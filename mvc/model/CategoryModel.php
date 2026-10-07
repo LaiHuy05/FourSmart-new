@@ -48,4 +48,15 @@ final class CategoryModel
             $id
         );
     }
+    public static function hasProducts(int $id): bool
+{
+    $result = Database::one(
+        'SELECT COUNT(*) AS total
+         FROM product
+         WHERE id_dm = ?',
+        $id
+    );
+
+    return (int) ($result['total'] ?? 0) > 0;
+}
 }
