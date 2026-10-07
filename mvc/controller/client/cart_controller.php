@@ -83,6 +83,38 @@ final class ClientCartController
             http_response_code(404);
             exit('Sản phẩm không tồn tại');
         }
+        $colors =
+    ProductVariantModel::colorsByProduct(
+        $productId
+    );
+
+$memories =
+    ProductVariantModel::memoriesByProduct(
+        $productId
+    );
+
+$validColor = false;
+
+foreach ($colors as $item) {
+    if ($item['pc_name'] === $color) {
+        $validColor = true;
+        break;
+    }
+}
+
+$validMemory = false;
+
+foreach ($memories as $item) {
+    if ($item['pm_name'] === $memory) {
+        $validMemory = true;
+        break;
+    }
+}
+
+if (!$validColor || !$validMemory) {
+    http_response_code(422);
+    exit('Biến thể sản phẩm không hợp lệ');
+}
 
         $cart = CartModel::findByUser($userId);
 
