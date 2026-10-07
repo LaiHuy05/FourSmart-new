@@ -165,6 +165,14 @@ exit('CSRF không hợp lệ');
         $id = (int) ($_POST['id'] ?? 0);
 
         if ($id > 0) {
+            if (ProductModel::hasRelatedData($id)) {
+    http_response_code(409);
+
+    exit(
+        'Không thể xóa sản phẩm vì đang có '
+        . 'giỏ hàng, đơn hàng hoặc bình luận liên quan'
+    );
+}
             ProductModel::delete($id);
         }
 

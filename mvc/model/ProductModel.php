@@ -89,4 +89,56 @@ public static function delete(int $id): void
         $id
     );
 }
+public static function hasStock(
+    int $productId,
+    int $quantity
+): bool {
+    $product = self::find($productId);
+
+    if (!$product) {
+        return false;
+    }
+
+    return (int) $product['sp_quantity'] >= $quantity;
+}
+
+public static function decreaseStock(
+    int $productId,
+    int $quantity
+): void {
+    Database::execute(
+        'UPDATE product
+         SET sp_quantity = sp_quantity - ?
+         WHERE sp_id = ?
+         AND sp_quantity >= ?',
+        $quantity,
+        $productId,
+        $quantity
+    );
+}
+
+public static function hasRelatedData(int $id): bool
+{
+    $result = Database::one(
+        'SELECT
+            (
+                (SELECT COUNT(*)
+                 FROM cartdetail
+                 WHERE id_sp = ?)
+                +
+                (SELECT COUNT(*)
+                 FROM orderdetail
+                 WHERE id_sp = ?)
+                +
+                (SELECT COUNT(*)
+                 FROM comment
+                 WHERE id_sp = ?)
+            ) AS total',
+        $id,
+        $id,
+        $id
+    );
+
+    return (int) ($result['total'] ?? 0) > 0;
+}
 }
