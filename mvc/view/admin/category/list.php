@@ -3,84 +3,119 @@
 
 <head>
     <meta charset="UTF-8">
+
     <title>Quản lý danh mục</title>
+
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/home-category.css">
 </head>
 
 <body>
 
-<h1>Danh sách danh mục</h1>
+<div class="container page">
 
-<a href="?act=admin&admin=categoryAdd">
-    Thêm danh mục
-</a>
+    <div class="admin-header">
 
-<table border="1">
+        <h1>Danh sách danh mục</h1>
 
-    <tr>
-        <th>ID</th>
-        <th>Tên</th>
-        <th>Thao tác</th>
-    </tr>
+        <a
+            class="btn"
+            href="?act=admin&admin=categoryAdd"
+        >
+            Thêm danh mục
+        </a>
 
-    <?php foreach ($categories as $category): ?>
+    </div>
 
-        <tr>
+    <div class="table-wrapper">
 
-            <td>
-                <?= (int) $category['dm_id'] ?>
-            </td>
+        <table>
 
-            <td>
-                <?= htmlspecialchars(
-                    $category['dm_name'],
-                    ENT_QUOTES,
-                    'UTF-8'
-                ) ?>
-            </td>
+            <thead>
 
-            <td>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Thao tác</th>
+            </tr>
 
-                <a href="?act=admin&admin=categoryUpdate&id=<?= (int) $category['dm_id'] ?>">
-                    Sửa
-                </a>
+            </thead>
 
-                <form
-                    action="?act=admin&admin=categoryDelete"
-                    method="POST"
-                    style="display:inline"
-                >
+            <tbody>
 
-                    <input
-                        type="hidden"
-                        name="csrf_token"
-                        value="<?= htmlspecialchars(
-                            Csrf::token(),
+            <?php foreach ($categories as $category): ?>
+
+                <tr>
+
+                    <td>
+                        <?= (int) $category['dm_id'] ?>
+                    </td>
+
+                    <td>
+                        <?= htmlspecialchars(
+                            $category['dm_name'],
                             ENT_QUOTES,
                             'UTF-8'
-                        ) ?>"
-                    >
+                        ) ?>
+                    </td>
 
-                    <input
-                        type="hidden"
-                        name="id"
-                        value="<?= (int) $category['dm_id'] ?>"
-                    >
+                    <td>
 
-                    <button type="submit">
-                        Xóa
-                    </button>
+                        <div class="category-actions">
 
-                </form>
+                            <a
+                                class="btn"
+                                href="?act=admin&admin=categoryUpdate&id=<?= (int) $category['dm_id'] ?>"
+                            >
+                                Sửa
+                            </a>
 
-            </td>
+                            <form
+                                action="?act=admin&admin=categoryDelete"
+                                method="POST"
+                            >
 
-        </tr>
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    value="<?= htmlspecialchars(
+                                        Csrf::token(),
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    ) ?>"
+                                >
 
-    <?php endforeach; ?>
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<?= (int) $category['dm_id'] ?>"
+                                >
 
-</table>
+                                <button
+                                    class="btn-danger"
+                                    type="submit"
+                                >
+                                    Xóa
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            <?php endforeach; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 </body>
+
 </html>
