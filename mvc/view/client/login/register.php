@@ -8,9 +8,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Đăng ký</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+  <link rel="stylesheet" href="view/assets/css/account.css">
 </head>
 
-<body>
+<body class="auth-page">
+<div class="auth-card">
 
 <h1>Đăng ký</h1>
 
@@ -58,6 +61,7 @@
         Đăng nhập
     </a>
 </p>
+</div>
 
 </body>
 </html>
