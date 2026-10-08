@@ -12,20 +12,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Hồ sơ cá nhân</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/account.css">
 </head>
 
 <body>
 
-<h1>Hồ sơ cá nhân</h1>
+<div class="profile-wrapper">
 
-<p>
-    Tài khoản:
-    <?= htmlspecialchars(
-        $account['tk_user'],
-        ENT_QUOTES,
-        'UTF-8'
-    ) ?>
-</p>
+    <div class="profile-card">
+
+        <h1>Hồ sơ cá nhân</h1>
+
+        <div class="profile-name">
+            Tài khoản:
+            <?= htmlspecialchars($account['tk_user']) ?>
+        </div>
 
 <?php if ($error !== ''): ?>
 
@@ -92,17 +94,17 @@
 
 </form>
 
-<p>
-    <a href="?client=orderHistory">
+<div class="profile-actions">
+
+    <a class="btn" href="?client=orderHistory">
         Lịch sử đơn hàng
     </a>
-</p>
 
-<p>
-    <a href="?client=logout">
+    <a class="btn btn-danger" href="?client=logout">
         Đăng xuất
     </a>
-</p>
+
+</div>
 
 </body>
 </html>

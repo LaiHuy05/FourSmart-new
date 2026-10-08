@@ -8,46 +8,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
+    <link rel="stylesheet" href="view/assets/css/base.css">
+  <link rel="stylesheet" href="view/assets/css/account.css">
 </head>
 
-<body>
+<body class="auth-page">
 
-<h1>Đăng nhập</h1>
+<div class="auth-card">
 
-<?php if ($error !== ''): ?>
-    <p><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+    <h1>Đăng nhập</h1>
 
-<form method="POST">
+    <p class="auth-subtitle">
+        Đăng nhập vào FourSmart
+    </p>
 
-    <input
-        type="hidden"
-        name="csrf_token"
-        value="<?= htmlspecialchars(Csrf::token()) ?>"
-    >
+    <?php if ($error !== ''): ?>
+        <div class="error">
+            <?= htmlspecialchars($error) ?>
+        </div>
+    <?php endif; ?>
 
-    <label>Tài khoản:</label>
-    <input type="text" name="username">
+    <form method="POST">
+    <div class="form-group">
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= htmlspecialchars(Csrf::token()) ?>"
+        >
+        </div>
 
-    <br>
+        <div class="form-group">
+            <label>Tài khoản</label>
+            <input type="text" name="username">
+        </div>
 
-    <label>Mật khẩu:</label>
-    <input type="password" name="password">
+        <div class="form-group">
+            <label>Mật khẩu</label>
+            <input type="password" name="password">
+        </div>
 
-    <br>
+        <button type="submit">
+            Đăng nhập
+        </button>
 
-    <button type="submit">
-        Đăng nhập
-    </button>
+    </form>
 
-</form>
+    <p class="auth-link">
+        Chưa có tài khoản?
+        <a href="?client=register">Đăng ký</a>
+    </p>
 
-<p>
-    Chưa có tài khoản?
-    <a href="?client=register">
-        Đăng ký
-    </a>
-</p>
+</div>
 
 </body>
 </html>

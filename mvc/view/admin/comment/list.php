@@ -8,84 +8,114 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lý bình luận</title>
+
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/account.css">
 </head>
 
 <body>
 
-<h1>Quản lý bình luận</h1>
+<div class="container page">
 
-<table border="1">
+    <div class="admin-header">
+        <h1>Quản lý bình luận</h1>
+    </div>
 
-    <tr>
-        <th>ID</th>
-        <th>Người dùng</th>
-        <th>Sản phẩm</th>
-        <th>Nội dung</th>
-        <th>Thao tác</th>
-    </tr>
+    <div class="table-wrapper">
 
-    <?php foreach ($comments as $comment): ?>
+        <table class="comment-table">
 
-        <tr>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Người dùng</th>
+                    <th>Sản phẩm</th>
+                    <th>Nội dung</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
 
-            <td>
-                <?= (int) $comment['bl_id'] ?>
-            </td>
+            <tbody>
 
-            <td>
-                <?= htmlspecialchars(
-                    $comment['tk_user']
-                ) ?>
-            </td>
+            <?php foreach ($comments as $comment): ?>
 
-            <td>
-                <?= htmlspecialchars(
-                    $comment['sp_name']
-                ) ?>
-            </td>
+                <tr>
 
-            <td>
-                <?= nl2br(
-                    htmlspecialchars(
-                        $comment['bl_content']
-                    )
-                ) ?>
-            </td>
+                    <td>
+                        <?= (int) $comment['bl_id'] ?>
+                    </td>
 
-            <td>
+                    <td>
+                        <?= htmlspecialchars(
+                            $comment['tk_user'],
+                            ENT_QUOTES,
+                            'UTF-8'
+                        ) ?>
+                    </td>
 
-                <form
-                    action="?act=admin&admin=commentDelete"
-                    method="POST"
-                >
+                    <td>
+                        <?= htmlspecialchars(
+                            $comment['sp_name'],
+                            ENT_QUOTES,
+                            'UTF-8'
+                        ) ?>
+                    </td>
 
-                    <input
-                        type="hidden"
-                        name="csrf_token"
-                        value="<?= htmlspecialchars(
-                            Csrf::token()
-                        ) ?>"
-                    >
+                    <td class="comment-content">
+                        <?= nl2br(
+                            htmlspecialchars(
+                                $comment['bl_content'],
+                                ENT_QUOTES,
+                                'UTF-8'
+                            )
+                        ) ?>
+                    </td>
 
-                    <input
-                        type="hidden"
-                        name="id"
-                        value="<?= (int) $comment['bl_id'] ?>"
-                    >
+                    <td>
 
-                    <button type="submit">
-                        Xóa
-                    </button>
+                        <form
+                            action="?act=admin&admin=commentDelete"
+                            method="POST"
+                        >
 
-                </form>
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="<?= htmlspecialchars(
+                                    Csrf::token(),
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                ) ?>"
+                            >
 
-            </td>
+                            <input
+                                type="hidden"
+                                name="id"
+                                value="<?= (int) $comment['bl_id'] ?>"
+                            >
 
-        </tr>
+                            <button
+                                class="btn-danger"
+                                type="submit"
+                            >
+                                Xóa
+                            </button>
 
-    <?php endforeach; ?>
+                        </form>
 
-</table>
+                    </td>
+
+                </tr>
+
+            <?php endforeach; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 </body>
 </html>
