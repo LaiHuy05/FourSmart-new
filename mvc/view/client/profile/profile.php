@@ -29,20 +29,16 @@
             <?= htmlspecialchars($account['tk_user']) ?>
         </div>
 
-<?php if ($error !== ''): ?>
-
-    <p>
+        <?php if ($error !== ''): ?>
+    <div class="error">
         <?= htmlspecialchars($error) ?>
-    </p>
-
+    </div>
 <?php endif; ?>
 
 <?php if ($message !== ''): ?>
-
-    <p>
+    <div class="success">
         <?= htmlspecialchars($message) ?>
-    </p>
-
+    </div>
 <?php endif; ?>
 
 <form
@@ -104,6 +100,9 @@
         Đăng xuất
     </a>
 
+</div>
+
+    </div>
 </div>
 
 </body>
