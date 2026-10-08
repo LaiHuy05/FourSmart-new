@@ -18,7 +18,9 @@
 <h1>Đăng ký</h1>
 
 <?php if ($error !== ''): ?>
-    <p><?= htmlspecialchars($error) ?></p>
+    <div class="error">
+        <?= htmlspecialchars($error) ?>
+    </div>
 <?php endif; ?>
 
 <form method="POST">
@@ -29,25 +31,25 @@
         value="<?= htmlspecialchars(Csrf::token()) ?>"
     >
 
+    <div class="form-group">
     <label>Tài khoản:</label>
     <input type="text" name="username">
+</div>
 
-    <br>
-
+<div class="form-group">
     <label>Mật khẩu:</label>
     <input type="password" name="password">
+</div>
 
-    <br>
-
+<div class="form-group">
     <label>Email:</label>
     <input type="email" name="email">
+</div>
 
-    <br>
-
+<div class="form-group">
     <label>Địa chỉ:</label>
     <input type="text" name="address">
-
-    <br>
+</div>
 
     <button type="submit">
         Đăng ký
@@ -55,7 +57,7 @@
 
 </form>
 
-<p>
+<p class="auth-link">
     Đã có tài khoản?
     <a href="?client=login">
         Đăng nhập
