@@ -14,7 +14,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
 
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 <h1>
     Đơn hàng
     <?= htmlspecialchars($order['dh_ma']) ?>
@@ -123,6 +129,8 @@
     </div>
 
 <?php endforeach; ?>
+</main>
 
+</div>
 </body>
 </html>

@@ -18,6 +18,9 @@
 </head>
 
 <body>
+<?php
+include __DIR__ . '/partials/header.php';
+?>
 
 <div class="container cart-page">
 
@@ -220,6 +223,9 @@ Csrf::token(),
     <?php endif; ?>
 
 </div>
+<?php
+include __DIR__ . '/partials/footer.php';
+?>
 
 </body>
 

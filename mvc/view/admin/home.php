@@ -17,6 +17,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
+
+<?php
+include __DIR__ . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 
 <h1>Dashboard FourSmart</h1>
 
@@ -109,5 +116,8 @@
 
     <?php endforeach; ?>
 </table>
+</main>
+
+</div>
 </body>
 </html>

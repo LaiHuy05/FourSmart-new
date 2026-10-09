@@ -16,6 +16,9 @@
 </head>
 
 <body>
+<?php
+include __DIR__ . '/partials/header.php';
+?>
 
 <header class="site-header">
 
@@ -144,6 +147,10 @@
 <?php endforeach; ?>
 
 </main>
+
+    <?php
+include __DIR__ . '/partials/footer.php';
+?>
 
 </body>
 

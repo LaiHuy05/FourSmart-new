@@ -17,7 +17,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
 
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 <div class="container page">
 
     <div class="admin-header">
@@ -157,6 +163,8 @@ name="csrf_token"
     </div>
 
 </div>
+</main>
 
+</div>
 </body>
 </html>

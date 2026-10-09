@@ -13,6 +13,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
+
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 
 <div class="category-admin-form">
 
@@ -61,7 +68,9 @@
     </form>
 
 </div>
+</main>
 
+</div>
 </body>
 
 </html>

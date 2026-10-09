@@ -14,6 +14,15 @@
 
 <body>
 
+<div class="admin-shell">
+
+<?php
+include dirname(__DIR__)
+    . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
+
 <h1>Quản lý tài khoản</h1>
 
 <table border="1">
@@ -106,6 +115,9 @@
     <?php endforeach; ?>
 
 </table>
+</main>
+
+</div>
 
 </body>
 </html>
