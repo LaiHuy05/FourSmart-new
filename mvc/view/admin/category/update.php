@@ -2,51 +2,66 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
+
     <title>Sửa danh mục</title>
+
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/home-category.css">
+
 </head>
 
 <body>
 
-<h1>Sửa danh mục</h1>
+<div class="category-admin-form">
 
-<?php if ($error !== ''): ?>
+    <h1>Sửa danh mục</h1>
 
-    <p>
-        <?= htmlspecialchars($error) ?>
-    </p>
+    <?php if ($error !== ''): ?>
 
-<?php endif; ?>
+        <div class="error">
+            <?= htmlspecialchars($error) ?>
+        </div>
 
-<form method="POST">
+    <?php endif; ?>
 
-    <input
-        type="hidden"
-        name="csrf_token"
-        value="<?= htmlspecialchars(
-            Csrf::token(),
-            ENT_QUOTES,
-            'UTF-8'
-        ) ?>"
-    >
+    <form method="POST">
 
-    <label>Tên danh mục:</label>
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= htmlspecialchars(
+                Csrf::token(),
+                ENT_QUOTES,
+                'UTF-8'
+            ) ?>"
+        >
 
-    <input
-        type="text"
-        name="name"
-        value="<?= htmlspecialchars(
-            $category['dm_name'],
-            ENT_QUOTES,
-            'UTF-8'
-        ) ?>"
-    >
+        <div class="form-group">
 
-    <button type="submit">
-        Cập nhật
-    </button>
+            <label>Tên danh mục</label>
 
-</form>
+            <input
+                type="text"
+                name="name"
+                value="<?= htmlspecialchars(
+                    $category['dm_name'],
+                    ENT_QUOTES,
+                    'UTF-8'
+                ) ?>"
+            >
+
+        </div>
+
+        <button type="submit">
+            Cập nhật
+        </button>
+
+    </form>
+
+</div>
 
 </body>
+
 </html>
