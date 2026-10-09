@@ -2,6 +2,7 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -13,43 +14,14 @@
 
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/home-category.css">
+
 </head>
 
 <body>
+
 <?php
 include __DIR__ . '/partials/header.php';
 ?>
-
-<header class="site-header">
-
-    <div class="container header-inner">
-
-        <a
-            class="logo"
-            href="?client=home"
-        >
-            Four<span>Smart</span>
-        </a>
-
-        <nav>
-
-            <a href="?client=home">
-                Trang chủ
-            </a>
-
-            <a href="?client=cart">
-                Giỏ hàng
-            </a>
-
-            <a href="?client=profile">
-                Tài khoản
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
 
 <section class="home-hero">
 
@@ -67,88 +39,187 @@ include __DIR__ . '/partials/header.php';
 
 <main class="container">
 
-<?php foreach ($categories as $category): ?>
+    <div class="category-quick-nav">
 
-    <section class="category-section">
+        <?php foreach ($categories as $category): ?>
 
-        <div class="category-title">
+            <a href="#category-<?= (int) $category['dm_id'] ?>">
 
-            <h2>
+                <?= htmlspecialchars(
+                    $category['dm_name'],
+                    ENT_QUOTES,
+                    'UTF-8'
+                ) ?>
 
-                <a href="?client=category&id=<?= (int) $category['dm_id'] ?>">
+            </a>
 
-                    <?= htmlspecialchars(
-                        $category['dm_name'],
-                        ENT_QUOTES,
-                        'UTF-8'
-                    ) ?>
+        <?php endforeach; ?>
 
-                </a>
+    </div>
 
-            </h2>
+    <?php foreach ($categories as $category): ?>
 
-        </div>
+        <?php
 
-        <div class="product-grid">
-
-            <?php foreach ($products as $product): ?>
-
-                <?php if (
+        $categoryProducts = array_filter(
+            $products,
+            static function (
+                array $product
+            ) use ($category): bool {
+                return
                     (int) $product['id_dm']
                     ===
-                    (int) $category['dm_id']
-                ): ?>
+                    (int) $category['dm_id'];
+            }
+        );
 
-                    <div class="product-card">
+        ?>
 
-                        <h3>
+        <section
+            class="category-section"
+            id="category-<?= (int) $category['dm_id'] ?>"
+        >
 
-                            <a href="?client=productDetail&id=<?= (int) $product['sp_id'] ?>">
+            <div class="category-title">
 
-                                <?= htmlspecialchars(
-                                    $product['sp_name'],
-                                    ENT_QUOTES,
-                                    'UTF-8'
+                <h2>
+
+                    <a href="?client=category&id=<?= (int) $category['dm_id'] ?>">
+
+                        <?= htmlspecialchars(
+                            $category['dm_name'],
+                            ENT_QUOTES,
+                            'UTF-8'
+                        ) ?>
+
+                    </a>
+
+                </h2>
+
+                <a href="?client=category&id=<?= (int) $category['dm_id'] ?>">
+                    Xem tất cả
+                </a>
+
+            </div>
+
+            <?php if (empty($categoryProducts)): ?>
+
+                <div class="empty-state">
+                    Danh mục này chưa có sản phẩm.
+                </div>
+
+            <?php else: ?>
+
+                <div class="product-grid">
+
+                    <?php foreach (
+                        $categoryProducts
+                        as $product
+                    ): ?>
+
+                        <div class="product-card">
+
+                            <div class="product-card-image">
+
+                                <?php if (
+                                    !empty(
+                                        $product['sp_image']
+                                    )
+                                ): ?>
+
+                                    <img
+                                        src="<?= htmlspecialchars(
+                                            $product['sp_image'],
+ENT_QUOTES,
+                                            'UTF-8'
+                                        ) ?>"
+                                        alt="<?= htmlspecialchars(
+                                            $product['sp_name'],
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        ) ?>"
+                                    >
+
+                                <?php else: ?>
+
+                                    <div class="product-no-image">
+                                        Chưa có ảnh
+                                    </div>
+
+                                <?php endif; ?>
+
+                            </div>
+
+                            <h3>
+
+                                <a href="?client=productDetail&id=<?= (int) $product['sp_id'] ?>">
+
+                                    <?= htmlspecialchars(
+                                        $product['sp_name'],
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    ) ?>
+
+                                </a>
+
+                            </h3>
+
+                            <?php if (
+                                (float) $product['sp_pricedel']
+                                >
+                                (float) $product['sp_price']
+                            ): ?>
+
+                                <div class="product-old-price">
+
+                                    <?= number_format(
+                                        $product['sp_pricedel'],
+                                        0,
+                                        ',',
+                                        '.'
+                                    ) ?>
+
+                                    VNĐ
+
+                                </div>
+
+                            <?php endif; ?>
+
+                            <div class="product-card-price">
+
+                                <?= number_format(
+                                    $product['sp_price'],
+                                    0,
+                                    ',',
+                                    '.'
                                 ) ?>
 
+                                VNĐ
+
+                            </div>
+
+                            <a
+                                class="detail-link"
+                                href="?client=productDetail&id=<?= (int) $product['sp_id'] ?>"
+                            >
+                                Xem chi tiết
                             </a>
-
-                        </h3>
-
-                        <div class="product-card-price">
-
-                            <?= number_format(
-                                $product['sp_price'],
-                                0,
-                                ',',
-                                '.'
-                            ) ?>
-
-                            VNĐ
 
                         </div>
 
-                        <a
-                            class="detail-link"
-                            href="?client=productDetail&id=<?= (int) $product['sp_id'] ?>"
-                        >
-                            Xem chi tiết
-                        </a>
+                    <?php endforeach; ?>
 
-                    </div>
+                </div>
 
-                <?php endif; ?>
+            <?php endif; ?>
 
-            <?php endforeach; ?>
+        </section>
 
-        </div>
-</section>
-
-<?php endforeach; ?>
+    <?php endforeach; ?>
 
 </main>
 
-    <?php
+<?php
 include __DIR__ . '/partials/footer.php';
 ?>
 
