@@ -11,178 +11,269 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Thanh toán</title>
+
     <link rel="stylesheet" href="view/assets/css/base.css">
-<link rel="stylesheet" href="view/assets/css/cart-checkout.css">
+    <link rel="stylesheet" href="view/assets/css/cart-checkout.css">
+
 </head>
 
 <body>
 
-<h1>Thanh toán</h1>
+<div class="container page">
 
-<h2>Sản phẩm</h2>
+    <h1 class="page-title">
+        Thanh toán
+    </h1>
 
-<?php foreach ($items as $item): ?>
+    <div class="checkout-layout">
 
-    <div>
+        <div class="checkout-products">
 
-        <strong>
-            <?= htmlspecialchars(
-                $item['sp_name']
-            ) ?>
-        </strong>
+            <h2>Sản phẩm</h2>
 
-        <p>
-            Bộ nhớ:
-            <?= htmlspecialchars(
-                $item['cd_option']
-            ) ?>
-        </p>
+            <?php foreach ($items as $item): ?>
 
-        <p>
-            Màu:
-            <?= htmlspecialchars(
-                $item['cd_optionColor']
-            ) ?>
-        </p>
+                <div class="checkout-item">
 
-        <p>
-            Số lượng:
-            <?= (int) $item['cd_quantity'] ?>
-        </p>
+                    <strong>
+                        <?= htmlspecialchars(
+                            $item['sp_name']
+                        ) ?>
+                    </strong>
 
-        <p>
-            Giá:
-            <?= number_format(
-                $item['sp_price'],
-                0,
-                ',',
-                '.'
-            ) ?>
-            VNĐ
-        </p>
+                    <p>
+                        Bộ nhớ:
+                        <?= htmlspecialchars(
+                            $item['cd_option']
+                        ) ?>
+                    </p>
+
+                    <p>
+                        Màu:
+                        <?= htmlspecialchars(
+                            $item['cd_optionColor']
+                        ) ?>
+                    </p>
+
+                    <p>
+                        Số lượng:
+                        <?= (int) $item['cd_quantity'] ?>
+                    </p>
+
+                    <p>
+                        Giá:
+                        <?= number_format(
+                            $item['sp_price'],
+                            0,
+                            ',',
+                            '.'
+                        ) ?>
+                        VNĐ
+                    </p>
+
+                </div>
+
+            <?php endforeach; ?>
+
+            <div class="checkout-total">
+
+                <p>
+
+                    <span>Tổng số lượng</span>
+
+                    <strong>
+                        <?= (int) $summary['quantity'] ?>
+                    </strong>
+
+                </p>
+
+                <p class="total-price">
+
+                    <span>Tổng tiền</span>
+
+                    <strong>
+                        <?= number_format(
+                            $summary['total'],
+                            0,
+                            ',',
+                            '.'
+                        ) ?>
+                        VNĐ
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="checkout-form">
+
+            <h2>Thông tin nhận hàng</h2>
+
+            <?php foreach ($errors as $error): ?>
+
+                <div class="error">
+                    <?= htmlspecialchars($error) ?>
+                </div>
+
+            <?php endforeach; ?>
+
+            <form method="POST">
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+value="<?= htmlspecialchars(
+                        Csrf::token()
+                    ) ?>"
+                >
+
+                <div class="form-group">
+
+                    <label>Họ tên</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        value="<?= htmlspecialchars(
+                            $_POST['name'] ?? ''
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        value="<?= htmlspecialchars(
+                            $_POST['email']
+                            ?? ($account['tk_email'] ?? '')
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Số điện thoại</label>
+
+                    <input
+                        type="text"
+                        name="phone"
+                        value="<?= htmlspecialchars(
+                            $_POST['phone'] ?? ''
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Địa chỉ</label>
+
+                    <input
+                        type="text"
+                        name="address"
+                        value="<?= htmlspecialchars(
+                            $_POST['address']
+                            ?? ($account['tk_address'] ?? '')
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Quốc gia</label>
+
+                    <input
+                        type="text"
+                        name="country"
+                        value="<?= htmlspecialchars(
+                            $_POST['country'] ?? ''
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Tỉnh / Thành phố</label>
+
+                    <input
+                        type="text"
+                        name="city"
+                        value="<?= htmlspecialchars(
+                            $_POST['city'] ?? ''
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Quận / Huyện</label>
+
+                    <input
+                        type="text"
+                        name="district"
+                        value="<?= htmlspecialchars(
+                            $_POST['district'] ?? ''
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Phường / Xã</label>
+
+                    <input
+                        type="text"
+name="commune"
+                        value="<?= htmlspecialchars(
+                            $_POST['commune'] ?? ''
+                        ) ?>"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Ghi chú</label>
+
+                    <textarea name="message"><?= htmlspecialchars(
+                        $_POST['message'] ?? ''
+                    ) ?></textarea>
+
+                </div>
+
+                <button type="submit">
+                    Đặt hàng
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
-    <hr>
-
-<?php endforeach; ?>
-
-<h3>
-    Tổng số lượng:
-    <?= (int) $summary['quantity'] ?>
-</h3>
-
-<h3>
-    Tổng tiền:
-    <?= number_format(
-        $summary['total'],
-        0,
-        ',',
-        '.'
-    ) ?>
-    VNĐ
-</h3>
-
-<form method="POST">
-
-    <input
-        type="hidden"
-        name="csrf_token"
-        value="<?= htmlspecialchars(
-            Csrf::token()
-        ) ?>"
-    >
-
-    <label>Họ tên:</label>
-
-    <input
-        type="text"
-        name="name"
-        value="<?= htmlspecialchars(
-            $_POST['name'] ?? ''
-        ) ?>"
-    >
-
-    <br>
-
-    <label>Email:</label>
-
-    <input
-        type="email"
-        name="email"
-        value="<?= htmlspecialchars(
-            $_POST['email']
-            ?? ($account['tk_email'] ?? '')
-        ) ?>"
-    >
-
-    <br>
-
-    <label>Số điện thoại:</label>
-
-    <input
-        type="text"
-        name="phone"
-        value="<?= htmlspecialchars(
-            $_POST['phone'] ?? ''
-        ) ?>"
-    >
-
-    <br>
-
-    <label>Địa chỉ:</label>
-
-    <input
-        type="text"
-        name="address"
-        value="<?= htmlspecialchars(
-            $_POST['address']
-            ?? ($account['tk_address'] ?? '')
-        ) ?>"
-    >
-
-    <br>
-
-    <label>Quốc gia:</label>
-    <input type="text" name="country">
-
-    <br>
-
-    <label>Tỉnh / Thành phố:</label>
-    <input type="text" name="city">
-
-    <br>
-
-    <label>Quận / Huyện:</label>
-    <input type="text" name="district">
-
-    <br>
-
-    <label>Phường / Xã:</label>
-    <input type="text" name="commune">
-
-    <br>
-
-    <label>Ghi chú:</label>
-    <textarea name="message"></textarea>
-
-    <br>
-
-    <?php foreach ($errors as $error): ?>
-
-        <p>
-            <?= htmlspecialchars($error) ?>
-        </p>
-
-    <?php endforeach; ?>
-
-    <button type="submit">
-        Đặt hàng
-    </button>
-
-</form>
+</div>
 
 </body>
+
 </html>
