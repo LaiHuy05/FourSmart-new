@@ -6,119 +6,148 @@
 
 ?>
 
-?>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <title>Sửa sản phẩm</title>
+
     <link rel="stylesheet" href="view/assets/css/base.css">
-<link rel="stylesheet" href="view/assets/css/product.css">
+    <link rel="stylesheet" href="view/assets/css/product.css">
 </head>
 
 <body>
 
-<h1>Sửa sản phẩm</h1>
+<div class="product-admin-form">
 
-<?php if ($error !== ''): ?>
-    <p><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+    <h1>Sửa sản phẩm</h1>
 
-<form method="POST">
+    <?php if ($error !== ''): ?>
 
-    <input
-        type="hidden"
-        name="csrf_token"
-        value="<?= htmlspecialchars(Csrf::token()) ?>"
-    >
+        <div class="error">
+            <?= htmlspecialchars($error) ?>
+        </div>
 
-    <label>Tên:</label>
+    <?php endif; ?>
 
-    <input
-        type="text"
-        name="name"
-        value="<?= htmlspecialchars($product['sp_name']) ?>"
-    >
+    <form method="POST">
 
-    <br>
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= htmlspecialchars(
+                Csrf::token()
+            ) ?>"
+        >
 
-    <label>Ảnh:</label>
+        <div class="form-group">
 
-    <input
-        type="text"
-        name="image"
-        value="<?= htmlspecialchars($product['sp_image']) ?>"
-    >
+            <label>Tên sản phẩm</label>
 
-    <br>
-
-    <label>Giá:</label>
-
-    <input
-        type="number"
-        name="price"
-        value="<?= $product['sp_price'] ?>"
-    >
-
-    <br>
-
-    <label>Giá cũ:</label>
-
-    <input
-        type="number"
-        name="old_price"
-        value="<?= $product['sp_pricedel'] ?>"
-    >
-
-    <br>
-
-    <label>Số lượng:</label>
-
-    <input
-        type="number"
-        name="quantity"
-        value="<?= (int) $product['sp_quantity'] ?>"
-    >
-
-    <br>
-
-    <label>Mô tả:</label>
-
-    <textarea name="description"><?= htmlspecialchars(
-        $product['sp_describe']
-    ) ?></textarea>
-
-    <br>
-
-    <label>Danh mục:</label>
-
-    <select name="category_id">
-
-        <?php foreach ($categories as $category): ?>
-
-            <option
-                value="<?= (int) $category['dm_id'] ?>"
-                <?= (int) $category['dm_id']
-                    === (int) $product['id_dm']
-                    ? 'selected'
-                    : ''
-                ?>
+            <input
+                type="text"
+                name="name"
+                value="<?= htmlspecialchars(
+                    $product['sp_name']
+                ) ?>"
             >
-                <?= htmlspecialchars($category['dm_name']) ?>
-            </option>
 
-        <?php endforeach; ?>
+        </div>
 
-    </select>
+        <div class="form-group">
 
-    <br>
+            <label>Ảnh</label>
 
-    <button type="submit">
-        Cập nhật
-    </button>
+            <input
+                type="text"
+                name="image"
+                value="<?= htmlspecialchars(
+                    $product['sp_image']
+                ) ?>"
+            >
 
-</form>
+        </div>
+
+        <div class="form-group">
+
+            <label>Giá</label>
+
+            <input
+                type="number"
+                name="price"
+                value="<?= $product['sp_price'] ?>"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Giá cũ</label>
+
+            <input
+                type="number"
+                name="old_price"
+                value="<?= $product['sp_pricedel'] ?>"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Số lượng</label>
+
+            <input
+                type="number"
+                name="quantity"
+                value="<?= (int) $product['sp_quantity'] ?>"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Mô tả</label>
+
+            <textarea name="description"><?= htmlspecialchars(
+                $product['sp_describe']
+            ) ?></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Danh mục</label>
+
+            <select name="category_id">
+
+                <?php foreach ($categories as $category): ?>
+
+                    <option
+                        value="<?= (int) $category['dm_id'] ?>"
+                        <?= (int) $category['dm_id']
+                            === (int) $product['id_dm']
+                            ? 'selected'
+                            : ''
+                        ?>
+                    >
+                        <?= htmlspecialchars(
+                            $category['dm_name']
+                        ) ?>
+                    </option>
+
+                <?php endforeach; ?>
+
+            </select>
+
+        </div>
+<button type="submit">
+            Cập nhật
+        </button>
+
+    </form>
+
+</div>
 
 </body>
 </html>

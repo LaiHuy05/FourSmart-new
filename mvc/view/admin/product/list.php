@@ -11,99 +11,152 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lý sản phẩm</title>
+
     <link rel="stylesheet" href="view/assets/css/base.css">
-<link rel="stylesheet" href="view/assets/css/product.css">
+    <link rel="stylesheet" href="view/assets/css/product.css">
 </head>
 
 <body>
 
-<h1>Danh sách sản phẩm</h1>
+<div class="container page">
 
-<a href="?act=admin&admin=productAdd">
-    Thêm sản phẩm
-</a>
+    <div class="admin-header">
 
-<table border="1">
+        <h1>Danh sách sản phẩm</h1>
 
-    <tr>
-        <th>ID</th>
-        <th>Tên</th>
-        <th>Giá</th>
-        <th>Số lượng</th>
-        <th>Danh mục</th>
-        <th>Thao tác</th>
-    </tr>
+        <a
+            class="btn"
+            href="?act=admin&admin=productAdd"
+        >
+            Thêm sản phẩm
+        </a>
 
-    <?php foreach ($products as $product): ?>
+    </div>
 
-        <?php
-        $categoryName = '';
+    <div class="table-wrapper">
 
-        foreach ($categories as $category) {
-            if (
-                (int) $category['dm_id']
-                ===
-                (int) $product['id_dm']
-            ) {
-                $categoryName = $category['dm_name'];
-                break;
-            }
-        }
-        ?>
+        <table class="product-table">
 
-        <tr>
+            <thead>
 
-            <td><?= (int) $product['sp_id'] ?></td>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Danh mục</th>
+                <th>Thao tác</th>
+            </tr>
 
-            <td>
-                <?= htmlspecialchars($product['sp_name']) ?>
-            </td>
+            </thead>
 
-            <td>
-                <?= number_format($product['sp_price'], 0, ',', '.') ?>
-            </td>
+            <tbody>
 
-            <td><?= (int) $product['sp_quantity'] ?></td>
+            <?php foreach ($products as $product): ?>
 
-            <td>
-                <?= htmlspecialchars($categoryName) ?>
-            </td>
+                <?php
+                $categoryName = '';
 
-            <td>
+                foreach ($categories as $category) {
+                    if (
+                        (int) $category['dm_id']
+                        ===
+                        (int) $product['id_dm']
+                    ) {
+                        $categoryName =
+                            $category['dm_name'];
 
-                <a href="?act=admin&admin=productUpdate&id=<?= (int) $product['sp_id'] ?>">
-                    Sửa
-                </a>
+                        break;
+                    }
+                }
+                ?>
 
-                <form
-                    action="?act=admin&admin=productDelete"
-                    method="POST"
-                    style="display:inline"
-                >
-                    <input
-                        type="hidden"
-                        name="csrf_token"
-                        value="<?= htmlspecialchars(Csrf::token()) ?>"
-                    >
+                <tr>
 
-                    <input
-                        type="hidden"
-                        name="id"
-                        value="<?= (int) $product['sp_id'] ?>"
-                    >
+                    <td>
+                        <?= (int) $product['sp_id'] ?>
+                    </td>
 
-                    <button type="submit">
-                        Xóa
-                    </button>
-                </form>
+                    <td>
+                        <?= htmlspecialchars(
+                            $product['sp_name']
+                        ) ?>
+                    </td>
 
-            </td>
+                    <td>
+                        <?= number_format(
+                            $product['sp_price'],
+                            0,
+                            ',',
+                            '.'
+                        ) ?>
+                        VNĐ
+                    </td>
 
-        </tr>
+                    <td>
+                        <?= (int) $product['sp_quantity'] ?>
+                    </td>
 
-    <?php endforeach; ?>
+                    <td>
+                        <?= htmlspecialchars(
+                            $categoryName
+                        ) ?>
+                    </td>
 
-</table>
+                    <td>
+
+                        <div class="product-admin-actions">
+
+                            <a
+                                class="btn"
+                                href="?act=admin&admin=productUpdate&id=<?= (int) $product['sp_id'] ?>"
+                            >
+                                Sửa
+                            </a>
+
+                            <form
+                                action="?act=admin&admin=productDelete"
+                                method="POST"
+                            >
+
+                                <input
+                                    type="hidden"
+name="csrf_token"
+                                    value="<?= htmlspecialchars(
+                                        Csrf::token()
+                                    ) ?>"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<?= (int) $product['sp_id'] ?>"
+                                >
+
+                                <button
+                                    class="btn-danger"
+                                    type="submit"
+                                >
+                                    Xóa
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            <?php endforeach; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 </body>
 </html>

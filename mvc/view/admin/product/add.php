@@ -4,87 +4,108 @@
 /** @var array $categories */
 
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <title>Thêm sản phẩm</title>
+
     <link rel="stylesheet" href="view/assets/css/base.css">
-<link rel="stylesheet" href="view/assets/css/product.css">
+    <link rel="stylesheet" href="view/assets/css/product.css">
 </head>
 
 <body>
 
-<h1>Thêm sản phẩm</h1>
+<div class="product-admin-form">
 
-<?php if ($error !== ''): ?>
-    <p><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+    <h1>Thêm sản phẩm</h1>
 
-<form method="POST">
+    <?php if ($error !== ''): ?>
 
-    <input
-        type="hidden"
-        name="csrf_token"
-        value="<?= htmlspecialchars(Csrf::token()) ?>"
-    >
+        <div class="error">
+            <?= htmlspecialchars($error) ?>
+        </div>
 
-    <label>Tên:</label>
-    <input type="text" name="name">
+    <?php endif; ?>
 
-    <br>
+    <form method="POST">
 
-    <label>Ảnh:</label>
-    <input type="text" name="image">
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= htmlspecialchars(
+                Csrf::token()
+            ) ?>"
+        >
 
-    <br>
+        <div class="form-group">
+            <label>Tên sản phẩm</label>
+            <input type="text" name="name">
+        </div>
 
-    <label>Giá:</label>
-    <input type="number" name="price">
+        <div class="form-group">
+            <label>Ảnh</label>
+            <input type="text" name="image">
+        </div>
 
-    <br>
+        <div class="form-group">
+            <label>Giá</label>
+            <input type="number" name="price">
+        </div>
 
-    <label>Giá cũ:</label>
-    <input type="number" name="old_price">
+        <div class="form-group">
+            <label>Giá cũ</label>
+            <input type="number" name="old_price">
+        </div>
 
-    <br>
+        <div class="form-group">
+            <label>Số lượng</label>
+            <input type="number" name="quantity">
+        </div>
 
-    <label>Số lượng:</label>
-    <input type="number" name="quantity">
+        <div class="form-group">
 
-    <br>
+            <label>Mô tả</label>
 
-    <label>Mô tả:</label>
-    <textarea name="description"></textarea>
+            <textarea name="description"></textarea>
 
-    <br>
+        </div>
 
-    <label>Danh mục:</label>
+        <div class="form-group">
 
-    <select name="category_id">
+            <label>Danh mục</label>
 
-        <option value="0">
-            Chọn danh mục
-        </option>
+            <select name="category_id">
 
-        <?php foreach ($categories as $category): ?>
+                <option value="0">
+                    Chọn danh mục
+                </option>
 
-            <option value="<?= (int) $category['dm_id'] ?>">
-                <?= htmlspecialchars($category['dm_name']) ?>
-            </option>
+                <?php foreach ($categories as $category): ?>
 
-        <?php endforeach; ?>
+                    <option
+                        value="<?= (int) $category['dm_id'] ?>"
+                    >
+                        <?= htmlspecialchars(
+                            $category['dm_name']
+                        ) ?>
+                    </option>
 
-    </select>
+                <?php endforeach; ?>
 
-    <br>
+            </select>
 
-    <button type="submit">
-        Thêm
-    </button>
+        </div>
 
-</form>
+        <button type="submit">
+            Thêm sản phẩm
+        </button>
+
+    </form>
+
+</div>
 
 </body>
 </html>
