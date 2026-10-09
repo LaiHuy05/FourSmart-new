@@ -2,8 +2,14 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
+
     <title>Sửa danh mục</title>
+
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/home-category.css">
+
 </head>
 
 <body>
@@ -14,47 +20,57 @@ include dirname(__DIR__) . '/partials/sidebar.php';
 ?>
 
 <main class="admin-content">
-<h1>Sửa danh mục</h1>
 
-<?php if ($error !== ''): ?>
+<div class="category-admin-form">
 
-    <p>
-        <?= htmlspecialchars($error) ?>
-    </p>
+    <h1>Sửa danh mục</h1>
 
-<?php endif; ?>
+    <?php if ($error !== ''): ?>
 
-<form method="POST">
+        <div class="error">
+            <?= htmlspecialchars($error) ?>
+        </div>
 
-    <input
-        type="hidden"
-        name="csrf_token"
-        value="<?= htmlspecialchars(
-            Csrf::token(),
-            ENT_QUOTES,
-            'UTF-8'
-        ) ?>"
-    >
+    <?php endif; ?>
 
-    <label>Tên danh mục:</label>
+    <form method="POST">
 
-    <input
-        type="text"
-        name="name"
-        value="<?= htmlspecialchars(
-            $category['dm_name'],
-            ENT_QUOTES,
-            'UTF-8'
-        ) ?>"
-    >
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= htmlspecialchars(
+                Csrf::token(),
+                ENT_QUOTES,
+                'UTF-8'
+            ) ?>"
+        >
 
-    <button type="submit">
-        Cập nhật
-    </button>
+        <div class="form-group">
 
-</form>
+            <label>Tên danh mục</label>
+
+            <input
+                type="text"
+                name="name"
+                value="<?= htmlspecialchars(
+                    $category['dm_name'],
+                    ENT_QUOTES,
+                    'UTF-8'
+                ) ?>"
+            >
+
+        </div>
+
+        <button type="submit">
+            Cập nhật
+        </button>
+
+    </form>
+
+</div>
 </main>
 
 </div>
 </body>
+
 </html>
