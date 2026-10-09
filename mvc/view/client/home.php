@@ -12,6 +12,9 @@
 </head>
 
 <body>
+<?php
+include __DIR__ . '/partials/header.php';
+?>
 
     <h1>FourSmart</h1>
 
@@ -76,6 +79,10 @@
         </section>
 
     <?php endforeach; ?>
+
+    <?php
+include __DIR__ . '/partials/footer.php';
+?>
 
 </body>
 

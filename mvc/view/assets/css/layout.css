@@ -1,0 +1,186 @@
+.client-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.client-header-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.client-logo,
+.admin-logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.client-logo span,
+.admin-logo span {
+  color: #2563eb;
+}
+
+.client-search {
+  display: flex;
+  flex: 1;
+  max-width: 520px;
+}
+
+.client-search input {
+  margin: 0;
+  border-radius: 9px 0 0 9px;
+}
+
+.client-search button {
+  border-radius: 0 9px 9px 0;
+  white-space: nowrap;
+}
+
+.client-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.client-nav a {
+  color: #374151;
+  font-weight: 600;
+}
+
+.client-nav a:hover {
+  color: #2563eb;
+}
+
+.client-footer {
+  margin-top: 60px;
+  padding-top: 40px;
+  background: #111827;
+  color: #d1d5db;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 30px;
+}
+
+.client-footer h3 {
+  color: #ffffff;
+}
+
+.client-footer a {
+  color: #d1d5db;
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  padding: 18px;
+  text-align: center;
+  border-top: 1px solid #374151;
+}
+
+/* ADMIN */
+
+.admin-shell {
+  min-height: 100vh;
+  display: flex;
+}
+
+.admin-sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #111827;
+  padding: 25px 18px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.admin-sidebar .admin-logo {
+  display: block;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-menu a {
+  padding: 11px 13px;
+  color: #d1d5db;
+  border-radius: 8px;
+}
+
+.admin-menu a:hover {
+  color: #ffffff;
+  background: #1f2937;
+}
+
+.admin-menu .admin-logout {
+  margin-top: 25px;
+  color: #fca5a5;
+}
+
+.admin-content {
+  width: calc(100% - 240px);
+  margin-left: 240px;
+  padding: 30px;
+}
+
+@media (max-width: 900px) {
+  .client-header-inner {
+      padding: 12px 0;
+      flex-wrap: wrap;
+  }
+
+  .client-search {
+      order: 3;
+      width: 100%;
+      max-width: none;
+  }
+
+  .client-nav {
+      flex-wrap: wrap;
+  }
+
+  .footer-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+      width: 190px;
+  }
+
+  .admin-content {
+      width: calc(100% - 190px);
+      margin-left: 190px;
+      padding: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .admin-shell {
+      display: block;
+  }
+
+  .admin-sidebar {
+      width: 100%;
+      min-height: auto;
+      position: static;
+  }
+
+  .admin-content {
+      width: 100%;
+      margin-left: 0;
+  }
+}

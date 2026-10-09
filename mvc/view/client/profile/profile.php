@@ -18,6 +18,10 @@
 
 <body>
 
+<?php
+include dirname(__DIR__) . '/partials/header.php';
+?>
+
 <div class="profile-wrapper">
 
     <div class="profile-card">
@@ -104,6 +108,8 @@
 
     </div>
 </div>
-
+<?php
+include dirname(__DIR__) . '/partials/footer.php';
+?>
 </body>
 </html>

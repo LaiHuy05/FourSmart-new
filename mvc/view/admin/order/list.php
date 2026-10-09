@@ -11,7 +11,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
 
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 <h1>Danh sách đơn hàng</h1>
 
 <table border="1">
@@ -72,6 +78,8 @@
     <?php endforeach; ?>
 
 </table>
+</main>
 
+</div>
 </body>
 </html>

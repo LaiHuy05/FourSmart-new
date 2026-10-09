@@ -7,6 +7,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
+
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 
 <h1>Thêm danh mục</h1>
 
@@ -42,6 +49,8 @@
     </button>
 
 </form>
+</main>
 
+</div>
 </body>
 </html>

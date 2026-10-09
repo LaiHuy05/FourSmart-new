@@ -27,6 +27,9 @@
 </head>
 
 <body>
+<?php
+include __DIR__ . '/partials/header.php';
+?>
 
 <div class="container page">
 
@@ -273,6 +276,9 @@ name="commune"
     </div>
 
 </div>
+<?php
+include __DIR__ . '/partials/footer.php';
+?>
 
 </body>
 

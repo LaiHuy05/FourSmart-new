@@ -9,7 +9,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
 
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 <h1>Danh sách danh mục</h1>
 
 <a href="?act=admin&admin=categoryAdd">
@@ -81,6 +87,8 @@
     <?php endforeach; ?>
 
 </table>
+</main>
 
+</div>
 </body>
 </html>

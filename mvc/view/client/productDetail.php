@@ -24,6 +24,9 @@
 </head>
 
 <body>
+<?php
+include __DIR__ . '/partials/header.php';
+?>
 
 <div class="container page">
 
@@ -251,6 +254,8 @@ $comment['tk_user']
     </div>
 
 </div>
-
+<?php
+include __DIR__ . '/partials/footer.php';
+?>
 </body>
 </html>

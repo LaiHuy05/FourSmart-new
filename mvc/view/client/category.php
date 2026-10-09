@@ -18,6 +18,9 @@
 </head>
 
 <body>
+<?php
+include __DIR__ . '/partials/header.php';
+?>
 
 <h1>
     <?= htmlspecialchars($category['dm_name']) ?>
@@ -46,6 +49,9 @@
     </div>
 
 <?php endforeach; ?>
+<?php
+include __DIR__ . '/partials/footer.php';
+?>
 
 </body>
 </html>

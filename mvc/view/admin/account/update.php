@@ -17,7 +17,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
 
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 <h1>Cập nhật tài khoản</h1>
 
 <?php if ($error !== ''): ?>
@@ -116,6 +122,8 @@
         Quay lại
     </a>
 </p>
+</main>
 
+</div>
 </body>
 </html>

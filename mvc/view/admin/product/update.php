@@ -18,7 +18,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
 
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 <div class="product-admin-form">
 
     <h1>Sửa sản phẩm</h1>
@@ -148,6 +154,8 @@
     </form>
 
 </div>
+</main>
 
+</div>
 </body>
 </html>

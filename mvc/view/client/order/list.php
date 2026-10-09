@@ -11,6 +11,9 @@
 </head>
 
 <body>
+<?php
+include dirname(__DIR__) . '/partials/header.php';
+?>
 
 <h1>Lịch sử đơn hàng</h1>
 
@@ -73,6 +76,8 @@
     </table>
 
 <?php endif; ?>
-
+<?php
+include dirname(__DIR__) . '/partials/footer.php';
+?>
 </body>
 </html>

@@ -7,7 +7,13 @@
 </head>
 
 <body>
+<div class="admin-shell">
 
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
 <h1>Sửa danh mục</h1>
 
 <?php if ($error !== ''): ?>
@@ -47,6 +53,8 @@
     </button>
 
 </form>
+</main>
 
+</div>
 </body>
 </html>
