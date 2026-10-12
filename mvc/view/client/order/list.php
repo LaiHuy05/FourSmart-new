@@ -6,78 +6,145 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Lịch sử đơn hàng</title>
+
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/order-dashboard.css">
+
 </head>
 
 <body>
+
 <?php
 include dirname(__DIR__) . '/partials/header.php';
 ?>
 
-<h1>Lịch sử đơn hàng</h1>
+<div class="container order-page">
 
-<?php if (empty($orders)): ?>
+    <h1 class="page-title">
+        Lịch sử đơn hàng
+    </h1>
 
-    <p>Bạn chưa có đơn hàng.</p>
+    <?php if (empty($orders)): ?>
 
-<?php else: ?>
+        <div class="empty-state">
 
-    <table border="1">
+            <p>
+                Bạn chưa có đơn hàng.
+            </p>
 
-        <tr>
-            <th>Mã đơn</th>
-            <th>Ngày đặt</th>
-            <th>Trạng thái</th>
-            <th>Tổng tiền</th>
-            <th></th>
-        </tr>
+            <a
+                class="btn"
+                href="?client=home"
+            >
+                Tiếp tục mua hàng
+            </a>
+
+        </div>
+
+    <?php else: ?>
 
         <?php foreach ($orders as $order): ?>
 
-            <tr>
+            <?php
 
-                <td>
-                    <?= htmlspecialchars($order['dh_ma']) ?>
-                </td>
+            $statusClass = match (
+                $order['dh_status']
+            ) {
+                'Chờ xác nhận'
+                    => 'badge-pending',
 
-                <td>
-                    <?= htmlspecialchars(
-                        $order['dh_orderdate']
-                    ) ?>
-                </td>
+                'Đã xác nhận'
+                    => 'badge-confirmed',
 
-                <td>
-                    <?= htmlspecialchars(
-                        $order['dh_status']
-                    ) ?>
-                </td>
+                'Đang giao'
+                    => 'badge-shipping',
 
-                <td>
+                'Đã giao'
+                    => 'badge-success',
+
+                'Đã hủy'
+                    => 'badge-cancel',
+
+                default => ''
+            };
+
+            ?>
+
+            <div class="order-card">
+
+                <div class="order-card-header">
+
+                    <div>
+
+                        <strong>
+                            <?= htmlspecialchars(
+                                $order['dh_ma']
+                            ) ?>
+                        </strong>
+
+                        <div>
+                            <?= htmlspecialchars(
+                                $order['dh_orderdate']
+                            ) ?>
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="badge <?= $statusClass ?>"
+                    >
+
+                        <?= htmlspecialchars(
+                            $order['dh_status']
+                        ) ?>
+
+                    </span>
+
+                </div>
+
+                <p class="order-price">
+
+                    Tổng tiền:
+
                     <?= number_format(
                         $order['dh_totalamount'],
                         0,
                         ',',
                         '.'
                     ) ?>
+
                     VNĐ
-                </td>
 
-                <td>
-                    <a href="?client=orderDetail&id=<?= (int) $order['dh_id'] ?>">
-                        Xem
-                    </a>
-                </td>
+                </p>
 
-            </tr>
+                <a
+                    class="btn"
+                    href="?client=orderDetail&id=<?= (int) $order['dh_id'] ?>"
+                >
+                    Xem chi tiết
+                </a>
+
+            </div>
 
         <?php endforeach; ?>
 
-    </table>
+    <?php endif; ?>
 
-<?php endif; ?>
+</div>
+
 <?php
 include dirname(__DIR__) . '/partials/footer.php';
 ?>
+
 </body>
+
 </html>
