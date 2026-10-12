@@ -9,128 +9,227 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
+
     <title>Chi tiết đơn hàng</title>
+
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/order-dashboard.css">
+
 </head>
 
 <body>
+
 <div class="admin-shell">
 
 <?php
-include dirname(__DIR__) . '/partials/sidebar.php';
+include dirname(__DIR__)
+    . '/partials/sidebar.php';
 ?>
 
 <main class="admin-content">
-<h1>
-    Đơn hàng
-    <?= htmlspecialchars($order['dh_ma']) ?>
-</h1>
 
-<p>
-    Khách hàng:
-    <?= htmlspecialchars($order['dh_nameUser']) ?>
-</p>
+<div class="container order-page">
 
-<p>
-    SĐT:
-    <?= htmlspecialchars($order['dh_phoneUser']) ?>
-</p>
+    <h1 class="page-title">
 
-<p>
-    Địa chỉ:
-    <?= htmlspecialchars($order['dh_addressUser']) ?>
-</p>
+        Đơn hàng
+        <?= htmlspecialchars(
+            $order['dh_ma']
+        ) ?>
 
-<p>
-    Trạng thái:
-    <?= htmlspecialchars($order['dh_status']) ?>
-</p>
+    </h1>
 
-<form
-    action="?act=admin&admin=orderStatus"
-    method="POST"
->
+    <div class="order-detail-info">
 
-    <input
-        type="hidden"
-        name="csrf_token"
-        value="<?= htmlspecialchars(Csrf::token()) ?>"
-    >
+        <div class="order-detail-box">
 
-    <input
-        type="hidden"
-        name="id"
-        value="<?= (int) $order['dh_id'] ?>"
-    >
+            <h3>Thông tin khách hàng</h3>
 
-    <select name="status">
+            <p>
+                Họ tên:
+                <?= htmlspecialchars(
+                    $order['dh_nameUser']
+                ) ?>
+            </p>
 
-        <?php
-        $statuses = [
-            'Chờ xác nhận',
-            'Đã xác nhận',
-            'Đang giao',
-            'Đã giao',
-            'Đã hủy',
-        ];
-        ?>
+            <p>
+                Email:
+                <?= htmlspecialchars(
+                    $order['dh_emailUser']
+                ) ?>
+            </p>
 
-        <?php foreach ($statuses as $status): ?>
+            <p>
+                SĐT:
+                <?= htmlspecialchars(
+                    $order['dh_phoneUser']
+                ) ?>
+            </p>
 
-            <option
-                value="<?= htmlspecialchars($status) ?>"
-                <?= $order['dh_status'] === $status
-                    ? 'selected'
-                    : ''
-                ?>
+            <p>
+                Địa chỉ:
+                <?= htmlspecialchars(
+                    $order['dh_addressUser']
+                ) ?>
+            </p>
+
+        </div>
+
+        <div class="order-detail-box">
+
+            <h3>Cập nhật trạng thái</h3>
+
+            <form
+                class="status-form"
+                action="?act=admin&admin=orderStatus"
+                method="POST"
             >
-                <?= htmlspecialchars($status) ?>
-            </option>
 
-        <?php endforeach; ?>
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="<?= htmlspecialchars(
+                        Csrf::token()
+                    ) ?>"
+                >
 
-    </select>
+                <input
+                    type="hidden"
+                    name="id"
+                    value="<?= (int) $order['dh_id'] ?>"
+                >
 
-    <button type="submit">
-        Cập nhật trạng thái
-    </button>
+                <?php
 
-</form>
+                $statuses = [
+                    'Chờ xác nhận',
+                    'Đã xác nhận',
+                    'Đang giao',
+                    'Đã giao',
+                    'Đã hủy',
+                ];
 
-<hr>
+                ?>
 
-<h2>Sản phẩm</h2>
+                <select name="status">
 
-<?php foreach ($details as $detail): ?>
+                    <?php foreach (
+                        $statuses
+                        as $status
+                    ): ?>
 
-    <div>
+                        <option
+                            value="<?= htmlspecialchars(
+                                $status
+                            ) ?>"
+                            <?= $order['dh_status']
+                                === $status
+                                ? 'selected'
+                                : ''
+                            ?>
+                        >
 
-        <strong>
-            <?= htmlspecialchars($detail['sp_name']) ?>
-        </strong>
+                            <?= htmlspecialchars(
+                                $status
+) ?>
 
-        <p>
-            SL:
-            <?= (int) $detail['ct_quantity'] ?>
-        </p>
+                        </option>
 
-        <p>
-            Bộ nhớ:
-            <?= htmlspecialchars($detail['od_option']) ?>
-        </p>
+                    <?php endforeach; ?>
 
-        <p>
-            Màu:
-            <?= htmlspecialchars(
-                $detail['od_optionColor']
-            ) ?>
-        </p>
+                </select>
+
+                <button type="submit">
+                    Cập nhật trạng thái
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
-<?php endforeach; ?>
+    <h2>Sản phẩm</h2>
+
+    <?php foreach ($details as $detail): ?>
+
+        <div class="order-product">
+
+            <strong>
+
+                <?= htmlspecialchars(
+                    $detail['sp_name']
+                ) ?>
+
+            </strong>
+
+            <p>
+                Số lượng:
+                <?= (int) $detail['ct_quantity'] ?>
+            </p>
+
+            <p>
+
+                Đơn giá:
+
+                <?= number_format(
+                    $detail['sp_price'],
+                    0,
+                    ',',
+                    '.'
+                ) ?>
+
+                VNĐ
+
+            </p>
+
+            <p>
+
+                Thành tiền:
+
+                <strong>
+
+                    <?= number_format(
+                        (float) $detail['sp_price']
+                        *
+                        (int) $detail['ct_quantity'],
+                        0,
+                        ',',
+                        '.'
+                    ) ?>
+
+                    VNĐ
+
+                </strong>
+
+            </p>
+
+            <p>
+                Bộ nhớ:
+                <?= htmlspecialchars(
+                    $detail['od_option']
+                ) ?>
+            </p>
+
+            <p>
+                Màu:
+                <?= htmlspecialchars(
+                    $detail['od_optionColor']
+                ) ?>
+            </p>
+
+        </div>
+
+    <?php endforeach; ?>
+
+</div>
+
 </main>
 
 </div>
+
 </body>
+
 </html>
