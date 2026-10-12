@@ -42,10 +42,24 @@ final class CheckoutService
             $errors['email'] = 'Email không hợp lệ';
         }
 
-        if (trim($data['phone'] ?? '') === '') {
-            $errors['phone']
-                = 'Vui lòng nhập số điện thoại';
-        }
+        $phone =
+    trim($data['phone'] ?? '');
+
+if ($phone === '') {
+
+    $errors['phone']
+        = 'Vui lòng nhập số điện thoại';
+
+} elseif (
+    !preg_match(
+        '/^0[0-9]{9}$/',
+        $phone
+    )
+) {
+
+    $errors['phone']
+        = 'Số điện thoại phải gồm 10 chữ số và bắt đầu bằng 0';
+}
 
         if (trim($data['address'] ?? '') === '') {
             $errors['address']

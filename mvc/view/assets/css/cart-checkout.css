@@ -139,3 +139,19 @@
         flex-wrap: wrap;
     }
 }
+.cart-total-price {
+    display: block;
+    margin-top: 5px;
+    color: #dc2626;
+    font-size: 22px;
+}
+
+.cart-item-price {
+    font-weight: 700;
+    color: #111827;
+}
+
+.cart-item-total {
+    color: #dc2626;
+    font-weight: 700;
+}

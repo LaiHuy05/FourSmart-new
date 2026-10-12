@@ -117,7 +117,9 @@ public static function detailsWithProductsByCart(
         'SELECT
             cd.*,
             p.sp_name,
-            p.sp_price
+            p.sp_image,
+            p.sp_price,
+            p.sp_quantity
          FROM cartdetail cd
          JOIN product p
             ON p.sp_id = cd.id_sp
@@ -134,5 +136,45 @@ public static function clearDetails(
          WHERE id_gh = ?',
         $cartId
     );
+}
+public static function detailForUser(
+    int $detailId,
+    int $userId
+) {
+    return Database::one(
+        'SELECT
+            cd.*,
+            p.sp_name,
+            p.sp_price,
+            p.sp_quantity
+         FROM cartdetail cd
+         JOIN cart c
+            ON c.gh_id = cd.id_gh
+         JOIN product p
+            ON p.sp_id = cd.id_sp
+         WHERE cd.cd_id = ?
+         AND c.id_tk = ?',
+        $detailId,
+        $userId
+    );
+}
+public static function productQuantityInCart(
+    int $cartId,
+    int $productId
+): int {
+    $result = Database::one(
+        'SELECT
+            COALESCE(
+                SUM(cd_quantity),
+                0
+            ) AS total
+         FROM cartdetail
+         WHERE id_gh = ?
+         AND id_sp = ?',
+        $cartId,
+        $productId
+    );
+
+    return (int) ($result['total'] ?? 0);
 }
 }

@@ -39,28 +39,49 @@ final class ClientCartController
         }
     }
 
-    private static function show(int $userId): void
-    {
+    private static function show(
+    int $userId
+): void {
+    $cart = CartModel::findByUser($userId);
+
+    if (!$cart) {
+        CartModel::create($userId);
         $cart = CartModel::findByUser($userId);
+    }
 
-        if (!$cart) {
-            CartModel::create($userId);
-            $cart = CartModel::findByUser($userId);
-        }
+    $cartDetails = [];
 
-        $cartDetails = [];
-
-        if ($cart) {
-            $cartDetails = CartModel::detailsByCart(
+    if ($cart) {
+        $cartDetails =
+            CartModel::detailsWithProductsByCart(
                 (int) $cart['gh_id']
             );
-        }
-
-        $products = ProductModel::all();
-
-        include __DIR__
-            . '/../../view/client/cart.php';
     }
+
+    $totalQuantity = 0;
+    $totalPrice = 0;
+
+    foreach ($cartDetails as $item) {
+        $quantity =
+            (int) $item['cd_quantity'];
+
+        $price =
+            (float) $item['sp_price'];
+
+        $totalQuantity += $quantity;
+
+        $totalPrice +=
+            $price * $quantity;
+    }
+
+    $cartError =
+        $_SESSION['cart_error'] ?? '';
+
+    unset($_SESSION['cart_error']);
+
+    include __DIR__
+        . '/../../view/client/cart.php';
+}
 
     private static function add(int $userId): void
     {
@@ -79,10 +100,21 @@ final class ClientCartController
             exit('Dữ liệu sản phẩm không hợp lệ');
         }
 
-        if (!ProductModel::find($productId)) {
-            http_response_code(404);
-            exit('Sản phẩm không tồn tại');
-        }
+        $product =
+    ProductModel::find($productId);
+
+if (!$product) {
+    http_response_code(404);
+    exit('Sản phẩm không tồn tại');
+}
+
+if (
+    (int) $product['sp_quantity']
+    <= 0
+) {
+    http_response_code(409);
+    exit('Sản phẩm đã hết hàng');
+}
         $colors =
     ProductVariantModel::colorsByProduct(
         $productId
@@ -118,36 +150,83 @@ if (!$validColor || !$validMemory) {
 
         $cart = CartModel::findByUser($userId);
 
-        if (!$cart) {
-            CartModel::create($userId);
-            $cart = CartModel::findByUser($userId);
-        }
+if (!$cart) {
+    CartModel::create($userId);
+    $cart = CartModel::findByUser($userId);
+}
 
-        CartModel::addItem(
-            (int) $cart['gh_id'],
-            $productId,
-            $memory,
-            $color
-        );
+$cartId = (int) $cart['gh_id'];
+
+$quantityInCart =
+    CartModel::productQuantityInCart(
+        $cartId,
+        $productId
+    );
+
+if (
+    $quantityInCart
+    >=
+    (int) $product['sp_quantity']
+) {
+    $_SESSION['cart_error']
+        = 'Sản phẩm trong giỏ đã đạt giới hạn tồn kho';
+
+    self::redirectCart();
+}
+
+CartModel::addItem(
+    $cartId,
+    $productId,
+    $memory,
+    $color
+);
+
 
         self::redirectCart();
     }
 
-    private static function increase(int $userId): void
-    {
-        self::checkPost();
+    private static function increase(
+    int $userId
+): void {
+    self::checkPost();
 
-        $detailId = (int) ($_POST['detail_id'] ?? 0);
+    $detailId =
+        (int) ($_POST['detail_id'] ?? 0);
 
-        self::checkOwnership(
+    $detail =
+        CartModel::detailForUser(
             $detailId,
             $userId
         );
 
-        CartModel::increaseQuantity($detailId);
+    if (!$detail) {
+        http_response_code(403);
+        exit('Bạn không có quyền thao tác');
+    }
+
+    $quantityInCart =
+        CartModel::productQuantityInCart(
+            (int) $detail['id_gh'],
+            (int) $detail['id_sp']
+        );
+
+    if (
+        $quantityInCart
+        >=
+        (int) $detail['sp_quantity']
+    ) {
+        $_SESSION['cart_error']
+            = 'Tổng số lượng sản phẩm trong giỏ đã đạt giới hạn tồn kho';
 
         self::redirectCart();
     }
+
+    CartModel::increaseQuantity(
+        $detailId
+    );
+
+    self::redirectCart();
+}
 
     private static function decrease(int $userId): void
     {
