@@ -1,3 +1,11 @@
+<?php
+
+/** @var array $cartDetails */
+/** @var int $totalQuantity */
+/** @var float $totalPrice */
+/** @var string $cartError */
+
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -27,7 +35,17 @@ include __DIR__ . '/partials/header.php';
     <h1 class="page-title">
         Giỏ hàng
     </h1>
+    <?php if ($cartError !== ''): ?>
 
+    <div class="error">
+        <?= htmlspecialchars(
+            $cartError,
+            ENT_QUOTES,
+            'UTF-8'
+        ) ?>
+    </div>
+
+<?php endif; ?>
     <?php if (empty($cartDetails)): ?>
 
         <div class="empty-state">
@@ -51,31 +69,15 @@ include __DIR__ . '/partials/header.php';
 
                 <?php foreach ($cartDetails as $item): ?>
 
-                    <?php
-                    $productName = 'Sản phẩm';
-
-                    foreach ($products as $product) {
-                        if (
-                            (int) $product['sp_id']
-                            ===
-                            (int) $item['id_sp']
-                        ) {
-                            $productName =
-                                $product['sp_name'];
-
-                            break;
-                        }
-                    }
-                    ?>
-
+                    
                     <div class="cart-item">
 
                         <h3>
                             <?= htmlspecialchars(
-                                $productName,
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
+        $item['sp_name'],
+    ENT_QUOTES,
+    'UTF-8'
+) ?>
                         </h3>
 
                         <p class="cart-meta">
@@ -95,6 +97,54 @@ include __DIR__ . '/partials/header.php';
                                 'UTF-8'
                             ) ?>
                         </p>
+                        <p class="cart-meta">
+
+    Đơn giá:
+
+    <strong class="cart-item-price">
+
+        <?= number_format(
+            $item['sp_price'],
+            0,
+            ',',
+            '.'
+        ) ?>
+
+        VNĐ
+
+    </strong>
+
+
+</p>
+<p class="cart-meta">
+
+    Thành tiền:
+
+    <strong class="cart-item-total">
+
+        <?= number_format(
+            (float) $item['sp_price']
+            *
+            (int) $item['cd_quantity'],
+            0,
+            ',',
+            '.'
+        ) ?>
+
+        VNĐ
+
+    </strong>
+
+</p>
+<p class="cart-meta">
+
+    Tồn kho:
+
+    <strong>
+        <?= (int) $item['sp_quantity'] ?>
+    </strong>
+
+</p>
 
                         <p class="cart-meta">
                             Số lượng:
@@ -200,23 +250,47 @@ Csrf::token(),
 
             <div class="cart-summary">
 
-                <h2>Đơn hàng</h2>
+    <h2>
+        Tóm tắt đơn hàng
+    </h2>
 
-                <p>
-                    Số loại sản phẩm:
-                    <strong>
-                        <?= count($cartDetails) ?>
-                    </strong>
-                </p>
+    <p>
 
-                <a
-                    class="btn checkout-button"
-                    href="?client=checkout"
-                >
-                    Tiến hành thanh toán
-                </a>
+        Tổng số lượng:
 
-            </div>
+        <strong>
+            <?= $totalQuantity ?>
+        </strong>
+
+    </p>
+
+    <p>
+
+        Tổng tiền:
+
+        <strong class="cart-total-price">
+
+            <?= number_format(
+                $totalPrice,
+                0,
+                ',',
+                '.'
+            ) ?>
+
+            VNĐ
+
+        </strong>
+
+    </p>
+
+    <a
+        class="btn checkout-button"
+        href="?client=checkout"
+    >
+        Tiến hành thanh toán
+    </a>
+
+</div>
 
         </div>
 
