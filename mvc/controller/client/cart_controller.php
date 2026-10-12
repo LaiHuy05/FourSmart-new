@@ -150,17 +150,37 @@ if (!$validColor || !$validMemory) {
 
         $cart = CartModel::findByUser($userId);
 
-        if (!$cart) {
-            CartModel::create($userId);
-            $cart = CartModel::findByUser($userId);
-        }
+if (!$cart) {
+    CartModel::create($userId);
+    $cart = CartModel::findByUser($userId);
+}
 
-        CartModel::addItem(
-            (int) $cart['gh_id'],
-            $productId,
-            $memory,
-            $color
-        );
+$cartId = (int) $cart['gh_id'];
+
+$quantityInCart =
+    CartModel::productQuantityInCart(
+        $cartId,
+        $productId
+    );
+
+if (
+    $quantityInCart
+    >=
+    (int) $product['sp_quantity']
+) {
+    $_SESSION['cart_error']
+        = 'Sản phẩm trong giỏ đã đạt giới hạn tồn kho';
+
+    self::redirectCart();
+}
+
+CartModel::addItem(
+    $cartId,
+    $productId,
+    $memory,
+    $color
+);
+
 
         self::redirectCart();
     }

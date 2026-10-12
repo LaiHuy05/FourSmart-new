@@ -158,4 +158,23 @@ public static function detailForUser(
         $userId
     );
 }
+public static function productQuantityInCart(
+    int $cartId,
+    int $productId
+): int {
+    $result = Database::one(
+        'SELECT
+            COALESCE(
+                SUM(cd_quantity),
+                0
+            ) AS total
+         FROM cartdetail
+         WHERE id_gh = ?
+         AND id_sp = ?',
+        $cartId,
+        $productId
+    );
+
+    return (int) ($result['total'] ?? 0);
+}
 }
