@@ -204,13 +204,19 @@ CartModel::addItem(
         exit('Bạn không có quyền thao tác');
     }
 
+    $quantityInCart =
+        CartModel::productQuantityInCart(
+            (int) $detail['id_gh'],
+            (int) $detail['id_sp']
+        );
+
     if (
-        (int) $detail['cd_quantity']
+        $quantityInCart
         >=
         (int) $detail['sp_quantity']
     ) {
         $_SESSION['cart_error']
-            = 'Số lượng đã đạt giới hạn tồn kho';
+            = 'Tổng số lượng sản phẩm trong giỏ đã đạt giới hạn tồn kho';
 
         self::redirectCart();
     }
