@@ -119,7 +119,12 @@ include dirname(__DIR__) . '/partials/sidebar.php';
                             >
                                 Sửa
                             </a>
-
+                        <a
+                                 class="btn btn-success"
+                                 href="?act=admin&admin=productVariant&product_id=<?= (int) $product['sp_id'] ?>"
+                            >
+                                Màu / Bộ nhớ
+                            </a>
                             <form
                                 action="?act=admin&admin=productDelete"
                                 method="POST"

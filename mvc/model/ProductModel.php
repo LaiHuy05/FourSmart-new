@@ -141,4 +141,23 @@ public static function hasRelatedData(int $id): bool
 
     return (int) ($result['total'] ?? 0) > 0;
 }
+public static function search(
+    string $keyword
+): array {
+    $keyword = trim($keyword);
+
+    if ($keyword === '') {
+        return [];
+    }
+
+    return Database::query(
+        'SELECT *
+         FROM product
+         WHERE sp_name LIKE ?
+            OR sp_ma LIKE ?
+         ORDER BY sp_id DESC',
+        '%' . $keyword . '%',
+        '%' . $keyword . '%'
+    );
+}
 }
