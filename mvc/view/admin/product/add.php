@@ -36,7 +36,10 @@ include dirname(__DIR__) . '/partials/sidebar.php';
 
     <?php endif; ?>
 
-    <form method="POST">
+    <form
+    method="POST"
+    enctype="multipart/form-data"
+>
 
         <input
             type="hidden"
@@ -51,10 +54,22 @@ include dirname(__DIR__) . '/partials/sidebar.php';
             <input type="text" name="name">
         </div>
 
-        <div class="form-group">
-            <label>Ảnh</label>
-            <input type="text" name="image">
-        </div>
+      <div class="form-group">
+
+    <label>Ảnh sản phẩm</label>
+
+    <input
+        type="file"
+        name="image"
+        accept="image/jpeg,image/png,image/webp"
+        required
+    >
+
+    <small>
+        Chấp nhận JPG, PNG, WEBP. Tối đa 5MB.
+    </small>
+
+</div>
 
         <div class="form-group">
             <label>Giá</label>

@@ -50,7 +50,6 @@ final class AdminProductController
             }
 
             $name = trim($_POST['name'] ?? '');
-            $image = trim($_POST['image'] ?? '');
             $price = (float) ($_POST['price'] ?? 0);
             $quantity = (int) ($_POST['quantity'] ?? 0);
             $description = trim($_POST['description'] ?? '');
@@ -58,32 +57,51 @@ final class AdminProductController
             $oldPrice = (float) ($_POST['old_price'] ?? 0);
 
             if (
-                $name === ''
-                || $price <= 0
-                || $quantity < 0
-                || $description === ''
-                || $categoryId <= 0
-            ) {
-                $error = 'Vui lòng nhập đầy đủ thông tin hợp lệ';
-            } else {
-                $code = 'SP_' . random_int(100000, 999999);
+    $name === ''
+    || $price <= 0
+    || $quantity < 0
+    || $description === ''
+    || $categoryId <= 0
+) {
+    $error =
+        'Vui lòng nhập đầy đủ thông tin hợp lệ';
+} else {
+    try {
+        $image =
+            self::uploadImage(
+                $_FILES['image'] ?? []
+            );
 
-                ProductModel::create(
-                    $name,
-                    $image,
-                    $price,
-                    $quantity,
-                    $description,
-                    $categoryId,
-                    $code,
-                    $oldPrice
-                );
+        $code =
+            'SP_'
+            . random_int(
+                100000,
+                999999
+            );
 
-                header(
-                    'Location: ?act=admin&admin=productList'
-                );
-                exit;
-            }
+        ProductModel::create(
+            $name,
+            $image,
+            $price,
+            $quantity,
+            $description,
+            $categoryId,
+            $code,
+            $oldPrice
+        );
+
+        header(
+            'Location: ?act=admin'
+            . '&admin=productList'
+        );
+
+        exit;
+
+    } catch (RuntimeException $exception) {
+        $error =
+            $exception->getMessage();
+    }
+}
         }
 
         include __DIR__
@@ -112,12 +130,12 @@ exit('CSRF không hợp lệ');
             }
 
             $name = trim($_POST['name'] ?? '');
-            $image = trim($_POST['image'] ?? '');
             $price = (float) ($_POST['price'] ?? 0);
             $quantity = (int) ($_POST['quantity'] ?? 0);
             $description = trim($_POST['description'] ?? '');
             $categoryId = (int) ($_POST['category_id'] ?? 0);
             $oldPrice = (float) ($_POST['old_price'] ?? 0);
+            $image = $product['sp_image'];
 
             if (
                 $name === ''
@@ -128,21 +146,43 @@ exit('CSRF không hợp lệ');
             ) {
                 $error = 'Vui lòng nhập đầy đủ thông tin hợp lệ';
             } else {
-                ProductModel::update(
-                    $id,
-                    $name,
-                    $image,
-                    $price,
-                    $quantity,
-                    $description,
-                    $categoryId,
-                    $oldPrice
-                );
+              try {
 
-                header(
-                    'Location: ?act=admin&admin=productList'
-                );
-                exit;
+    if (
+        isset($_FILES['image'])
+        &&
+        ($_FILES['image']['error'] ?? UPLOAD_ERR_NO_FILE)
+        !== UPLOAD_ERR_NO_FILE
+    ) {
+        $image =
+            self::uploadImage(
+                $_FILES['image']
+            );
+    }
+
+    ProductModel::update(
+        $id,
+        $name,
+        $image,
+        $price,
+        $quantity,
+        $description,
+        $categoryId,
+        $oldPrice
+    );
+
+    header(
+        'Location: ?act=admin'
+        . '&admin=productList'
+    );
+
+    exit;
+
+} catch (RuntimeException $exception) {
+
+    $error =
+        $exception->getMessage();
+}
             }
         }
 
@@ -181,4 +221,115 @@ exit('CSRF không hợp lệ');
         );
         exit;
     }
+    private static function uploadImage(
+    array $file
+): string {
+    if (
+        empty($file)
+        || !isset($file['error'])
+        || $file['error']
+            === UPLOAD_ERR_NO_FILE
+    ) {
+        throw new RuntimeException(
+            'Vui lòng chọn ảnh sản phẩm'
+        );
+    }
+
+    if (
+        $file['error']
+        !== UPLOAD_ERR_OK
+    ) {
+        throw new RuntimeException(
+            'Có lỗi xảy ra khi upload ảnh'
+        );
+    }
+
+    if (
+        (int) $file['size']
+        >
+        5 * 1024 * 1024
+    ) {
+        throw new RuntimeException(
+            'Ảnh không được vượt quá 5MB'
+        );
+    }
+
+    $imageInfo =
+        getimagesize(
+            $file['tmp_name']
+        );
+
+    if ($imageInfo === false) {
+        throw new RuntimeException(
+            'File được chọn không phải ảnh hợp lệ'
+        );
+    }
+
+    $allowedTypes = [
+        'image/jpeg' => 'jpg',
+        'image/png' => 'png',
+        'image/webp' => 'webp',
+    ];
+
+    $mimeType =
+        $imageInfo['mime'] ?? '';
+
+    if (
+        !isset(
+            $allowedTypes[$mimeType]
+        )
+    ) {
+        throw new RuntimeException(
+            'Chỉ chấp nhận ảnh JPG, PNG hoặc WEBP'
+        );
+    }
+
+    $extension =
+        $allowedTypes[$mimeType];
+
+    $fileName =
+        'product_'
+        . bin2hex(
+            random_bytes(8)
+        )
+        . '.'
+        . $extension;
+
+    $uploadDir =
+        __DIR__
+        . '/../../upload/';
+
+    if (!is_dir($uploadDir)) {
+        if (
+            !mkdir(
+                $uploadDir,
+                0777,
+                true
+            )
+        ) {
+            throw new RuntimeException(
+                'Không thể tạo thư mục upload'
+            );
+        }
+    }
+
+    $destination =
+        $uploadDir
+        . $fileName;
+
+    if (
+        !move_uploaded_file(
+            $file['tmp_name'],
+            $destination
+        )
+    ) {
+        throw new RuntimeException(
+            'Không thể lưu ảnh sản phẩm'
+        );
+    }
+
+    return
+        'upload/'
+        . $fileName;
+}
 }
