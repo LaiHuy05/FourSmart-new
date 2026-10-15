@@ -183,21 +183,6 @@ exit('CSRF không hợp lệ');
     $error =
         $exception->getMessage();
 }
-                ProductModel::update(
-                    $id,
-                    $name,
-                    $image,
-                    $price,
-                    $quantity,
-                    $description,
-                    $categoryId,
-                    $oldPrice
-                );
-
-                header(
-                    'Location: ?act=admin&admin=productList'
-                );
-                exit;
             }
         }
 
