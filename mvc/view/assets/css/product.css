@@ -212,3 +212,16 @@
         grid-template-columns: 1fr;
     }
 }
+.product-current-image {
+    margin: 10px 0 15px;
+}
+
+.product-current-image img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 8px;
+}

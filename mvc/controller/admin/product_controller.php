@@ -130,12 +130,12 @@ exit('CSRF không hợp lệ');
             }
 
             $name = trim($_POST['name'] ?? '');
-            $image = trim($_POST['image'] ?? '');
             $price = (float) ($_POST['price'] ?? 0);
             $quantity = (int) ($_POST['quantity'] ?? 0);
             $description = trim($_POST['description'] ?? '');
             $categoryId = (int) ($_POST['category_id'] ?? 0);
             $oldPrice = (float) ($_POST['old_price'] ?? 0);
+            $image = $product['sp_image'];
 
             if (
                 $name === ''
@@ -146,6 +146,43 @@ exit('CSRF không hợp lệ');
             ) {
                 $error = 'Vui lòng nhập đầy đủ thông tin hợp lệ';
             } else {
+              try {
+
+    if (
+        isset($_FILES['image'])
+        &&
+        ($_FILES['image']['error'] ?? UPLOAD_ERR_NO_FILE)
+        !== UPLOAD_ERR_NO_FILE
+    ) {
+        $image =
+            self::uploadImage(
+                $_FILES['image']
+            );
+    }
+
+    ProductModel::update(
+        $id,
+        $name,
+        $image,
+        $price,
+        $quantity,
+        $description,
+        $categoryId,
+        $oldPrice
+    );
+
+    header(
+        'Location: ?act=admin'
+        . '&admin=productList'
+    );
+
+    exit;
+
+} catch (RuntimeException $exception) {
+
+    $error =
+        $exception->getMessage();
+}
                 ProductModel::update(
                     $id,
                     $name,

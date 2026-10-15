@@ -37,8 +37,10 @@ include dirname(__DIR__) . '/partials/sidebar.php';
 
     <?php endif; ?>
 
-    <form method="POST">
-
+<form
+    method="POST"
+    enctype="multipart/form-data"
+>
         <input
             type="hidden"
             name="csrf_token"
@@ -61,19 +63,40 @@ include dirname(__DIR__) . '/partials/sidebar.php';
 
         </div>
 
-        <div class="form-group">
+<div class="form-group">
 
-            <label>Ảnh</label>
+    <label>Ảnh hiện tại</label>
 
-            <input
-                type="text"
-                name="image"
-                value="<?= htmlspecialchars(
-                    $product['sp_image']
+    <?php if (!empty($product['sp_image'])): ?>
+
+        <div class="product-current-image">
+
+            <img
+                src="<?= htmlspecialchars(
+                    $product['sp_image'],
+                    ENT_QUOTES,
+                    'UTF-8'
                 ) ?>"
+                alt="Ảnh sản phẩm"
             >
 
         </div>
+
+    <?php endif; ?>
+
+    <label>Chọn ảnh mới</label>
+
+    <input
+        type="file"
+        name="image"
+        accept="image/jpeg,image/png,image/webp"
+    >
+
+    <small>
+        Không chọn ảnh mới nếu muốn giữ ảnh hiện tại.
+    </small>
+
+</div>
 
         <div class="form-group">
 
