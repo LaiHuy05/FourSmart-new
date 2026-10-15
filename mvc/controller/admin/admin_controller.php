@@ -55,6 +55,42 @@ final class AdminRouter
                 AdminProductController::class,
                 __DIR__ . '/product_controller.php'
             ],
+
+            'productVariant' => [
+                AdminProductVariantController::class,
+                __DIR__ . '/product_variant_controller.php'
+            ],
+
+            'productColorAdd' => [
+                AdminProductVariantController::class,
+                __DIR__ . '/product_variant_controller.php'
+            ],
+
+            'productColorUpdate' => [
+                AdminProductVariantController::class,
+                __DIR__ . '/product_variant_controller.php'
+            ],
+
+            'productColorDelete' => [
+                AdminProductVariantController::class,
+                __DIR__ . '/product_variant_controller.php'
+            ],
+
+            'productMemoryAdd' => [
+                AdminProductVariantController::class,
+                __DIR__ . '/product_variant_controller.php'
+            ],
+
+            'productMemoryUpdate' => [
+                AdminProductVariantController::class,
+                __DIR__ . '/product_variant_controller.php'
+            ],
+
+            'productMemoryDelete' => [
+                AdminProductVariantController::class,
+                __DIR__ . '/product_variant_controller.php'
+            ],
+
             'orderList' => [
                 AdminOrderController::class,
                 __DIR__ . '/order_controller.php'
