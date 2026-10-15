@@ -20,6 +20,11 @@ final class ClientRouter
                 __DIR__ . '/product_controller.php'
             ],
 
+            'productSearch' => [
+              ClientProductController::class,   
+              __DIR__ . '/product_controller.php'
+            ],
+
             'cart' => [
                 ClientCartController::class,
                 __DIR__ . '/cart_controller.php'
