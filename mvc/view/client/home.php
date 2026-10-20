@@ -1,3 +1,8 @@
+<?php
+/** @var array $categories */
+/** @var array $products */
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
