@@ -6,11 +6,14 @@
             class="client-logo"
             href="?client=home"
         >
-            Four<span>Smart</span>
+            <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="brand-word">Four<span>Smart</span></span>
         </a>
 
         <form
             class="client-search"
+            role="search"
+            aria-label="Tìm kiếm sản phẩm"
             method="GET"
             action=""
         >
@@ -21,10 +24,12 @@
                 value="productSearch"
             >
 
+            <label class="sr-only" for="site-search">Tìm điện thoại</label>
             <input
                 type="text"
+                id="site-search"
                 name="q"
-                placeholder="Tìm sản phẩm..."
+                placeholder="Bạn đang tìm điện thoại nào?"
                 value="<?= htmlspecialchars(
                     $_GET['q'] ?? '',
                     ENT_QUOTES,
@@ -38,13 +43,14 @@
 
         </form>
 
-        <nav class="client-nav">
+        <nav class="client-nav" aria-label="Điều hướng chính">
 
             <a href="?client=home">
                 Trang chủ
             </a>
 
-            <a href="?client=cart">
+            <a class="nav-cart" href="?client=cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.4 12h10.9l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
                 Giỏ hàng
             </a>
 
@@ -79,7 +85,7 @@
                     Đăng nhập
                 </a>
 
-                <a href="?client=register">
+                <a class="nav-register" href="?client=register">
                     Đăng ký
                 </a>
 

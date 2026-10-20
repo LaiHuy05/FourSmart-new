@@ -1,123 +1,330 @@
 @import url('./layout.css');
+:root {
+  color-scheme: light;
+  --canvas: #f3f6fb;
+  --surface: #ffffff;
+  --ink: #152440;
+  --muted: #5c6980;
+  --brand: #2555d9;
+  --brand-hover: #1942b3;
+  --lavender: #e8eafe;
+  --mint: #d5f1ee;
+  --line: #dde4ee;
+  --danger: #b42336;
+  --success: #17654c;
+  --radius: 16px;
+  --shadow: 0 12px 32px rgb(21 36 64 / 6%);
+}
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-padding-top: 150px;
+}
+
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f5f7fb;
-  color: #1f2937;
+  font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  background: var(--canvas);
+  color: var(--ink);
+  overflow-wrap: anywhere;
 }
 
 a {
-  color: #2563eb;
+  color: var(--brand);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+img, svg {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--lavender);
+  color: var(--ink);
 }
 
 .container {
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto;
+  width: min(1240px, calc(100% - 64px));
+  margin-inline: auto;
 }
 
 .page {
-  padding: 32px 0;
+  padding-block: 42px 56px;
 }
 
-h1,
-h2,
+h1, h2, h3 {
+  margin-top: 0;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(26px, 3vw, 36px);
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 24px;
+  letter-spacing: -.5px;
+}
+
 h3 {
+  font-size: 18px;
+}
+
+p {
   margin-top: 0;
 }
 
-button,
-.btn {
-  display: inline-block;
-  border: 0;
-  border-radius: 8px;
-  padding: 10px 16px;
-  background: #2563eb;
-  color: white;
-  cursor: pointer;
+label {
   font-size: 14px;
+  font-weight: 600;
 }
 
-button:hover,
-.btn:hover {
-  opacity: 0.9;
+button, .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px 18px;
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  transition: background-color .16s, border-color .16s;
+}
+
+button:hover, .btn:hover {
+  background: var(--brand-hover);
   text-decoration: none;
 }
 
+button:disabled, .btn[aria-disabled='true'] {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand);
+  background: var(--canvas);
+}
+
 .btn-danger {
-  background: #dc2626;
+  background: var(--danger);
+}
+
+.btn-danger:hover {
+  background: #911c2c;
 }
 
 .btn-success {
-  background: #16a34a;
+  background: var(--success);
 }
 
-input,
-select,
-textarea {
+.btn-success:hover {
+  background: #10533d;
+}
+
+input:not([type='hidden']), select, textarea {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  margin-top: 6px;
-  margin-bottom: 14px;
-  font: inherit;
-  background: white;
+  min-width: 0;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1px solid #bac6d7;
+  border-radius: 9px;
+  margin-block: 7px 18px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+input::placeholder, textarea::placeholder {
+  color: #68758b;
+  opacity: 1;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--brand);
+}
+
+input[type='checkbox'], input[type='radio'] {
+  width: 18px;
+  min-height: 18px;
+  accent-color: var(--brand);
+}
+
+input[type='file'] {
+  padding: 9px;
+}
+
+input::file-selector-button {
+  border: 0;
+  border-radius: 5px;
+  padding: 6px 10px;
+  margin-right: 12px;
+  background: var(--lavender);
+  color: var(--ink);
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  background: var(--surface);
+  font-size: 14px;
 }
 
-th,
-td {
-  padding: 12px;
-  border-bottom: 1px solid #e5e7eb;
+th, td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
   text-align: left;
+  vertical-align: middle;
 }
 
 th {
-  background: #f3f4f6;
+  background: #edf2f9;
+  color: #45546b;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover {
+  background: #f8faff;
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
 }
 
 .card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.error, .success {
+  margin-block: 12px 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
 }
 
 .error {
-  color: #dc2626;
+  color: #941f30;
+  background: #fff0f1;
+  border: 1px solid #f4ccd2;
 }
 
 .success {
-  color: #16a34a;
+  color: #12543e;
+  background: #e9f7f0;
+  border: 1px solid #b9dfcc;
 }
 
-@media (max-width: 768px) {
-  .container {
-      width: min(100% - 20px, 1180px);
-  }
+.empty-state {
+  padding: 44px 24px;
+  border: 1px dashed #b9c6da;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
 
+.empty-state p {
+  margin-bottom: 20px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+  .page {
+    padding-block: 28px 40px;
+  }
+  h2 {
+    font-size: 21px;
+  }
+  input:not([type='hidden']), select, textarea {
+    font-size: 16px;
+  }
+  th, td {
+    padding: 12px 14px;
+  }
   table {
-      display: block;
-      overflow-x: auto;
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .table-wrapper table {
+    display: table;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

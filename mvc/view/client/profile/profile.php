@@ -11,6 +11,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hồ sơ cá nhân</title>
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/account.css">
@@ -60,11 +61,13 @@ include dirname(__DIR__) . '/partials/header.php';
         ) ?>"
     >
 
-    <label>Email:</label>
+    <label for="profile-email">Email</label>
 
     <input
         type="email"
+        id="profile-email"
         name="email"
+        autocomplete="email"
         value="<?= htmlspecialchars(
             $account['tk_email'],
             ENT_QUOTES,
@@ -74,11 +77,13 @@ include dirname(__DIR__) . '/partials/header.php';
 
     <br>
 
-    <label>Địa chỉ:</label>
+    <label for="profile-address">Địa chỉ</label>
 
     <input
         type="text"
+        id="profile-address"
         name="address"
+        autocomplete="street-address"
         value="<?= htmlspecialchars(
             $account['tk_address'],
             ENT_QUOTES,

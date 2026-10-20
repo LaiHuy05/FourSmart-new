@@ -7,12 +7,24 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="view/assets/css/base.css">
   <link rel="stylesheet" href="view/assets/css/account.css">
 </head>
 
 <body class="auth-page">
+
+<aside class="auth-intro">
+    <a class="client-logo" href="?client=home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="brand-word">Four<span>Smart</span></span>
+    </a>
+    <h2>Mọi kết nối bắt đầu từ đây.</h2>
+    <p>Đăng nhập để quản lý tài khoản, mua sắm và theo dõi đơn hàng của bạn.</p>
+    <a class="auth-back" href="?client=home">Về trang mua sắm</a>
+    <div class="auth-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+</aside>
 
 <div class="auth-card">
 
@@ -38,13 +50,13 @@
         </div>
 
         <div class="form-group">
-            <label>Tài khoản</label>
-            <input type="text" name="username">
+            <label for="login-username">Tài khoản</label>
+            <input id="login-username" type="text" name="username" autocomplete="username">
         </div>
 
         <div class="form-group">
-            <label>Mật khẩu</label>
-            <input type="password" name="password">
+            <label for="login-password">Mật khẩu</label>
+            <input id="login-password" type="password" name="password" autocomplete="current-password">
         </div>
 
         <button type="submit">

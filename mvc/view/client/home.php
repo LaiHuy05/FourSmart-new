@@ -25,21 +25,42 @@ include __DIR__ . '/partials/header.php';
 
 <section class="home-hero">
 
-    <div class="container">
+    <div class="home-hero-inner">
 
-        <h1>FourSmart</h1>
+        <div class="hero-copy">
+            <h1>Kết nối theo cách của bạn.</h1>
+            <p>Khám phá và chọn chiếc điện thoại phù hợp cho công việc, giải trí và những điều bạn yêu thích.</p>
+            <div class="hero-actions">
+                <a class="btn" href="#catalog">Khám phá điện thoại</a>
+            </div>
+        </div>
 
-        <p>
-            Điện thoại chính hãng - giá tốt
-        </p>
+        <div class="hero-devices" aria-hidden="true">
+            <div class="hero-orbit"></div>
+            <div class="hero-phone hero-phone-back">
+                <div class="phone-camera"><i></i><i></i><i></i></div>
+                <div class="phone-back-mark"><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="hero-phone hero-phone-front">
+                <div class="phone-island"></div>
+                <span class="phone-time">09:41</span>
+                <div class="phone-tiles"><i></i><i></i><i></i><i></i></div>
+                <div class="phone-home"></div>
+            </div>
+        </div>
 
     </div>
 
 </section>
 
-<main class="container">
+<main class="container storefront-content" id="catalog">
 
-    <div class="category-quick-nav">
+    <div class="catalog-heading">
+        <h2>Chọn điện thoại của bạn</h2>
+        <p>Khám phá sản phẩm theo từng danh mục.</p>
+    </div>
+
+    <nav class="category-quick-nav" aria-label="Danh mục điện thoại">
 
         <?php foreach ($categories as $category): ?>
 
@@ -55,7 +76,7 @@ include __DIR__ . '/partials/header.php';
 
         <?php endforeach; ?>
 
-    </div>
+    </nav>
 
     <?php foreach ($categories as $category): ?>
 

@@ -2,19 +2,22 @@
 
     <div class="container footer-grid">
 
-        <div>
+        <div class="footer-brand">
 
-            <h3>FourSmart</h3>
+            <a class="client-logo" href="?client=home">
+                <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                <span class="brand-word">Four<span>Smart</span></span>
+            </a>
 
             <p>
-                Hệ thống bán điện thoại trực tuyến.
+                Chọn chiếc điện thoại phù hợp, kết nối với những điều bạn yêu thích.
             </p>
 
         </div>
 
         <div>
 
-            <h3>Liên kết</h3>
+            <h3>Khám phá</h3>
 
             <p>
                 <a href="?client=home">
@@ -35,11 +38,11 @@
             <h3>Hỗ trợ</h3>
 
             <p>
-                Email: support@foursmart.local
+                <a href="mailto:support@foursmart.local">support@foursmart.local</a>
             </p>
 
             <p>
-                Hotline: 0123 456 789
+                <a href="tel:0123456789">0123 456 789</a>
             </p>
 
         </div>
@@ -47,7 +50,10 @@
     </div>
 
     <div class="footer-bottom">
-        © <?= date('Y') ?> FourSmart
+        <div class="container footer-bottom-inner">
+            <span>© <?= date('Y') ?> FourSmart</span>
+            <span>Điện thoại &amp; những kết nối mỗi ngày.</span>
+        </div>
     </div>
 
 </footer>
