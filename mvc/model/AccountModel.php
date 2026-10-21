@@ -94,6 +94,14 @@ final class AccountModel
         return true;
     }
 
+    // Never treat a stored password hash as a legacy plaintext password.
+    if (
+        password_get_info($storedPassword)['algoName'] !== 'unknown'
+        || preg_match('/^\$(?:2[abxy]\$|argon2(?:i|id)\$)/', $storedPassword)
+    ) {
+        return false;
+    }
+
     // Hỗ trợ tạm tài khoản cũ còn lưu mật khẩu thường
     if (hash_equals($storedPassword, $password)) {
         $newHash = password_hash(
@@ -188,6 +196,25 @@ public static function updateAdmin(
         $roleId,
         $id
     );
+}
+
+public static function resetCustomerPassword(
+    int $id,
+    #[\SensitiveParameter] string $password
+): bool {
+    $statement = Database::connection()->prepare(
+        'UPDATE account
+         SET tk_password = ?
+         WHERE tk_id = ? AND id_role = 2'
+    );
+
+    $statement->execute([
+        password_hash($password, PASSWORD_BCRYPT),
+        $id,
+    ]);
+
+    // The role condition also protects a target promoted after validation.
+    return $statement->rowCount() === 1;
 }
 
 public static function delete(int $id): void

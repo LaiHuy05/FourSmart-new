@@ -182,6 +182,86 @@
   margin-bottom: 26px;
 }
 
+.password-reset {
+  max-width: 760px;
+  margin-block: 28px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.password-reset-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px 24px;
+}
+
+.password-reset-header > div {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.password-reset h2 {
+  margin-bottom: 10px;
+  font-size: 21px;
+}
+
+.password-reset-header p,
+.password-reset-help {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.password-reset-form {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.password-reset-form[hidden] {
+  display: none;
+}
+
+.password-reset-help {
+  max-width: 70ch;
+  margin-bottom: 20px;
+}
+
+.password-reset-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+}
+
+.password-reset-warning {
+  padding: 12px 16px;
+  border-left: 3px solid var(--danger);
+  background: var(--canvas);
+  font-size: 14px;
+}
+
+.password-reset > .success {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1000px) {
+  .password-reset-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .password-reset {
+    padding: 20px;
+  }
+  .password-reset button {
+    width: 100%;
+  }
+}
+
 @media (max-width: 900px) {
   .auth-page {
     gap: 32px;

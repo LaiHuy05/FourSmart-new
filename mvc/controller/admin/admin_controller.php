@@ -115,6 +115,11 @@ final class AdminRouter
                 __DIR__ . '/account_controller.php'
             ],
 
+            'accountResetPassword' => [
+                AdminAccountController::class,
+                __DIR__ . '/account_controller.php'
+            ],
+
             'accountDelete' => [
                 AdminAccountController::class,
                 __DIR__ . '/account_controller.php'
