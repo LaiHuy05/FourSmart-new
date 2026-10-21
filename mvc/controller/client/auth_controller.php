@@ -31,25 +31,26 @@ final class ClientAuthController
                 exit('CSRF không hợp lệ');
             }
 
-            $username = trim($_POST['username'] ?? '');
-            $password = $_POST['password'] ?? '';
+            $rawUsername = $_POST['username'] ?? '';
+            $rawPassword = $_POST['password'] ?? '';
+            $username = is_string($rawUsername) ? trim($rawUsername) : '';
+            $password = is_string($rawPassword) ? $rawPassword : '';
 
             if ($username === '' || $password === '') {
                 $error = 'Vui lòng nhập tài khoản và mật khẩu';
             } else {
-                $account = AccountModel::findByUsername(
-                    $username
-                );
+                $validPassword = false;
+                try {
+                    $account = AccountModel::findByUsername($username);
+                    $validPassword = $account && AccountModel::verifyPassword($account, $password);
+                } catch (Throwable $exception) {
+                    http_response_code(503);
+                    $error = 'Chưa thể đăng nhập. Vui lòng thử lại sau.';
+                }
 
-                if (
-                    !$account
-                    || !AccountModel::verifyPassword(
-                        $account,
-                        $password
-                    )
-                ) {
+                if ($error === '' && !$validPassword) {
                     $error = 'Tài khoản hoặc mật khẩu không đúng';
-                } else {
+                } elseif ($validPassword) {
                     session_regenerate_id(true);
 
                     $_SESSION['user_id']

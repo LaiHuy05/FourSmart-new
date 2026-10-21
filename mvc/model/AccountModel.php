@@ -80,40 +80,96 @@ final class AccountModel
           $roleId
       );
   }
-  public static function verifyPassword(
-    array $account,
-    string $password
-): bool {
-    $storedPassword = (string) ($account['tk_password'] ?? '');
+    public static function verifyPassword(
+        #[\SensitiveParameter] array $account,
+        #[\SensitiveParameter] string $password
+    ): bool {
+        $stored = (string) ($account['tk_password'] ?? '');
 
-    if ($storedPassword === '') {
-        return false;
+        if (!self::matchesPassword($stored, $password)) {
+            return false;
+        }
+
+        if (self::isPasswordHash($stored)) {
+            return true;
+        }
+
+        // Long legacy plaintext must remain an exact match, never a truncated
+        // bcrypt upgrade. The owner can replace it through the password form.
+        if (strlen($password) > 72) {
+            $latest = self::find((int) $account['tk_id']);
+            return $latest && hash_equals((string) $latest['tk_password'], $stored);
+        }
+
+        // Upgrade verified legacy plaintext without overwriting a newer password.
+        if (self::replacePasswordHash(
+            (int) $account['tk_id'],
+            $stored,
+            password_hash($password, PASSWORD_BCRYPT)
+        )) {
+            return true;
+        }
+
+        $latest = self::find((int) $account['tk_id']);
+        return $latest && self::isPasswordHash($latest['tk_password'])
+            && self::matchesPassword($latest['tk_password'], $password);
     }
 
-    if (password_verify($password, $storedPassword)) {
-        return true;
-    }
+    public static function changePassword(
+        int $userId,
+        #[\SensitiveParameter] string $currentPassword,
+        #[\SensitiveParameter] string $newPassword
+    ): bool {
+        $account = self::find($userId);
 
-    // Hỗ trợ tạm tài khoản cũ còn lưu mật khẩu thường
-    if (hash_equals($storedPassword, $password)) {
-        $newHash = password_hash(
-            $password,
-            PASSWORD_BCRYPT
+        if (!$account || !self::matchesPassword($account['tk_password'], $currentPassword)) {
+            return false;
+        }
+
+        return self::replacePasswordHash(
+            $userId,
+            $account['tk_password'],
+            password_hash($newPassword, PASSWORD_BCRYPT)
         );
-
-        Database::execute(
-            'UPDATE account
-             SET tk_password = ?
-             WHERE tk_id = ?',
-            $newHash,
-            (int) $account['tk_id']
-        );
-
-        return true;
     }
 
-    return false;
-}
+    private static function isPasswordHash(#[\SensitiveParameter] string $stored): bool
+    {
+        // Hash-like values, including damaged hashes, never use plaintext fallback.
+        return password_get_info($stored)['algoName'] !== 'unknown'
+            || preg_match('/^\$(?:2[abxy]\$|argon2(?:i|id)\$|[156]\$)/', $stored) === 1;
+    }
+
+    private static function matchesPassword(
+        #[\SensitiveParameter] string $stored,
+        #[\SensitiveParameter] string $password
+    ): bool {
+        if ($stored === '' || str_contains($password, "\0")) {
+            return false;
+        }
+
+        if (self::isPasswordHash($stored)) {
+            if (strlen($password) > 72 && preg_match('/^\$2[abxy]\$/', $stored) === 1) {
+                return false;
+            }
+            return password_verify($password, $stored);
+        }
+
+        return hash_equals($stored, $password);
+    }
+
+    private static function replacePasswordHash(
+        int $userId,
+        #[\SensitiveParameter] string $expectedPassword,
+        #[\SensitiveParameter] string $newHash
+    ): bool {
+        $statement = Database::connection()->prepare(
+            'UPDATE account SET tk_password = ?
+             WHERE tk_id = ? AND tk_password = ?'
+        );
+        $statement->execute([$newHash, $userId, $expectedPassword]);
+        return $statement->rowCount() === 1;
+    }
 public static function emailExistsForOtherUser(
   string $email,
   int $userId

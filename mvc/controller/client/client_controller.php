@@ -79,6 +79,11 @@ final class ClientRouter
               __DIR__ . '/profile_controller.php'
             ],
 
+            'profilePasswordChange' => [
+              ClientProfileController::class,
+              __DIR__ . '/profile_controller.php'
+            ],
+
             'logout' => [
               ClientAuthController::class,
               __DIR__ . '/auth_controller.php'
