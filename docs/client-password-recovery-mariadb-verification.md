@@ -177,7 +177,7 @@ php mvc/tests/client_password_change_test.php
 ```
 
 Suite Đổi mật khẩu vẫn dùng SQLite riêng. Để chạy cùng versioning bật, đặt
-`FOURSMART_PASSWORD_RECOVERY_ENABLED=1` chỉ trong tiến trình/terminal test rồi khôi
+`FOURSMART_SESSION_VERSION_MODE=required` chỉ trong tiến trình/terminal test rồi khôi
 phục giá trị cũ như hướng dẫn trong tài liệu triển khai; không cấu hình trên Apache.
 Sau suite MariaDB, dùng lệnh preview với `--reset-demo` để tạo lại tài khoản demo.
 

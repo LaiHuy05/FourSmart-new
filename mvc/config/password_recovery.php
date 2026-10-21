@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../core/SessionVersionPolicy.php';
+
 final class PasswordRecoveryConfig
 {
     public static function enabled(): bool
@@ -13,6 +15,9 @@ final class PasswordRecoveryConfig
     {
         if (!self::enabled()) {
             throw new RuntimeException('Password recovery is disabled.');
+        }
+        if (!SessionVersionPolicy::required()) {
+            throw new RuntimeException('Recovery requires versioned sessions.');
         }
         $key = base64_decode((string) getenv('FOURSMART_RECOVERY_HMAC_KEY'), true);
         if (!is_string($key) || strlen($key) < 32) {

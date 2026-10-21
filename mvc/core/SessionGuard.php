@@ -26,16 +26,15 @@ final class SessionGuard
 
     public static function enforce(): void
     {
-        if (!PasswordRecoveryConfig::enabled() || empty($_SESSION['user_id'])) {
+        if (empty($_SESSION['user_id'])) {
             return;
         }
         try {
-            $account = AccountModel::find((int) $_SESSION['user_id']);
-            if ($account && !array_key_exists('session_version', $account)) {
-                throw new RuntimeException('Session schema unavailable.');
+            if (!SessionVersionPolicy::required()) {
+                return;
             }
-            $valid = $account && isset($_SESSION['session_version'])
-                && (int) $_SESSION['session_version'] === (int) $account['session_version'];
+            $account = AccountModel::find((int) $_SESSION['user_id']);
+            $valid = $account && SessionVersionPolicy::matches($_SESSION, $account);
         } catch (Throwable $error) {
             http_response_code(503);
             exit('Chưa thể kiểm tra phiên đăng nhập. Vui lòng thử lại sau.');

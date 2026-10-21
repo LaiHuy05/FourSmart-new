@@ -120,6 +120,7 @@ function mariaConfigPath(array $arguments): string
 
 function mariaTestEnvironment(array $config): void
 {
+    putenv('FOURSMART_SESSION_VERSION_MODE=required');
     putenv('FOURSMART_PASSWORD_RECOVERY_ENABLED=1');
     putenv('FOURSMART_RECOVERY_HMAC_KEY=' . $config['hmac_key']);
     putenv('FOURSMART_APP_URL=' . $config['app_url']);

@@ -26,6 +26,8 @@ proposed MariaDB migration and never use the `duan1` connection.
   automatic STARTTLS, no SMTP debug output and no alternative SMTP hosts.
 - New pages reuse `base.css`/`account.css` and the existing FourSmart auth layout.
   Admin controllers/views and existing CSS are unchanged.
+- `SessionVersionPolicy` is independent of the recovery switch. See the
+  [session policy deployment and regression guide](session-version-policy.md).
 
 ## Security and behavior
 
@@ -60,7 +62,8 @@ Ambiguous addresses are discarded; the existing email column is not made UNIQUE.
 - After reset, all older sessions fail their version check on the next request.
   A request already executing is not retroactively interrupted.
 - Authenticated phase 1 changes also increment the version and cancel old
-  recovery work, retaining only the changing device with the new version.
+  recovery work in `required` mode, retaining only the changing device with the
+  new version. This remains active when email recovery is OFF.
 - Legacy plaintext-to-bcrypt login upgrade keeps its original phase 1 behavior;
   it does not itself increment the session version.
 
@@ -80,9 +83,12 @@ than 24 hours ago. Run the worker periodically for cleanup even when idle.
 
 ## Configure XAMPP after migration approval
 
-Keep `FOURSMART_PASSWORD_RECOVERY_ENABLED` unset or `0` for now. Both recovery and
-versioned password changes remain disabled while the application uses the old
-schema. Enabling against an old schema fails closed; it never creates columns.
+Before migration, keep `FOURSMART_SESSION_VERSION_MODE` unset or `legacy` and
+`FOURSMART_PASSWORD_RECOVERY_ENABLED` unset or `0`. Legacy mode does not select
+or update a `session_version` column. After the separately approved complete
+migration, set the session mode to `required` in Apache and workers, initially
+keeping recovery OFF. Required mode always checks session versions and increments
+the version on password changes, without a HMAC key. Recovery refuses to run under legacy mode.
 
 After **separate approval**, validate the SQL on an approved disposable MariaDB
 database before applying it to `duan1`. The proposed SQL targets MariaDB 10.4.32,
@@ -110,6 +116,7 @@ be in the private server configuration, not a public `.htaccess`.
 The required process variables are:
 
 ```text
+FOURSMART_SESSION_VERSION_MODE=required
 FOURSMART_PASSWORD_RECOVERY_ENABLED=1
 FOURSMART_APP_URL=http://localhost/FourSmart/mvc/index.php
 FOURSMART_RECOVERY_HMAC_KEY=<base64-encoded private key of at least 32 bytes>
@@ -159,18 +166,19 @@ php mvc/tests/password_recovery_model_test.php
 php mvc/tests/client_password_recovery_test.php --mailpit
 node mvc/tests/client_password_recovery_js_test.js
 php mvc/tests/client_password_change_test.php
+php mvc/tests/session_version_policy_test.php
 ```
 
 To run all phase 1 tests with versioning enabled (a child-process environment,
 not production configuration):
 
 ```powershell
-$previousRecoveryFlag = $env:FOURSMART_PASSWORD_RECOVERY_ENABLED
+$previousSessionMode = $env:FOURSMART_SESSION_VERSION_MODE
 try {
-    $env:FOURSMART_PASSWORD_RECOVERY_ENABLED = '1'
+    $env:FOURSMART_SESSION_VERSION_MODE = 'required'
     php mvc/tests/client_password_change_test.php
 } finally {
-    $env:FOURSMART_PASSWORD_RECOVERY_ENABLED = $previousRecoveryFlag
+    $env:FOURSMART_SESSION_VERSION_MODE = $previousSessionMode
 }
 ```
 
@@ -284,8 +292,9 @@ Mailpit smoke script are not changed by this implementation.
 
 ## Rollback planning
 
-Disable recovery and workers first. Do not drop columns while versioned sessions
-are still trusted. Preserve security versions or invalidate all PHP login
+Disable recovery and workers first; keep `FOURSMART_SESSION_VERSION_MODE=required`.
+Do not downgrade the session policy to turn off email. Do not drop columns while
+versioned sessions are still trusted. Preserve security versions or invalidate all PHP login
 sessions before removing schema/redeploying; resetting versions to zero could
 revive stale sessions. A schema backup and explicit rollback review are needed.
 No rollback or migration is performed by this implementation.

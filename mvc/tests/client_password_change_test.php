@@ -385,7 +385,7 @@ try {
             $after = $snapshot();
             $hash = $after[1]['tk_password'];
             $after[1]['tk_password'] = $before[1]['tk_password'];
-            $expectedVersion = $before[1]['session_version'] + (int) PasswordRecoveryConfig::enabled();
+            $expectedVersion = $before[1]['session_version'] + (int) SessionVersionPolicy::required();
             check((int) $after[1]['session_version'] === $expectedVersion, 'Unexpected session version after change');
             $after[1]['session_version'] = $before[1]['session_version'];
             check($after === $before, 'Other account or profile fields changed');

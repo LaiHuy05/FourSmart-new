@@ -3,6 +3,7 @@
 require_once __DIR__ . '/Database.php';
 require_once __DIR__ . '/ActionRouter.php';
 require_once __DIR__ . '/Csrf.php';
+require_once __DIR__ . '/SessionVersionPolicy.php';
 require_once dirname(__DIR__) . '/config/password_recovery.php';
 require_once dirname(__DIR__) . '/model/PasswordRecoveryModel.php';
 require_once dirname(__DIR__) . '/service/PasswordRecoveryMailer.php';

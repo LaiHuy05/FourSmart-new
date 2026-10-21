@@ -25,7 +25,7 @@ $issue = function (PasswordRecoveryModel $model, string $email = 'customer@examp
 };
 
 $tests->test('configuration rejects disabled recovery, missing private key and non-localhost URLs', function (): void {
-    $names = ['FOURSMART_PASSWORD_RECOVERY_ENABLED', 'FOURSMART_RECOVERY_HMAC_KEY', 'FOURSMART_APP_URL'];
+    $names = ['FOURSMART_SESSION_VERSION_MODE', 'FOURSMART_PASSWORD_RECOVERY_ENABLED', 'FOURSMART_RECOVERY_HMAC_KEY', 'FOURSMART_APP_URL'];
     $previous = [];
     foreach ($names as $name) $previous[$name] = getenv($name);
     $reject = static function (): void {
@@ -33,6 +33,7 @@ $tests->test('configuration rejects disabled recovery, missing private key and n
         throw new LogicException('Unsafe configuration accepted');
     };
     try {
+        putenv('FOURSMART_SESSION_VERSION_MODE=required');
         putenv('FOURSMART_PASSWORD_RECOVERY_ENABLED=0'); $reject();
         putenv('FOURSMART_PASSWORD_RECOVERY_ENABLED=1');
         putenv('FOURSMART_RECOVERY_HMAC_KEY'); $reject();
@@ -43,6 +44,7 @@ $tests->test('configuration rejects disabled recovery, missing private key and n
         }
         putenv('FOURSMART_APP_URL=http://localhost/FourSmart/mvc/index.php');
         recoveryAssert(PasswordRecoveryConfig::load()['url'] === 'http://localhost/FourSmart/mvc/index.php', 'Valid local URL rejected');
+        putenv('FOURSMART_SESSION_VERSION_MODE=legacy'); $reject();
     } finally {
         foreach ($previous as $name => $value) putenv($value === false ? $name : $name . '=' . $value);
     }

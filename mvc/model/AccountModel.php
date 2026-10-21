@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../config/password_recovery.php';
+require_once __DIR__ . '/../core/SessionVersionPolicy.php';
 require_once __DIR__ . '/PasswordRecoveryModel.php';
 
 final class AccountModel
@@ -129,7 +129,8 @@ final class AccountModel
             return false;
         }
 
-        if (PasswordRecoveryConfig::enabled()) {
+        if (SessionVersionPolicy::required()) {
+            SessionVersionPolicy::accountVersion($account);
             return (new PasswordRecoveryModel(Database::connection()))->changeAuthenticatedPassword(
                 $userId, $account['tk_password'], password_hash($newPassword, PASSWORD_BCRYPT)
             );

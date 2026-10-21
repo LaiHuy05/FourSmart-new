@@ -86,6 +86,7 @@ $config = ['key' => $key, 'url' => $url . '/index.php'];
 $now = fn() => new DateTimeImmutable('now', new DateTimeZone('UTC'));
 $environment = getenv();
 $environment['FOURSMART_RECOVERY_TEST_DIRECTORY'] = $directory;
+$environment['FOURSMART_SESSION_VERSION_MODE'] = 'required';
 $environment['FOURSMART_PASSWORD_RECOVERY_ENABLED'] = '1';
 $environment['FOURSMART_RECOVERY_HMAC_KEY'] = base64_encode($key);
 $environment['FOURSMART_APP_URL'] = $config['url'];

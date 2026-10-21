@@ -113,9 +113,9 @@ final class ClientProfileController
             try {
                 $changed = AccountModel::changePassword($userId, $currentPassword, $newPassword);
                 if ($changed) {
-                    if (PasswordRecoveryConfig::enabled()) {
+                    if (SessionVersionPolicy::required()) {
                         // Preserve this session; all other sessions retain the old version.
-                        $_SESSION['session_version'] = (int) $account['session_version'] + 1;
+                        $_SESSION['session_version'] = SessionVersionPolicy::accountVersion($account) + 1;
                     }
                     session_regenerate_id(true);
                     unset($_SESSION['csrf_token'], $_SESSION['password_change_attempts']);
