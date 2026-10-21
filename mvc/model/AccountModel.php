@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/../config/password_recovery.php';
+require_once __DIR__ . '/PasswordRecoveryModel.php';
+
 final class AccountModel
 {
     public static function all(): array
@@ -124,6 +127,12 @@ final class AccountModel
 
         if (!$account || !self::matchesPassword($account['tk_password'], $currentPassword)) {
             return false;
+        }
+
+        if (PasswordRecoveryConfig::enabled()) {
+            return (new PasswordRecoveryModel(Database::connection()))->changeAuthenticatedPassword(
+                $userId, $account['tk_password'], password_hash($newPassword, PASSWORD_BCRYPT)
+            );
         }
 
         return self::replacePasswordHash(

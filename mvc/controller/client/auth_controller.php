@@ -42,6 +42,9 @@ final class ClientAuthController
                 $validPassword = false;
                 try {
                     $account = AccountModel::findByUsername($username);
+                    if ($account && PasswordRecoveryConfig::enabled() && !array_key_exists('session_version', $account)) {
+                        throw new RuntimeException('Session schema unavailable.');
+                    }
                     $validPassword = $account && AccountModel::verifyPassword($account, $password);
                 } catch (Throwable $exception) {
                     http_response_code(503);
@@ -52,6 +55,12 @@ final class ClientAuthController
                     $error = 'Tài khoản hoặc mật khẩu không đúng';
                 } elseif ($validPassword) {
                     session_regenerate_id(true);
+                    unset($_SESSION['csrf_token'], $_SESSION['password_recovery_hash']);
+                    Csrf::token();
+                    if (PasswordRecoveryConfig::enabled()) {
+                        // Use the authenticated snapshot: a concurrent reset invalidates it.
+                        $_SESSION['session_version'] = (int) $account['session_version'];
+                    }
 
                     $_SESSION['user_id']
                         = (int) $account['tk_id'];

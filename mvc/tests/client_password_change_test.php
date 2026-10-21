@@ -17,6 +17,7 @@ foreach (['pdo_sqlite', 'curl', 'dom', 'mbstring'] as $extension) {
 
 require_once __DIR__ . '/../core/Database.php';
 require_once __DIR__ . '/../model/AccountModel.php';
+require_once __DIR__ . '/support/password_recovery_fixture.php';
 
 function check(bool $condition, string $message): void
 {
@@ -140,11 +141,12 @@ try {
     $database = new PDO('sqlite:' . $directory . '/accounts.sqlite');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $database->exec('CREATE TABLE account (tk_id INTEGER PRIMARY KEY, tk_user TEXT UNIQUE NOT NULL, tk_password TEXT NOT NULL, tk_email TEXT UNIQUE NOT NULL, tk_address TEXT NOT NULL, id_role INTEGER NOT NULL)');
+    $database->exec('CREATE TABLE account (tk_id INTEGER PRIMARY KEY, tk_user TEXT UNIQUE NOT NULL, tk_password TEXT NOT NULL, tk_email TEXT UNIQUE NOT NULL, tk_address TEXT NOT NULL, id_role INTEGER NOT NULL, session_version INTEGER NOT NULL DEFAULT 0)');
+    recoveryFixture($database, false);
     // Empty catalog fixtures let manual preview follow the normal login redirect.
     $database->exec('CREATE TABLE category (dm_id INTEGER PRIMARY KEY, dm_name TEXT)');
     $database->exec('CREATE TABLE product (sp_id INTEGER PRIMARY KEY, sp_name TEXT)');
-    $seed = $database->prepare('INSERT INTO account VALUES (?, ?, ?, ?, ?, ?)');
+    $seed = $database->prepare('INSERT INTO account (tk_id, tk_user, tk_password, tk_email, tk_address, id_role) VALUES (?, ?, ?, ?, ?, ?)');
     foreach ([1 => 'admin', 2 => 'customer', 3 => 'other-customer', 4 => 'legacy', 5 => 'deleted-customer'] as $id => $username) {
         $seed->execute([
             $id, $username,
@@ -236,7 +238,7 @@ try {
         });
         $test('long legacy password stays exact and can be replaced without bcrypt truncation', function () use ($database): void {
             $stored = 'Aa1!' . str_repeat('x', 69);
-            $database->prepare('INSERT INTO account VALUES (?, ?, ?, ?, ?, ?)')->execute([9, 'long-legacy', $stored, 'long-legacy@example.test', 'Test', 2]);
+            $database->prepare('INSERT INTO account (tk_id, tk_user, tk_password, tk_email, tk_address, id_role) VALUES (?, ?, ?, ?, ?, ?)')->execute([9, 'long-legacy', $stored, 'long-legacy@example.test', 'Test', 2]);
             $before = AccountModel::find(9);
             check(AccountModel::verifyPassword($before, $stored), 'Exact long legacy password rejected');
             check(AccountModel::find(9) === $before, 'Long legacy password silently converted to truncated bcrypt');
@@ -246,12 +248,12 @@ try {
             check(!AccountModel::verifyPassword($before, $stored), 'Stale long legacy snapshot accepted after replacement');
         });
         $test('short legacy password still authenticates and upgrades safely', function () use ($database): void {
-            $database->prepare('INSERT INTO account VALUES (?, ?, ?, ?, ?, ?)')->execute([6, 'short-legacy', 'old', 'short-legacy@example.test', 'Test', 2]);
+            $database->prepare('INSERT INTO account (tk_id, tk_user, tk_password, tk_email, tk_address, id_role) VALUES (?, ?, ?, ?, ?, ?)')->execute([6, 'short-legacy', 'old', 'short-legacy@example.test', 'Test', 2]);
             check(AccountModel::verifyPassword(AccountModel::find(6), 'old'), 'Short legacy password rejected');
             check(password_verify('old', AccountModel::find(6)['tk_password']), 'Short legacy password not upgraded');
         });
         $test('changing legacy password is a single replacement with no plaintext write', function () use ($database): void {
-            $database->prepare('INSERT INTO account VALUES (?, ?, ?, ?, ?, ?)')->execute([7, 'direct-legacy', 'Legacy-Direct!2026', 'direct-legacy@example.test', 'Test', 2]);
+            $database->prepare('INSERT INTO account (tk_id, tk_user, tk_password, tk_email, tk_address, id_role) VALUES (?, ?, ?, ?, ?, ?)')->execute([7, 'direct-legacy', 'Legacy-Direct!2026', 'direct-legacy@example.test', 'Test', 2]);
             $before = AccountModel::find(7);
             check(!AccountModel::changePassword(7, 'Wrong-Password!2026', 'Updated-Legacy!2026'), 'Wrong legacy password accepted');
             check(AccountModel::find(7) === $before, 'Rejected legacy change modified data');
@@ -259,7 +261,7 @@ try {
             check(password_verify('Updated-Legacy!2026', AccountModel::find(7)['tk_password']), 'New legacy password not hashed');
         });
         $test('stale legacy login cannot overwrite a password changed after lookup', function () use ($database): void {
-            $database->prepare('INSERT INTO account VALUES (?, ?, ?, ?, ?, ?)')->execute([8, 'stale-legacy', 'Legacy-Race!2026', 'stale-legacy@example.test', 'Test', 2]);
+            $database->prepare('INSERT INTO account (tk_id, tk_user, tk_password, tk_email, tk_address, id_role) VALUES (?, ?, ?, ?, ?, ?)')->execute([8, 'stale-legacy', 'Legacy-Race!2026', 'stale-legacy@example.test', 'Test', 2]);
             $stale = AccountModel::find(8);
             $latestHash = password_hash('Latest-Password!2026', PASSWORD_BCRYPT);
             $database->prepare('UPDATE account SET tk_password = ? WHERE tk_id = 8')->execute([$latestHash]);
@@ -383,6 +385,9 @@ try {
             $after = $snapshot();
             $hash = $after[1]['tk_password'];
             $after[1]['tk_password'] = $before[1]['tk_password'];
+            $expectedVersion = $before[1]['session_version'] + (int) PasswordRecoveryConfig::enabled();
+            check((int) $after[1]['session_version'] === $expectedVersion, 'Unexpected session version after change');
+            $after[1]['session_version'] = $before[1]['session_version'];
             check($after === $before, 'Other account or profile fields changed');
             check($hash !== $newPassword && password_verify($newPassword, $hash), 'New password hash invalid');
             check($browser->sessionId() !== $oldSession, 'Session ID not rotated');

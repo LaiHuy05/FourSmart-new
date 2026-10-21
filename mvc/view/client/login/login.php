@@ -30,6 +30,11 @@
 
     <h1>Đăng nhập</h1>
 
+    <?php if (!empty($_SESSION['password_reset_success'])): ?>
+        <div class="success" role="status">Đặt lại mật khẩu thành công. Vui lòng đăng nhập bằng mật khẩu mới.</div>
+        <?php unset($_SESSION['password_reset_success']); ?>
+    <?php endif; ?>
+
     <p class="auth-subtitle">
         Đăng nhập vào FourSmart
     </p>
@@ -64,6 +69,10 @@
         </button>
 
     </form>
+
+    <?php if (PasswordRecoveryConfig::enabled()): ?>
+        <p class="auth-link"><a href="?client=forgotPassword">Quên mật khẩu?</a></p>
+    <?php endif; ?>
 
     <p class="auth-link">
         Chưa có tài khoản?

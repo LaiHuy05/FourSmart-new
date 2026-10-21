@@ -7,6 +7,14 @@ final class ClientRouter
         $action = $_GET['client'] ?? 'home';
 
         $routes = [
+            'forgotPassword' => [
+                ClientPasswordRecoveryController::class,
+                __DIR__ . '/password_recovery_controller.php'
+            ],
+            'resetPassword' => [
+                ClientPasswordRecoveryController::class,
+                __DIR__ . '/password_recovery_controller.php'
+            ],
             'home' => [
                 ClientHomeController::class,
                 __DIR__ . '/home_controller.php'
