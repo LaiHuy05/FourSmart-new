@@ -1,8 +1,8 @@
 <?php
 
-session_start();
-
 require_once __DIR__ . '/core/bootstrap.php';
+SessionGuard::start();
+SessionGuard::enforce();
 
 $act = $_GET['act'] ?? 'client';
 

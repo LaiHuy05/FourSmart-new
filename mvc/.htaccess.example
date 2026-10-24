@@ -1,0 +1,19 @@
+# Copy to .htaccess only as an explicit deployment step; the real file is ignored.
+# Required sessions fail closed if deployment configuration is missing.
+SetEnv FOURSMART_SESSION_VERSION_MODE required
+SetEnv FOURSMART_PASSWORD_RECOVERY_ENABLED 0
+SetEnv FOURSMART_RECOVERY_LOCAL_ONLY 1
+
+# Local capture transport only. No credentials, authentication or TLS.
+SetEnv FOURSMART_MAIL_TRANSPORT mailpit
+SetEnv FOURSMART_SMTP_HOST 127.0.0.1
+SetEnv FOURSMART_SMTP_PORT 1025
+SetEnv FOURSMART_SMTP_TIMEOUT 5
+SetEnv FOURSMART_MAIL_FROM noreply@foursmart.test
+SetEnv FOURSMART_MAIL_FROM_NAME FourSmart
+SetEnv FOURSMART_MAIL_REPLY_TO support@foursmart.test
+
+# Configure these in the ignored deployment/server configuration before enabling.
+# FOURSMART_DATABASE_CONFIG: absolute JSON path outside the repository/web roots.
+# FOURSMART_RECOVERY_HMAC_KEY_FILE: absolute key-file path outside web roots.
+# FOURSMART_APP_URL: approved localhost index.php URL.
