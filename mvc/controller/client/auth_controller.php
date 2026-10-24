@@ -31,26 +31,35 @@ final class ClientAuthController
                 exit('CSRF không hợp lệ');
             }
 
-            $username = trim($_POST['username'] ?? '');
-            $password = $_POST['password'] ?? '';
+            $rawUsername = $_POST['username'] ?? '';
+            $rawPassword = $_POST['password'] ?? '';
+            $username = is_string($rawUsername) ? trim($rawUsername) : '';
+            $password = is_string($rawPassword) ? $rawPassword : '';
 
             if ($username === '' || $password === '') {
                 $error = 'Vui lòng nhập tài khoản và mật khẩu';
             } else {
-                $account = AccountModel::findByUsername(
-                    $username
-                );
+                $validPassword = false;
+                try {
+                    $versionRequired = SessionVersionPolicy::required();
+                    $account = AccountModel::findByUsername($username);
+                    $version = $account && $versionRequired ? SessionVersionPolicy::accountVersion($account) : null;
+                    $validPassword = $account && AccountModel::verifyPassword($account, $password);
+                } catch (Throwable $exception) {
+                    http_response_code(503);
+                    $error = 'Chưa thể đăng nhập. Vui lòng thử lại sau.';
+                }
 
-                if (
-                    !$account
-                    || !AccountModel::verifyPassword(
-                        $account,
-                        $password
-                    )
-                ) {
+                if ($error === '' && !$validPassword) {
                     $error = 'Tài khoản hoặc mật khẩu không đúng';
-                } else {
+                } elseif ($validPassword) {
                     session_regenerate_id(true);
+                    unset($_SESSION['csrf_token'], $_SESSION['password_recovery_hash'], $_SESSION['session_version']);
+                    Csrf::token();
+                    if ($versionRequired) {
+                        // Use the authenticated snapshot: a concurrent reset invalidates it.
+                        $_SESSION['session_version'] = $version;
+                    }
 
                     $_SESSION['user_id']
                         = (int) $account['tk_id'];
