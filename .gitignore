@@ -61,3 +61,12 @@ temp/
 *~
 foursmart-client-password-*/
 foursmart-recovery-*/
+
+# Local database exports; keep only the reviewed demo SQL in this directory.
+backups/
+backup/
+*.dump
+*.sql.gz
+*.sql.zip
+/database/*.sql
+!/database/foursmart-demo.sql
