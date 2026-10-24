@@ -7,13 +7,13 @@ final class SessionVersionPolicy
     public static function required(): bool
     {
         $mode = getenv('FOURSMART_SESSION_VERSION_MODE');
-        if ($mode === false || $mode === 'legacy') {
+        if ($mode === 'legacy') {
             return false;
         }
         if ($mode === 'required') {
             return true;
         }
-        // An invalid deployment setting must never silently disable revocation.
+        // Missing or invalid deployment settings must never disable revocation.
         throw new RuntimeException('Session version policy is unavailable.');
     }
 

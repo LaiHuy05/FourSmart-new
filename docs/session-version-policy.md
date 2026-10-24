@@ -10,9 +10,9 @@ file `.env` và không phụ thuộc HMAC hay `FOURSMART_PASSWORD_RECOVERY_ENABL
 
 | Mode | Schema dự kiến | Hành vi |
 | --- | --- | --- |
-| Không khai báo hoặc `legacy` | Trước migration | Đăng nhập/đổi mật khẩu theo Giai đoạn 1; không SELECT/UPDATE cột version chưa tồn tại; guard không mở kết nối DB để kiểm tra version. |
+| `legacy` được khai báo rõ | Trước migration | Đăng nhập/đổi mật khẩu theo Giai đoạn 1; không SELECT/UPDATE cột version chưa tồn tại; guard không mở kết nối DB để kiểm tra version. |
 | `required` | Sau migration đầy đủ | Login lưu version; mọi request đã đăng nhập so sánh version; đổi mật khẩu tăng version và thu hồi token/job ngay cả khi recovery OFF. |
-| Giá trị khác, kể cả chuỗi rỗng | Cấu hình không hợp lệ | Login/request đã đăng nhập bị từ chối bằng lỗi an toàn 503. Không fallback về legacy. |
+| Không khai báo hoặc giá trị khác, kể cả chuỗi rỗng | Cấu hình không hợp lệ | Login/request đã đăng nhập bị từ chối bằng lỗi an toàn 503. Không fallback về legacy. |
 
 Không tự dò schema rồi bỏ kiểm tra khi truy vấn lỗi. Trong `required`, thiếu cột,
 version trong DB sai định dạng hoặc lỗi DB trả 503. Không có tài khoản hoặc phiên
@@ -25,8 +25,9 @@ Tắt recovery không thay đổi policy. Một request đang chạy không bị
 
 ## Triển khai trên XAMPP sau migration được duyệt riêng
 
-1. Hiện tại giữ nguyên môi trường của ứng dụng kết nối `duan1`: mode chưa khai
-   báo hoặc `legacy`, recovery OFF. Bản sửa không đặt biến toàn hệ thống/Apache.
+1. Trước migration, chỉ dùng `legacy` được khai báo rõ và recovery OFF. Không
+   bỏ biến mode: từ đợt rà soát Git 5A, thiếu cấu hình cũng bị từ chối an toàn.
+   Local hiện tại đã ở `required`; xem [hướng dẫn vận hành](local-recovery-operations.md).
 2. Sau khi xử lý lỗi MariaDB và migration hoàn thành, xác minh cột version, cả
    ba bảng recovery, FK/index/CHECK trước khi chuyển mode. Không chuyển mode khi
    mới áp dụng một phần SQL; đổi mật khẩu trong required cần schema recovery đầy đủ.

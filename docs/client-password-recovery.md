@@ -2,7 +2,16 @@
 
 Implementation branch: `feature/client-password-recovery`.
 
-**Migration has not been applied to `duan1`.** The feature defaults to OFF.
+Current local deployment: see [phase 4 local operations](local-recovery-operations.md)
+(24 October 2026). Recovery is ON for loopback HTTP, the session policy remains
+`required`, and one manually started supervisor runs the existing PHP worker
+with `--once`. Fixtures were removed after browser E2E on MariaDB 33367.
+No Windows service or scheduled task was installed. The migration and preview
+results below describe earlier implementation/verification stages.
+
+At the initial implementation stage, migration had not been applied to `duan1`.
+That historical restriction is superseded by the approved local deployment above.
+The shared feature configuration still defaults to OFF.
 The user separately approved `duan1_test`; the unchanged migration was applied
 there and MariaDB tests passed. See the current
 [MariaDB verification and Chrome guide](client-password-recovery-mariadb-verification.md).
@@ -14,7 +23,8 @@ proposed MariaDB migration and never use the `duan1` connection.
 ## Architecture
 
 - Routes: `?client=forgotPassword` and `?client=resetPassword`.
-- `PasswordRecoveryConfig` reads process environment only. No `.env` loader,
+- `PasswordRecoveryConfig` reads deployment environment and can resolve a HMAC
+  secret from a protected file outside the repository and web roots. No `.env` loader,
   public key file, new Composer dependency, Redis or RabbitMQ is needed.
 - Controller handles HTTP, CSRF, generic responses and a restricted reset context.
 - Service validates inputs and coordinates request, reset and delivery.
@@ -83,12 +93,16 @@ than 24 hours ago. Run the worker periodically for cleanup even when idle.
 
 ## Configure XAMPP after migration approval
 
-Before migration, keep `FOURSMART_SESSION_VERSION_MODE` unset or `legacy` and
+Before migration, explicitly set `FOURSMART_SESSION_VERSION_MODE=legacy` and
 `FOURSMART_PASSWORD_RECOVERY_ENABLED` unset or `0`. Legacy mode does not select
 or update a `session_version` column. After the separately approved complete
 migration, set the session mode to `required` in Apache and workers, initially
 keeping recovery OFF. Required mode always checks session versions and increments
 the version on password changes, without a HMAC key. Recovery refuses to run under legacy mode.
+Missing or invalid session mode fails closed; it never silently selects legacy.
+Copy `mvc/.htaccess.example` only for a new deployment and configure its private
+paths explicitly. The ignored live `.htaccess` remains ON locally; the committed
+template is OFF with required sessions and loopback-only recovery.
 
 After **separate approval**, validate the SQL on an approved disposable MariaDB
 database before applying it to `duan1`. The proposed SQL targets MariaDB 10.4.32,
@@ -147,11 +161,10 @@ php mvc/cli/password_recovery_worker.php
 ```
 
 `--once` handles one job; the default drains at most 100 eligible jobs and exits.
-It does not loop forever or install a scheduled task. For Task Scheduler use
-`C:\xampp\php\php.exe`, arguments
-`C:\xampp\htdocs\FourSmart\mvc\cli\password_recovery_worker.php`, working
-directory `C:\xampp\htdocs\FourSmart`, and an externally configured environment.
-Schedule once a minute. Overlapping executions are protected by database leases.
+It does not loop forever or install a scheduled task. Use the manual local
+supervisor documented in the operations guide for START/STOP/STATUS. No Windows
+service or Task Scheduler registration is approved. Overlapping executions are
+protected by database leases; the manager also holds a singleton process lock.
 Without valid configuration the worker exits 1 before connecting to MySQL.
 
 ## Safe testing before migration
@@ -238,8 +251,7 @@ Initial implementation verification, before the separate MariaDB approval
 | MariaDB integration and migration execution | NOT TESTED | Harness default makes no connection; separate approval required |
 | Real-browser visual rendering and HTTPS cookie delivery | NOT TESTED | HTTP fixture and DOM simulation only |
 
-Latest verified Mailpit message ID: `7UIl6Vc4q4jFn1roYRIZLk`.
-Its email fragment token was hashed and matched against the SQLite token row;
+The historical Mailpit email fragment token was hashed and matched against the SQLite token row;
 no raw token or private key is recorded here. The automated fixture is removed
 after the run, so that message is evidence rather than a live application link.
 Read-only inspection of MariaDB 10.4.32 after testing confirmed zero recovery
@@ -287,8 +299,10 @@ mvc/tests/client_password_change_test.php
 
 The phase 1 test fixture now includes `session_version` and recovery tables, and
 the success assertion checks its increment. All original 41 cases are retained.
-Pre-existing `.gitignore`, Composer files, skill directories and the earlier
-Mailpit smoke script are not changed by this implementation.
+During the initial implementation, `.gitignore`, Composer files and skill directories were unchanged.
+The local deployment audit later extended `.gitignore` for runtime artifacts.
+The Mailpit smoke script was subsequently updated in phase 2 to reuse the mailer
+and send a token-free Vietnamese HTML/plain-text message without SMTP debug output.
 
 ## Rollback planning
 

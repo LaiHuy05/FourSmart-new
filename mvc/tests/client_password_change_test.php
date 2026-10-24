@@ -7,6 +7,10 @@ if (PHP_SAPI !== 'cli') {
 }
 
 ini_set('zend.exception_ignore_args', '1');
+// Isolated fixtures include the versioned schema. Never infer legacy from absence.
+if (getenv('FOURSMART_SESSION_VERSION_MODE') === false) {
+    putenv('FOURSMART_SESSION_VERSION_MODE=required');
+}
 
 foreach (['pdo_sqlite', 'curl', 'dom', 'mbstring'] as $extension) {
     if (!extension_loaded($extension)) {

@@ -6,6 +6,9 @@
 .env.*
 !.env.example
 
+# Per-machine Apache deployment; commit the OFF example instead.
+/mvc/.htaccess
+
 # Private configuration. Keep real credentials outside the web root and Git.
 auth.json
 connection.json
@@ -21,6 +24,10 @@ foursmart-mariadb-test-*/
 
 .DS_Store
 Thumbs.db
+
+# Python local operations tooling caches.
+__pycache__/
+*.py[cod]
 
 mvc/upload/*
 !mvc/upload/.gitkeep

@@ -141,11 +141,15 @@ try {
     }
     recoveryAssert($ready, 'Fixture server not ready');
 
-    $tests->test('policy defaults to legacy and rejects invalid explicit modes', function (): void {
+    $tests->test('policy rejects missing or invalid modes and permits only explicit legacy', function (): void {
         $previous = getenv('FOURSMART_SESSION_VERSION_MODE');
         try {
             putenv('FOURSMART_SESSION_VERSION_MODE');
-            recoveryAssert(!SessionVersionPolicy::required(), 'Default is not legacy-compatible');
+            $rejected = false;
+            try { SessionVersionPolicy::required(); } catch (RuntimeException $expected) { $rejected = true; }
+            recoveryAssert($rejected, 'Missing policy silently lowered session security');
+            putenv('FOURSMART_SESSION_VERSION_MODE=legacy');
+            recoveryAssert(!SessionVersionPolicy::required(), 'Explicit legacy mode is not supported');
             putenv('FOURSMART_SESSION_VERSION_MODE=required');
             recoveryAssert(SessionVersionPolicy::required(), 'Required mode ignored');
             foreach (['', '0', 'on', 'REQUIRED'] as $mode) {
