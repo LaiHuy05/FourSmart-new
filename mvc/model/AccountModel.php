@@ -256,6 +256,82 @@ public static function updateAdmin(
     );
 }
 
+
+    /**
+     * Admin password reset, integrated with session revocation and client recovery.
+     * Locks account -> pending jobs -> token, matching PasswordRecoveryModel lock order.
+     * Only customer accounts (role 2) can be reset.
+     */
+    public static function resetCustomerPassword(
+        int $id,
+        #[\SensitiveParameter] string $password
+    ): bool {
+        $connection = Database::connection();
+        if ($connection->inTransaction()) {
+            throw new LogicException('Nested account password reset is not supported.');
+        }
+
+        $newHash = password_hash($password, PASSWORD_BCRYPT);
+        $connection->beginTransaction();
+        try {
+            $selectAccount = $connection->prepare(
+                'SELECT tk_id, tk_password, tk_email, id_role, session_version
+                 FROM account WHERE tk_id = ? FOR UPDATE'
+            );
+            $selectAccount->execute([$id]);
+            $account = $selectAccount->fetch(PDO::FETCH_ASSOC);
+
+            if (!$account || (int) $account['id_role'] !== 2) {
+                $connection->rollBack();
+                return false;
+            }
+            $version = SessionVersionPolicy::accountVersion($account);
+            if ($version >= 4294967295) {
+                throw new RuntimeException('Session version exhausted.');
+            }
+
+            // Keep the same locking order used by client password recovery.
+            $selectJobs = $connection->prepare(
+                "SELECT id FROM password_reset_jobs WHERE email = ?
+                 AND status IN ('pending', 'processing') ORDER BY id FOR UPDATE"
+            );
+            $selectJobs->execute([(string) $account['tk_email']]);
+            $selectJobs->fetchAll(PDO::FETCH_ASSOC);
+
+            $cancelJobs = $connection->prepare(
+                "UPDATE password_reset_jobs
+                 SET status = 'discarded', lock_token = NULL, locked_until = NULL,
+                     finished_at = UTC_TIMESTAMP(6)
+                 WHERE email = ? AND status IN ('pending', 'processing')"
+            );
+            $cancelJobs->execute([(string) $account['tk_email']]);
+
+            $deleteTokens = $connection->prepare(
+                'DELETE FROM password_reset_tokens WHERE account_id = ?'
+            );
+            $deleteTokens->execute([$id]);
+
+            $update = $connection->prepare(
+                'UPDATE account
+                 SET tk_password = ?, session_version = session_version + 1
+                 WHERE tk_id = ? AND id_role = 2
+                 AND tk_password = ? AND session_version = ?'
+            );
+            $update->execute([$newHash, $id, $account['tk_password'], $version]);
+            if ($update->rowCount() !== 1) {
+                throw new RuntimeException('Password reset concurrency conflict.');
+            }
+
+            $connection->commit();
+            return true;
+        } catch (Throwable $exception) {
+            if ($connection->inTransaction()) {
+                $connection->rollBack();
+            }
+            throw $exception;
+        }
+    }
+
 public static function delete(int $id): void
 {
     Database::execute(
