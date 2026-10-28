@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Quản lý danh mục</title>
+
+    <link rel="stylesheet" href="view/assets/css/base.css">
+    <link rel="stylesheet" href="view/assets/css/home-category.css">
+</head>
+
+<body>
+<div class="admin-shell">
+
+<?php
+include dirname(__DIR__) . '/partials/sidebar.php';
+?>
+
+<main class="admin-content">
+<div class="container page">
+
+    <div class="admin-header">
+
+        <h1>Danh sách danh mục</h1>
+
+        <a
+            class="btn"
+            href="?act=admin&admin=categoryAdd"
+        >
+            Thêm danh mục
+        </a>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Thao tác</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <?php foreach ($categories as $category): ?>
+
+                <tr>
+
+                    <td>
+                        <?= (int) $category['dm_id'] ?>
+                    </td>
+
+                    <td>
+                        <?= htmlspecialchars(
+                            $category['dm_name'],
+                            ENT_QUOTES,
+                            'UTF-8'
+                        ) ?>
+                    </td>
+
+                    <td>
+
+                        <div class="category-actions">
+
+                            <a
+                                class="btn"
+                                href="?act=admin&admin=categoryUpdate&id=<?= (int) $category['dm_id'] ?>"
+                            >
+                                Sửa
+                            </a>
+
+                            <form
+                                action="?act=admin&admin=categoryDelete"
+                                method="POST"
+                            >
+
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    value="<?= htmlspecialchars(
+                                        Csrf::token(),
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    ) ?>"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<?= (int) $category['dm_id'] ?>"
+                                >
+
+                                <button
+                                    class="btn-danger"
+                                    type="submit"
+                                >
+                                    Xóa
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            <?php endforeach; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+</main>
+
+</div>
+</body>
+
+</html>
