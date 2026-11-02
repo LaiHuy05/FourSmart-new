@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/order-dashboard.css">
 
+    <link rel="stylesheet" href="view/assets/css/theme.css">
+    <script src="view/assets/js/interface.js" defer></script>
 </head>
 
 <body>

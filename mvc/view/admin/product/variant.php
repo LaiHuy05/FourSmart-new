@@ -30,6 +30,8 @@
         rel="stylesheet"
         href="view/assets/css/product.css"
     >
+    <link rel="stylesheet" href="view/assets/css/theme.css">
+    <script src="view/assets/js/interface.js" defer></script>
 </head>
 
 <body>

@@ -9,9 +9,12 @@
     <title>Quên mật khẩu | FourSmart</title>
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/account.css">
+    <link rel="stylesheet" href="view/assets/css/theme.css">
+    <script src="view/assets/js/interface.js" defer></script>
 </head>
 <body class="auth-page">
 <main class="auth-card">
+    <a class="client-logo auth-brand" href="?client=home">Four<span>Smart</span></a>
     <h1>Quên mật khẩu</h1>
     <p class="auth-subtitle">Nhập email bạn đã dùng cho tài khoản Client.</p>
     <?php if ($error !== ''): ?>

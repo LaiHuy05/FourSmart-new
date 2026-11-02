@@ -11,6 +11,7 @@
 
         <form
             class="client-search"
+            role="search"
             method="GET"
             action=""
         >
@@ -24,6 +25,7 @@
             <input
                 type="text"
                 name="q"
+                aria-label="Tìm kiếm sản phẩm"
                 placeholder="Tìm sản phẩm..."
                 value="<?= htmlspecialchars(
                     $_GET['q'] ?? '',
@@ -33,18 +35,20 @@
             >
 
             <button type="submit">
+                <svg class="fs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
                 Tìm kiếm
             </button>
 
         </form>
 
-        <nav class="client-nav">
+        <nav class="client-nav" aria-label="Điều hướng chính">
 
             <a href="?client=home">
                 Trang chủ
             </a>
 
             <a href="?client=cart">
+                <svg class="fs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l3 12h10l3-9H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
                 Giỏ hàng
             </a>
 

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/home-category.css">
 
+    <link rel="stylesheet" href="view/assets/css/theme.css">
+    <script src="view/assets/js/interface.js" defer></script>
 </head>
 
 <body>
@@ -23,21 +25,22 @@
 include __DIR__ . '/partials/header.php';
 ?>
 
-<section class="home-hero">
-
-    <div class="container">
-
-        <h1>FourSmart</h1>
-
-        <p>
-            Điện thoại chính hãng - giá tốt
-        </p>
-
+<section class="home-hero" aria-labelledby="hero-title">
+    <div class="container hero-layout">
+        <div>
+            <span class="eyebrow">FOURSMART · SMART CHOICE</span>
+            <h1 id="hero-title">Công nghệ bạn yêu.<br>Phong cách bạn chọn.</h1>
+            <p>Khám phá điện thoại phù hợp với bạn, từ thiết kế đến hiệu năng. Lựa chọn thông minh bắt đầu tại FourSmart.</p>
+            <a class="btn hero-cta" href="#products">Khám phá sản phẩm <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+            <div class="hero-phone"></div>
+            <span class="hero-caption">FourSmart / Kết nối mỗi ngày</span>
+        </div>
     </div>
-
 </section>
 
-<main class="container">
+<main class="container" id="products">
 
     <div class="category-quick-nav">
 

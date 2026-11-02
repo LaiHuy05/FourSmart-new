@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/order-dashboard.css">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="view/assets/css/theme.css">
+    <script src="view/assets/js/interface.js" defer></script>
 </head>
 
 <body>

@@ -20,6 +20,9 @@ $passwordMessage = $passwordMessage ?? '';
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/account.css">
     <script src="view/assets/js/client-password.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="view/assets/css/theme.css">
+    <script src="view/assets/js/interface.js" defer></script>
 </head>
 
 <body>

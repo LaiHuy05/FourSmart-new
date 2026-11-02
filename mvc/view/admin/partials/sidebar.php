@@ -7,7 +7,7 @@
         Four<span>Smart</span>
     </a>
 
-    <nav class="admin-menu">
+    <nav class="admin-menu" aria-label="Điều hướng quản trị">
 
         <a href="?act=admin">
             Dashboard

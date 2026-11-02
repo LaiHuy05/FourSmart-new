@@ -1,0 +1,1231 @@
+{
+  "communities": {
+    "0": [
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_allowreset",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_atomic",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_changeauthenticatedpassword",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_claim",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_issue",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_request",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_reset",
+      "mvc_tests_client_password_recovery_test_closure_2",
+      "mvc_tests_password_recovery_model_test",
+      "mvc_tests_password_recovery_model_test_closure_1",
+      "mvc_tests_password_recovery_model_test_closure_10",
+      "mvc_tests_password_recovery_model_test_closure_11",
+      "mvc_tests_password_recovery_model_test_closure_12",
+      "mvc_tests_password_recovery_model_test_closure_13",
+      "mvc_tests_password_recovery_model_test_closure_14",
+      "mvc_tests_password_recovery_model_test_closure_15",
+      "mvc_tests_password_recovery_model_test_closure_16",
+      "mvc_tests_password_recovery_model_test_closure_17",
+      "mvc_tests_password_recovery_model_test_closure_19",
+      "mvc_tests_password_recovery_model_test_closure_2",
+      "mvc_tests_password_recovery_model_test_closure_20",
+      "mvc_tests_password_recovery_model_test_closure_21",
+      "mvc_tests_password_recovery_model_test_closure_22",
+      "mvc_tests_password_recovery_model_test_closure_23",
+      "mvc_tests_password_recovery_model_test_closure_24",
+      "mvc_tests_password_recovery_model_test_closure_26",
+      "mvc_tests_password_recovery_model_test_closure_5",
+      "mvc_tests_password_recovery_model_test_closure_7",
+      "mvc_tests_password_recovery_model_test_closure_8",
+      "mvc_tests_password_recovery_model_test_closure_9",
+      "mvc_tests_password_recovery_model_test_php_pdostatement",
+      "mvc_tests_password_recovery_model_test_prepare",
+      "mvc_tests_password_recovery_mysql_test_closure_11",
+      "mvc_tests_password_recovery_mysql_test_closure_12",
+      "mvc_tests_password_recovery_mysql_test_closure_16",
+      "mvc_tests_password_recovery_mysql_test_closure_17",
+      "mvc_tests_password_recovery_mysql_test_closure_5",
+      "mvc_tests_session_version_policy_test",
+      "mvc_tests_session_version_policy_test_closure_1",
+      "mvc_tests_session_version_policy_test_closure_10",
+      "mvc_tests_session_version_policy_test_closure_11",
+      "mvc_tests_session_version_policy_test_closure_12",
+      "mvc_tests_session_version_policy_test_closure_13",
+      "mvc_tests_session_version_policy_test_closure_14",
+      "mvc_tests_session_version_policy_test_closure_15",
+      "mvc_tests_session_version_policy_test_closure_16",
+      "mvc_tests_session_version_policy_test_closure_17",
+      "mvc_tests_session_version_policy_test_closure_18",
+      "mvc_tests_session_version_policy_test_closure_19",
+      "mvc_tests_session_version_policy_test_closure_2",
+      "mvc_tests_session_version_policy_test_closure_20",
+      "mvc_tests_session_version_policy_test_closure_21",
+      "mvc_tests_session_version_policy_test_closure_22",
+      "mvc_tests_session_version_policy_test_closure_23",
+      "mvc_tests_session_version_policy_test_closure_24",
+      "mvc_tests_session_version_policy_test_closure_25",
+      "mvc_tests_session_version_policy_test_closure_3",
+      "mvc_tests_session_version_policy_test_closure_4",
+      "mvc_tests_session_version_policy_test_closure_5",
+      "mvc_tests_session_version_policy_test_closure_6",
+      "mvc_tests_session_version_policy_test_closure_7",
+      "mvc_tests_session_version_policy_test_closure_8",
+      "mvc_tests_session_version_policy_test_closure_9",
+      "mvc_tests_session_version_policy_test_php_curlhandle",
+      "mvc_tests_session_version_policy_test_php_datetimeimmutable",
+      "mvc_tests_session_version_policy_test_policybrowser",
+      "mvc_tests_session_version_policy_test_policybrowser_construct",
+      "mvc_tests_session_version_policy_test_policybrowser_login",
+      "mvc_tests_session_version_policy_test_policybrowser_replacesession",
+      "mvc_tests_session_version_policy_test_policybrowser_request",
+      "mvc_tests_session_version_policy_test_policybrowser_session",
+      "mvc_tests_session_version_policy_test_policybrowser_sessionpath",
+      "mvc_tests_session_version_policy_test_policyfields",
+      "mvc_tests_support_password_recovery_fixture",
+      "mvc_tests_support_password_recovery_fixture_php_pdo",
+      "mvc_tests_support_password_recovery_fixture_recoveryassert",
+      "mvc_tests_support_password_recovery_fixture_recoverydirectory",
+      "mvc_tests_support_password_recovery_fixture_recoveryfixture",
+      "mvc_tests_support_password_recovery_fixture_recoveryremovedirectory",
+      "mvc_tests_support_password_recovery_fixture_recoverytests",
+      "mvc_tests_support_password_recovery_fixture_recoverytests_finish",
+      "mvc_tests_support_password_recovery_fixture_recoverytests_test"
+    ],
+    "1": [
+      "closure",
+      "mvc_controller_client_password_recovery_controller",
+      "mvc_controller_client_password_recovery_controller_clientpasswordrecoverycontroller",
+      "mvc_controller_client_password_recovery_controller_clientpasswordrecoverycontroller_handle",
+      "mvc_model_passwordrecoverymodel",
+      "mvc_model_passwordrecoverymodel_closure_1",
+      "mvc_model_passwordrecoverymodel_closure_2",
+      "mvc_model_passwordrecoverymodel_closure_3",
+      "mvc_model_passwordrecoverymodel_closure_4",
+      "mvc_model_passwordrecoverymodel_closure_5",
+      "mvc_model_passwordrecoverymodel_closure_6",
+      "mvc_model_passwordrecoverymodel_closure_7",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_canceljobs",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_cleanup",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_construct",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_finish",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_limits",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_locked",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_matches",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_owns",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_retry",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_run",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_stamp",
+      "mvc_model_passwordrecoverymodel_passwordrecoverymodel_valid",
+      "mvc_model_passwordrecoverymodel_php_datetimeimmutable",
+      "mvc_model_passwordrecoverymodel_php_pdo",
+      "mvc_model_passwordrecoverymodel_php_pdostatement",
+      "mvc_service_passwordrecoveryservice",
+      "mvc_service_passwordrecoveryservice_closure_1",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_allowreset",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_cleanup",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_email",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_ip",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_processone",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_request",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_reset",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_valid",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_validpassword",
+      "mvc_service_passwordrecoveryservice_php_datetimeimmutable",
+      "mvc_tests_client_password_recovery_test_closure_12",
+      "mvc_tests_password_recovery_model_test_closure_18",
+      "mvc_tests_password_recovery_model_test_closure_25",
+      "mvc_tests_password_recovery_model_test_closure_6",
+      "mvc_tests_password_recovery_mysql_test_closure_18",
+      "mvc_tests_password_recovery_worker_transport_test",
+      "mvc_tests_password_recovery_worker_transport_test_closure_1",
+      "mvc_tests_password_recovery_worker_transport_test_closure_2",
+      "mvc_tests_password_recovery_worker_transport_test_closure_3",
+      "mvc_tests_password_recovery_worker_transport_test_closure_4"
+    ],
+    "2": [
+      "mvc_model_accountmodel_accountmodel_changepassword",
+      "mvc_model_accountmodel_accountmodel_find",
+      "mvc_model_accountmodel_accountmodel_replacepasswordhash",
+      "mvc_model_accountmodel_accountmodel_verifypassword",
+      "mvc_tests_client_password_change_test",
+      "mvc_tests_client_password_change_test_check",
+      "mvc_tests_client_password_change_test_closure_1",
+      "mvc_tests_client_password_change_test_closure_10",
+      "mvc_tests_client_password_change_test_closure_11",
+      "mvc_tests_client_password_change_test_closure_12",
+      "mvc_tests_client_password_change_test_closure_13",
+      "mvc_tests_client_password_change_test_closure_14",
+      "mvc_tests_client_password_change_test_closure_15",
+      "mvc_tests_client_password_change_test_closure_16",
+      "mvc_tests_client_password_change_test_closure_17",
+      "mvc_tests_client_password_change_test_closure_18",
+      "mvc_tests_client_password_change_test_closure_19",
+      "mvc_tests_client_password_change_test_closure_2",
+      "mvc_tests_client_password_change_test_closure_20",
+      "mvc_tests_client_password_change_test_closure_21",
+      "mvc_tests_client_password_change_test_closure_22",
+      "mvc_tests_client_password_change_test_closure_23",
+      "mvc_tests_client_password_change_test_closure_24",
+      "mvc_tests_client_password_change_test_closure_25",
+      "mvc_tests_client_password_change_test_closure_26",
+      "mvc_tests_client_password_change_test_closure_27",
+      "mvc_tests_client_password_change_test_closure_28",
+      "mvc_tests_client_password_change_test_closure_29",
+      "mvc_tests_client_password_change_test_closure_3",
+      "mvc_tests_client_password_change_test_closure_30",
+      "mvc_tests_client_password_change_test_closure_31",
+      "mvc_tests_client_password_change_test_closure_32",
+      "mvc_tests_client_password_change_test_closure_33",
+      "mvc_tests_client_password_change_test_closure_34",
+      "mvc_tests_client_password_change_test_closure_4",
+      "mvc_tests_client_password_change_test_closure_5",
+      "mvc_tests_client_password_change_test_closure_6",
+      "mvc_tests_client_password_change_test_closure_7",
+      "mvc_tests_client_password_change_test_closure_8",
+      "mvc_tests_client_password_change_test_closure_9",
+      "mvc_tests_client_password_change_test_forminputs",
+      "mvc_tests_client_password_change_test_passwordtestbrowser",
+      "mvc_tests_client_password_change_test_passwordtestbrowser_construct",
+      "mvc_tests_client_password_change_test_passwordtestbrowser_fields",
+      "mvc_tests_client_password_change_test_passwordtestbrowser_login",
+      "mvc_tests_client_password_change_test_passwordtestbrowser_request",
+      "mvc_tests_client_password_change_test_passwordtestbrowser_sessionid",
+      "mvc_tests_client_password_change_test_passwordtestbrowser_usesessionid",
+      "mvc_tests_client_password_change_test_php_curlhandle",
+      "mvc_tests_password_recovery_mysql_test_closure_14"
+    ],
+    "3": [
+      "agents_skills_senior_backend_scripts_api_scaffolder",
+      "agents_skills_senior_backend_scripts_api_scaffolder_rationale_2",
+      "agents_skills_senior_frontend_scripts_component_generator",
+      "agents_skills_senior_frontend_scripts_component_generator_componentgenerator",
+      "agents_skills_senior_frontend_scripts_component_generator_componentgenerator_init",
+      "agents_skills_senior_frontend_scripts_component_generator_main",
+      "agents_skills_senior_frontend_scripts_component_generator_rationale_15",
+      "agents_skills_senior_frontend_scripts_component_generator_rationale_2",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_main",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_rationale_2",
+      "argparse",
+      "claude_skills_senior_backend_scripts_api_scaffolder",
+      "claude_skills_senior_backend_scripts_api_scaffolder_apiscaffolder",
+      "claude_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_init",
+      "claude_skills_senior_backend_scripts_api_scaffolder_main",
+      "claude_skills_senior_backend_scripts_api_scaffolder_rationale_15",
+      "claude_skills_senior_backend_scripts_api_scaffolder_rationale_2",
+      "claude_skills_senior_backend_scripts_database_migration_tool",
+      "claude_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool",
+      "claude_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_init",
+      "claude_skills_senior_backend_scripts_database_migration_tool_main",
+      "claude_skills_senior_backend_scripts_database_migration_tool_rationale_15",
+      "claude_skills_senior_backend_scripts_database_migration_tool_rationale_2",
+      "claude_skills_senior_frontend_scripts_component_generator",
+      "claude_skills_senior_frontend_scripts_component_generator_componentgenerator",
+      "claude_skills_senior_frontend_scripts_component_generator_componentgenerator_init",
+      "claude_skills_senior_frontend_scripts_component_generator_main",
+      "claude_skills_senior_frontend_scripts_component_generator_rationale_15",
+      "claude_skills_senior_frontend_scripts_component_generator_rationale_2",
+      "importlib_util",
+      "json",
+      "os",
+      "pathlib",
+      "sys",
+      "tempfile",
+      "tools_tests_local_recovery_manager_test",
+      "tools_tests_local_recovery_manager_test_rationale_1",
+      "typing",
+      "unittest",
+      "unittest_mock"
+    ],
+    "4": [
+      "ctypes",
+      "datetime",
+      "exception",
+      "msvcrt",
+      "re",
+      "secrets",
+      "subprocess",
+      "time",
+      "tools_local_recovery_active_state",
+      "tools_local_recovery_check",
+      "tools_local_recovery_deployment",
+      "tools_local_recovery_event",
+      "tools_local_recovery_execute_once",
+      "tools_local_recovery_invoke_php",
+      "tools_local_recovery_local_tools",
+      "tools_local_recovery_localerror",
+      "tools_local_recovery_main",
+      "tools_local_recovery_now",
+      "tools_local_recovery_process_identity",
+      "tools_local_recovery_py_tools_local_recovery",
+      "tools_local_recovery_rationale_1",
+      "tools_local_recovery_read_json",
+      "tools_local_recovery_replace_deployment",
+      "tools_local_recovery_require",
+      "tools_local_recovery_runtime_location",
+      "tools_local_recovery_set_enabled",
+      "tools_local_recovery_start",
+      "tools_local_recovery_status",
+      "tools_local_recovery_stop",
+      "tools_local_recovery_stop_path",
+      "tools_local_recovery_supervise",
+      "tools_local_recovery_workerlock",
+      "tools_local_recovery_workerlock_enter",
+      "tools_local_recovery_workerlock_exit",
+      "tools_local_recovery_write_json"
+    ],
+    "5": [
+      "mvc_tests_password_recovery_mysql_test",
+      "mvc_tests_password_recovery_mysql_test_closure_1",
+      "mvc_tests_password_recovery_mysql_test_closure_10",
+      "mvc_tests_password_recovery_mysql_test_closure_13",
+      "mvc_tests_password_recovery_mysql_test_closure_15",
+      "mvc_tests_password_recovery_mysql_test_closure_2",
+      "mvc_tests_password_recovery_mysql_test_closure_3",
+      "mvc_tests_password_recovery_mysql_test_closure_4",
+      "mvc_tests_password_recovery_mysql_test_closure_6",
+      "mvc_tests_password_recovery_mysql_test_closure_7",
+      "mvc_tests_password_recovery_mysql_test_closure_8",
+      "mvc_tests_password_recovery_mysql_test_closure_9",
+      "mvc_tests_support_guarded_mariadb",
+      "mvc_tests_support_guarded_mariadb_guardedmariadb",
+      "mvc_tests_support_guarded_mariadb_guardedmariadb_assertfixture",
+      "mvc_tests_support_guarded_mariadb_guardedmariadb_asserttarget",
+      "mvc_tests_support_guarded_mariadb_guardedmariadb_construct",
+      "mvc_tests_support_guarded_mariadb_guardedmariadb_exec",
+      "mvc_tests_support_guarded_mariadb_guardedmariadb_guardstatement",
+      "mvc_tests_support_guarded_mariadb_guardedmariadb_query",
+      "mvc_tests_support_guarded_mariadb_guardedmariadbstatement",
+      "mvc_tests_support_guarded_mariadb_guardedmariadbstatement_construct",
+      "mvc_tests_support_guarded_mariadb_guardedmariadbstatement_execute",
+      "mvc_tests_support_guarded_mariadb_mariaconfigpath",
+      "mvc_tests_support_guarded_mariadb_mariaprivateconfig",
+      "mvc_tests_support_guarded_mariadb_mariatestenvironment",
+      "pdo",
+      "pdostatement"
+    ],
+    "6": [
+      "mvc_controller_admin_home_controller",
+      "mvc_controller_admin_home_controller_adminhomecontroller",
+      "mvc_controller_admin_home_controller_adminhomecontroller_handle",
+      "mvc_controller_admin_order_controller",
+      "mvc_controller_admin_order_controller_adminordercontroller",
+      "mvc_controller_admin_order_controller_adminordercontroller_detail",
+      "mvc_controller_admin_order_controller_adminordercontroller_handle",
+      "mvc_controller_admin_order_controller_adminordercontroller_index",
+      "mvc_controller_admin_order_controller_adminordercontroller_updatestatus",
+      "mvc_controller_client_order_controller",
+      "mvc_controller_client_order_controller_clientordercontroller",
+      "mvc_controller_client_order_controller_clientordercontroller_detail",
+      "mvc_controller_client_order_controller_clientordercontroller_handle",
+      "mvc_controller_client_order_controller_clientordercontroller_history",
+      "mvc_model_ordermodel",
+      "mvc_model_ordermodel_ordermodel",
+      "mvc_model_ordermodel_ordermodel_all",
+      "mvc_model_ordermodel_ordermodel_currentyearmonthlyrevenue",
+      "mvc_model_ordermodel_ordermodel_detailsbyorder",
+      "mvc_model_ordermodel_ordermodel_detailsbyorderid",
+      "mvc_model_ordermodel_ordermodel_find",
+      "mvc_model_ordermodel_ordermodel_foruser",
+      "mvc_model_ordermodel_ordermodel_ordersbystatus",
+      "mvc_model_ordermodel_ordermodel_topsellingproducts",
+      "mvc_model_ordermodel_ordermodel_totalorders",
+      "mvc_model_ordermodel_ordermodel_totalrevenue",
+      "mvc_model_ordermodel_ordermodel_updatestatus"
+    ],
+    "7": [
+      "mvc_controller_client_cart_controller",
+      "mvc_controller_client_cart_controller_clientcartcontroller",
+      "mvc_controller_client_cart_controller_clientcartcontroller_add",
+      "mvc_controller_client_cart_controller_clientcartcontroller_checkownership",
+      "mvc_controller_client_cart_controller_clientcartcontroller_checkpost",
+      "mvc_controller_client_cart_controller_clientcartcontroller_decrease",
+      "mvc_controller_client_cart_controller_clientcartcontroller_delete",
+      "mvc_controller_client_cart_controller_clientcartcontroller_handle",
+      "mvc_controller_client_cart_controller_clientcartcontroller_increase",
+      "mvc_controller_client_cart_controller_clientcartcontroller_redirectcart",
+      "mvc_controller_client_cart_controller_clientcartcontroller_show",
+      "mvc_core_database_database_one",
+      "mvc_model_accountmodel_accountmodel_usernameexists",
+      "mvc_model_cartmodel",
+      "mvc_model_cartmodel_cartmodel",
+      "mvc_model_cartmodel_cartmodel_additem",
+      "mvc_model_cartmodel_cartmodel_cleardetails",
+      "mvc_model_cartmodel_cartmodel_create",
+      "mvc_model_cartmodel_cartmodel_decreasequantity",
+      "mvc_model_cartmodel_cartmodel_deleteitem",
+      "mvc_model_cartmodel_cartmodel_detailbelongstouser",
+      "mvc_model_cartmodel_cartmodel_detailforuser",
+      "mvc_model_cartmodel_cartmodel_detailswithproductsbycart",
+      "mvc_model_cartmodel_cartmodel_findbyuser",
+      "mvc_model_cartmodel_cartmodel_increasequantity",
+      "mvc_model_cartmodel_cartmodel_productquantityincart"
+    ],
+    "8": [
+      "mvc_config_password_recovery_mail",
+      "mvc_config_password_recovery_mail_closure_1",
+      "mvc_config_password_recovery_mail_passwordrecoverymailconfig",
+      "mvc_config_password_recovery_mail_passwordrecoverymailconfig_load",
+      "mvc_service_passwordrecoverymailer",
+      "mvc_service_passwordrecoverymailer_passwordrecoverymailer",
+      "mvc_service_passwordrecoverymailer_passwordrecoverymailer_construct",
+      "mvc_service_passwordrecoverymailer_passwordrecoverymailer_deliver",
+      "mvc_service_passwordrecoverymailer_passwordrecoverymailer_send",
+      "mvc_service_passwordrecoverymailer_passwordrecoverymailer_sendtestmessage",
+      "mvc_service_passwordrecoveryservice_passwordrecoveryservice_construct",
+      "mvc_tests_password_recovery_mailer_test",
+      "mvc_tests_password_recovery_mailer_test_closure_1",
+      "mvc_tests_password_recovery_mailer_test_closure_2",
+      "mvc_tests_password_recovery_mailer_test_closure_3",
+      "mvc_tests_password_recovery_mailer_test_closure_4",
+      "mvc_tests_password_recovery_mailer_test_closure_5",
+      "mvc_tests_password_recovery_mailer_test_closure_6",
+      "mvc_tests_password_recovery_mailer_test_closure_7",
+      "mvc_tests_password_recovery_mailer_test_closure_8",
+      "mvc_tests_password_recovery_mailer_test_closure_9",
+      "phpmailer_phpmailer_phpmailer"
+    ],
+    "9": [
+      "mvc_controller_admin_product_controller",
+      "mvc_controller_admin_product_controller_adminproductcontroller",
+      "mvc_controller_admin_product_controller_adminproductcontroller_add",
+      "mvc_controller_admin_product_controller_adminproductcontroller_delete",
+      "mvc_controller_admin_product_controller_adminproductcontroller_handle",
+      "mvc_controller_admin_product_controller_adminproductcontroller_index",
+      "mvc_controller_admin_product_controller_adminproductcontroller_update",
+      "mvc_controller_admin_product_controller_adminproductcontroller_uploadimage",
+      "mvc_controller_client_home_controller",
+      "mvc_controller_client_home_controller_clienthomecontroller",
+      "mvc_controller_client_home_controller_clienthomecontroller_handle",
+      "mvc_model_categorymodel_categorymodel_all",
+      "mvc_model_productmodel",
+      "mvc_model_productmodel_productmodel",
+      "mvc_model_productmodel_productmodel_all",
+      "mvc_model_productmodel_productmodel_create",
+      "mvc_model_productmodel_productmodel_delete",
+      "mvc_model_productmodel_productmodel_find",
+      "mvc_model_productmodel_productmodel_hasrelateddata",
+      "mvc_model_productmodel_productmodel_hasstock",
+      "mvc_model_productmodel_productmodel_update"
+    ],
+    "10": [
+      "mvc_controller_client_checkout_controller",
+      "mvc_controller_client_checkout_controller_clientcheckoutcontroller",
+      "mvc_controller_client_checkout_controller_clientcheckoutcontroller_handle",
+      "mvc_core_database",
+      "mvc_core_database_closure_1",
+      "mvc_core_database_database",
+      "mvc_core_database_database_configuration",
+      "mvc_core_database_database_connection",
+      "mvc_core_database_database_insert",
+      "mvc_core_database_php_pdo",
+      "mvc_model_ordermodel_ordermodel_adddetail",
+      "mvc_model_ordermodel_ordermodel_create",
+      "mvc_model_productmodel_productmodel_decreasestock",
+      "mvc_service_checkoutservice",
+      "mvc_service_checkoutservice_checkoutservice",
+      "mvc_service_checkoutservice_checkoutservice_createorder",
+      "mvc_service_checkoutservice_checkoutservice_summary",
+      "mvc_service_checkoutservice_checkoutservice_validatecustomer"
+    ],
+    "11": [
+      "mvc_tests_client_password_recovery_test",
+      "mvc_tests_client_password_recovery_test_closure_1",
+      "mvc_tests_client_password_recovery_test_closure_10",
+      "mvc_tests_client_password_recovery_test_closure_11",
+      "mvc_tests_client_password_recovery_test_closure_13",
+      "mvc_tests_client_password_recovery_test_closure_3",
+      "mvc_tests_client_password_recovery_test_closure_4",
+      "mvc_tests_client_password_recovery_test_closure_5",
+      "mvc_tests_client_password_recovery_test_closure_6",
+      "mvc_tests_client_password_recovery_test_closure_7",
+      "mvc_tests_client_password_recovery_test_closure_8",
+      "mvc_tests_client_password_recovery_test_closure_9",
+      "mvc_tests_client_password_recovery_test_php_curlhandle",
+      "mvc_tests_client_password_recovery_test_recoverybrowser",
+      "mvc_tests_client_password_recovery_test_recoverybrowser_construct",
+      "mvc_tests_client_password_recovery_test_recoverybrowser_login",
+      "mvc_tests_client_password_recovery_test_recoverybrowser_request",
+      "mvc_tests_client_password_recovery_test_recoveryfields"
+    ],
+    "12": [
+      "mvc_controller_admin_account_controller",
+      "mvc_controller_admin_account_controller_adminaccountcontroller",
+      "mvc_controller_admin_account_controller_adminaccountcontroller_delete",
+      "mvc_controller_admin_account_controller_adminaccountcontroller_handle",
+      "mvc_controller_admin_account_controller_adminaccountcontroller_index",
+      "mvc_controller_admin_account_controller_adminaccountcontroller_update",
+      "mvc_model_accountmodel",
+      "mvc_model_accountmodel_accountmodel",
+      "mvc_model_accountmodel_accountmodel_all",
+      "mvc_model_accountmodel_accountmodel_delete",
+      "mvc_model_accountmodel_accountmodel_emailexistsforotheruser",
+      "mvc_model_accountmodel_accountmodel_hasrelateddata",
+      "mvc_model_accountmodel_accountmodel_ispasswordhash",
+      "mvc_model_accountmodel_accountmodel_matchespassword",
+      "mvc_model_accountmodel_accountmodel_roles",
+      "mvc_model_accountmodel_accountmodel_updateadmin",
+      "mvc_model_accountmodel_accountmodel_usernameexistsforotheruser"
+    ],
+    "13": [
+      "mvc_config_password_recovery",
+      "mvc_config_password_recovery_closure_1",
+      "mvc_config_password_recovery_passwordrecoveryconfig",
+      "mvc_config_password_recovery_passwordrecoveryconfig_enabled",
+      "mvc_config_password_recovery_passwordrecoveryconfig_key",
+      "mvc_config_password_recovery_passwordrecoveryconfig_load",
+      "mvc_core_sessionversionpolicy_sessionversionpolicy_required",
+      "mvc_tests_password_recovery_model_test_closure_3",
+      "mvc_tests_password_recovery_model_test_closure_4",
+      "mvc_tests_password_recovery_secret_config_test",
+      "mvc_tests_password_recovery_secret_config_test_closure_1",
+      "mvc_tests_password_recovery_secret_config_test_closure_2",
+      "mvc_tests_password_recovery_secret_config_test_closure_3",
+      "mvc_tests_password_recovery_secret_config_test_closure_4",
+      "mvc_tests_password_recovery_secret_config_test_closure_5",
+      "mvc_tests_password_recovery_secret_config_test_closure_6"
+    ],
+    "14": [
+      "mvc_controller_admin_category_controller",
+      "mvc_controller_admin_category_controller_admincategorycontroller",
+      "mvc_controller_admin_category_controller_admincategorycontroller_add",
+      "mvc_controller_admin_category_controller_admincategorycontroller_delete",
+      "mvc_controller_admin_category_controller_admincategorycontroller_handle",
+      "mvc_controller_admin_category_controller_admincategorycontroller_index",
+      "mvc_controller_admin_category_controller_admincategorycontroller_update",
+      "mvc_controller_client_category_controller_clientcategorycontroller_handle",
+      "mvc_core_csrf_csrf_verify",
+      "mvc_model_categorymodel",
+      "mvc_model_categorymodel_categorymodel",
+      "mvc_model_categorymodel_categorymodel_create",
+      "mvc_model_categorymodel_categorymodel_delete",
+      "mvc_model_categorymodel_categorymodel_find",
+      "mvc_model_categorymodel_categorymodel_hasproducts",
+      "mvc_model_categorymodel_categorymodel_update"
+    ],
+    "15": [
+      "tools_tests_local_recovery_manager_test_managertests",
+      "tools_tests_local_recovery_manager_test_managertests_setup",
+      "tools_tests_local_recovery_manager_test_managertests_teardown",
+      "tools_tests_local_recovery_manager_test_managertests_test_clean_checkout_template_is_off_and_requires_versioned_sessions",
+      "tools_tests_local_recovery_manager_test_managertests_test_cli_environment_drops_inherited_secrets_and_matches_apache_settings",
+      "tools_tests_local_recovery_manager_test_managertests_test_duplicate_deployment_flags_are_rejected",
+      "tools_tests_local_recovery_manager_test_managertests_test_duplicate_start_returns_the_existing_manager",
+      "tools_tests_local_recovery_manager_test_managertests_test_emergency_disable_works_when_private_settings_are_missing",
+      "tools_tests_local_recovery_manager_test_managertests_test_external_smtp_is_rejected_before_worker_start",
+      "tools_tests_local_recovery_manager_test_managertests_test_machine_runtime_can_be_configured_without_shared_source_paths",
+      "tools_tests_local_recovery_manager_test_managertests_test_native_lock_prevents_a_second_process_and_releases_cleanly",
+      "tools_tests_local_recovery_manager_test_managertests_test_pid_reuse_is_detected_from_process_creation_time",
+      "tools_tests_local_recovery_manager_test_managertests_test_private_database_configuration_inside_source_is_rejected",
+      "tools_tests_local_recovery_manager_test_managertests_test_stop_request_cannot_escape_runtime_directory",
+      "tools_tests_local_recovery_manager_test_managertests_test_unexpected_worker_diagnostics_never_reach_state_or_event_log",
+      "tools_tests_local_recovery_manager_test_managertests_test_unexpected_worker_diagnostics_never_reach_state_or_event_log_communicate"
+    ],
+    "16": [
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_index",
+      "mvc_controller_client_product_controller",
+      "mvc_controller_client_product_controller_clientproductcontroller",
+      "mvc_controller_client_product_controller_clientproductcontroller_detail",
+      "mvc_controller_client_product_controller_clientproductcontroller_handle",
+      "mvc_controller_client_product_controller_clientproductcontroller_search",
+      "mvc_core_database_database_query",
+      "mvc_model_cartmodel_cartmodel_all",
+      "mvc_model_cartmodel_cartmodel_details",
+      "mvc_model_cartmodel_cartmodel_detailsbycart",
+      "mvc_model_productmodel_productmodel_search",
+      "mvc_model_productvariantmodel_productvariantmodel_colors",
+      "mvc_model_productvariantmodel_productvariantmodel_colorsbyproduct",
+      "mvc_model_productvariantmodel_productvariantmodel_memories",
+      "mvc_model_productvariantmodel_productvariantmodel_memoriesbyproduct"
+    ],
+    "17": [
+      "agents_skills_senior_backend_scripts_api_load_tester",
+      "agents_skills_senior_backend_scripts_api_load_tester_apiloadtester",
+      "agents_skills_senior_backend_scripts_api_load_tester_apiloadtester_analyze",
+      "agents_skills_senior_backend_scripts_api_load_tester_apiloadtester_generate_report",
+      "agents_skills_senior_backend_scripts_api_load_tester_apiloadtester_init",
+      "agents_skills_senior_backend_scripts_api_load_tester_apiloadtester_run",
+      "agents_skills_senior_backend_scripts_api_load_tester_apiloadtester_validate_target",
+      "agents_skills_senior_backend_scripts_api_load_tester_main",
+      "agents_skills_senior_backend_scripts_api_load_tester_rationale_15",
+      "agents_skills_senior_backend_scripts_api_load_tester_rationale_2",
+      "agents_skills_senior_backend_scripts_api_load_tester_rationale_23",
+      "agents_skills_senior_backend_scripts_api_load_tester_rationale_40",
+      "agents_skills_senior_backend_scripts_api_load_tester_rationale_48",
+      "agents_skills_senior_backend_scripts_api_load_tester_rationale_62"
+    ],
+    "18": [
+      "agents_skills_senior_backend_scripts_database_migration_tool",
+      "agents_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool",
+      "agents_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_analyze",
+      "agents_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_generate_report",
+      "agents_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_init",
+      "agents_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_run",
+      "agents_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_validate_target",
+      "agents_skills_senior_backend_scripts_database_migration_tool_main",
+      "agents_skills_senior_backend_scripts_database_migration_tool_rationale_15",
+      "agents_skills_senior_backend_scripts_database_migration_tool_rationale_2",
+      "agents_skills_senior_backend_scripts_database_migration_tool_rationale_23",
+      "agents_skills_senior_backend_scripts_database_migration_tool_rationale_40",
+      "agents_skills_senior_backend_scripts_database_migration_tool_rationale_48",
+      "agents_skills_senior_backend_scripts_database_migration_tool_rationale_62"
+    ],
+    "19": [
+      "agents_skills_senior_frontend_scripts_bundle_analyzer",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_analyze",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_generate_report",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_init",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_run",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_validate_target",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_main",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_rationale_15",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_rationale_2",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_rationale_23",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_rationale_40",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_rationale_48",
+      "agents_skills_senior_frontend_scripts_bundle_analyzer_rationale_62"
+    ],
+    "20": [
+      "claude_skills_senior_backend_scripts_api_load_tester",
+      "claude_skills_senior_backend_scripts_api_load_tester_apiloadtester",
+      "claude_skills_senior_backend_scripts_api_load_tester_apiloadtester_analyze",
+      "claude_skills_senior_backend_scripts_api_load_tester_apiloadtester_generate_report",
+      "claude_skills_senior_backend_scripts_api_load_tester_apiloadtester_init",
+      "claude_skills_senior_backend_scripts_api_load_tester_apiloadtester_run",
+      "claude_skills_senior_backend_scripts_api_load_tester_apiloadtester_validate_target",
+      "claude_skills_senior_backend_scripts_api_load_tester_main",
+      "claude_skills_senior_backend_scripts_api_load_tester_rationale_15",
+      "claude_skills_senior_backend_scripts_api_load_tester_rationale_2",
+      "claude_skills_senior_backend_scripts_api_load_tester_rationale_23",
+      "claude_skills_senior_backend_scripts_api_load_tester_rationale_40",
+      "claude_skills_senior_backend_scripts_api_load_tester_rationale_48",
+      "claude_skills_senior_backend_scripts_api_load_tester_rationale_62"
+    ],
+    "21": [
+      "claude_skills_senior_frontend_scripts_bundle_analyzer",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_analyze",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_generate_report",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_init",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_run",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_bundleanalyzer_validate_target",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_main",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_rationale_15",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_rationale_2",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_rationale_23",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_rationale_40",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_rationale_48",
+      "claude_skills_senior_frontend_scripts_bundle_analyzer_rationale_62"
+    ],
+    "22": [
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_analyze",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_generate_report",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_init",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_run",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_validate_target",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_main",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_rationale_15",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_rationale_2",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_rationale_23",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_rationale_40",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_rationale_48",
+      "claude_skills_senior_frontend_scripts_frontend_scaffolder_rationale_62"
+    ],
+    "23": [
+      "mvc_controller_admin_product_variant_controller",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_checkpost",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_checkproduct",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_coloradd",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_colordelete",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_colorupdate",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_handle",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_memoryadd",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_memorydelete",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_memoryupdate",
+      "mvc_controller_admin_product_variant_controller_adminproductvariantcontroller_redirect",
+      "mvc_model_productvariantmodel_productvariantmodel_findcolor",
+      "mvc_model_productvariantmodel_productvariantmodel_findmemory"
+    ],
+    "24": [
+      "mvc_tests_client_password_recovery_js_test",
+      "mvc_tests_client_password_recovery_js_test_assert",
+      "mvc_tests_client_password_recovery_js_test_fs",
+      "mvc_tests_client_password_recovery_js_test_page",
+      "mvc_tests_client_password_recovery_js_test_path",
+      "mvc_tests_client_password_recovery_js_test_preventdefault",
+      "mvc_tests_client_password_recovery_js_test_source",
+      "mvc_tests_client_password_recovery_js_test_test",
+      "mvc_tests_client_password_recovery_js_test_vm",
+      "ref_node_assert",
+      "ref_node_fs",
+      "ref_node_path",
+      "ref_node_vm"
+    ],
+    "25": [
+      "agents_skills_senior_backend_scripts_api_scaffolder_apiscaffolder",
+      "agents_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_analyze",
+      "agents_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_generate_report",
+      "agents_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_init",
+      "agents_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_run",
+      "agents_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_validate_target",
+      "agents_skills_senior_backend_scripts_api_scaffolder_main",
+      "agents_skills_senior_backend_scripts_api_scaffolder_rationale_15",
+      "agents_skills_senior_backend_scripts_api_scaffolder_rationale_23",
+      "agents_skills_senior_backend_scripts_api_scaffolder_rationale_40",
+      "agents_skills_senior_backend_scripts_api_scaffolder_rationale_48",
+      "agents_skills_senior_backend_scripts_api_scaffolder_rationale_62"
+    ],
+    "26": [
+      "mvc_controller_admin_comment_controller",
+      "mvc_controller_admin_comment_controller_admincommentcontroller",
+      "mvc_controller_admin_comment_controller_admincommentcontroller_handle",
+      "mvc_controller_client_comment_controller",
+      "mvc_controller_client_comment_controller_clientcommentcontroller",
+      "mvc_controller_client_comment_controller_clientcommentcontroller_handle",
+      "mvc_model_commentmodel",
+      "mvc_model_commentmodel_commentmodel",
+      "mvc_model_commentmodel_commentmodel_all",
+      "mvc_model_commentmodel_commentmodel_byproduct",
+      "mvc_model_commentmodel_commentmodel_create",
+      "mvc_model_commentmodel_commentmodel_delete"
+    ],
+    "27": [
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_analyze",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_generate_report",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_init",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_run",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_frontendscaffolder_validate_target",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_rationale_15",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_rationale_23",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_rationale_40",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_rationale_48",
+      "agents_skills_senior_frontend_scripts_frontend_scaffolder_rationale_62"
+    ],
+    "28": [
+      "agents_skills_systematic_debugging_condition_based_waiting_example",
+      "agents_skills_systematic_debugging_condition_based_waiting_example_waitforevent",
+      "agents_skills_systematic_debugging_condition_based_waiting_example_waitforeventcount",
+      "agents_skills_systematic_debugging_condition_based_waiting_example_waitforeventmatch",
+      "claude_skills_systematic_debugging_condition_based_waiting_example",
+      "claude_skills_systematic_debugging_condition_based_waiting_example_waitforevent",
+      "claude_skills_systematic_debugging_condition_based_waiting_example_waitforeventcount",
+      "claude_skills_systematic_debugging_condition_based_waiting_example_waitforeventmatch",
+      "ref"
+    ],
+    "29": [
+      "mvc_controller_admin_admin_controller",
+      "mvc_controller_admin_admin_controller_adminrouter",
+      "mvc_controller_admin_admin_controller_adminrouter_run",
+      "mvc_controller_client_client_controller",
+      "mvc_controller_client_client_controller_clientrouter",
+      "mvc_controller_client_client_controller_clientrouter_run",
+      "mvc_core_actionrouter",
+      "mvc_core_actionrouter_actionrouter",
+      "mvc_core_actionrouter_actionrouter_dispatch"
+    ],
+    "30": [
+      "mvc_controller_client_auth_controller",
+      "mvc_controller_client_auth_controller_clientauthcontroller",
+      "mvc_controller_client_auth_controller_clientauthcontroller_handle",
+      "mvc_controller_client_auth_controller_clientauthcontroller_login",
+      "mvc_controller_client_auth_controller_clientauthcontroller_logout",
+      "mvc_controller_client_auth_controller_clientauthcontroller_register",
+      "mvc_model_accountmodel_accountmodel_create",
+      "mvc_model_accountmodel_accountmodel_emailexists",
+      "mvc_model_accountmodel_accountmodel_findbyusername"
+    ],
+    "31": [
+      "mvc_core_database_database_execute",
+      "mvc_model_productvariantmodel",
+      "mvc_model_productvariantmodel_productvariantmodel",
+      "mvc_model_productvariantmodel_productvariantmodel_createcolor",
+      "mvc_model_productvariantmodel_productvariantmodel_creatememory",
+      "mvc_model_productvariantmodel_productvariantmodel_deletecolor",
+      "mvc_model_productvariantmodel_productvariantmodel_deletememory",
+      "mvc_model_productvariantmodel_productvariantmodel_updatecolor",
+      "mvc_model_productvariantmodel_productvariantmodel_updatememory"
+    ],
+    "32": [
+      "agents_skills_senior_frontend_scripts_component_generator_componentgenerator_analyze",
+      "agents_skills_senior_frontend_scripts_component_generator_componentgenerator_generate_report",
+      "agents_skills_senior_frontend_scripts_component_generator_componentgenerator_run",
+      "agents_skills_senior_frontend_scripts_component_generator_componentgenerator_validate_target",
+      "agents_skills_senior_frontend_scripts_component_generator_rationale_23",
+      "agents_skills_senior_frontend_scripts_component_generator_rationale_40",
+      "agents_skills_senior_frontend_scripts_component_generator_rationale_48",
+      "agents_skills_senior_frontend_scripts_component_generator_rationale_62"
+    ],
+    "33": [
+      "claude_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_analyze",
+      "claude_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_generate_report",
+      "claude_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_run",
+      "claude_skills_senior_backend_scripts_api_scaffolder_apiscaffolder_validate_target",
+      "claude_skills_senior_backend_scripts_api_scaffolder_rationale_23",
+      "claude_skills_senior_backend_scripts_api_scaffolder_rationale_40",
+      "claude_skills_senior_backend_scripts_api_scaffolder_rationale_48",
+      "claude_skills_senior_backend_scripts_api_scaffolder_rationale_62"
+    ],
+    "34": [
+      "claude_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_analyze",
+      "claude_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_generate_report",
+      "claude_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_run",
+      "claude_skills_senior_backend_scripts_database_migration_tool_databasemigrationtool_validate_target",
+      "claude_skills_senior_backend_scripts_database_migration_tool_rationale_23",
+      "claude_skills_senior_backend_scripts_database_migration_tool_rationale_40",
+      "claude_skills_senior_backend_scripts_database_migration_tool_rationale_48",
+      "claude_skills_senior_backend_scripts_database_migration_tool_rationale_62"
+    ],
+    "35": [
+      "claude_skills_senior_frontend_scripts_component_generator_componentgenerator_analyze",
+      "claude_skills_senior_frontend_scripts_component_generator_componentgenerator_generate_report",
+      "claude_skills_senior_frontend_scripts_component_generator_componentgenerator_run",
+      "claude_skills_senior_frontend_scripts_component_generator_componentgenerator_validate_target",
+      "claude_skills_senior_frontend_scripts_component_generator_rationale_23",
+      "claude_skills_senior_frontend_scripts_component_generator_rationale_40",
+      "claude_skills_senior_frontend_scripts_component_generator_rationale_48",
+      "claude_skills_senior_frontend_scripts_component_generator_rationale_62"
+    ],
+    "36": [
+      "mvc_core_csrf",
+      "mvc_core_csrf_csrf",
+      "mvc_core_csrf_csrf_token",
+      "mvc_core_sessionguard",
+      "mvc_core_sessionguard_sessionguard",
+      "mvc_core_sessionguard_sessionguard_clear",
+      "mvc_core_sessionguard_sessionguard_enforce",
+      "mvc_core_sessionguard_sessionguard_start"
+    ],
+    "37": [
+      "mvc_controller_client_profile_controller",
+      "mvc_controller_client_profile_controller_clientprofilecontroller",
+      "mvc_controller_client_profile_controller_clientprofilecontroller_changepassword",
+      "mvc_controller_client_profile_controller_clientprofilecontroller_handle",
+      "mvc_controller_client_profile_controller_clientprofilecontroller_show",
+      "mvc_controller_client_profile_controller_clientprofilecontroller_update",
+      "mvc_model_accountmodel_accountmodel_updateprofile"
+    ],
+    "38": [
+      "mvc_core_sessionversionpolicy",
+      "mvc_core_sessionversionpolicy_sessionversionpolicy",
+      "mvc_core_sessionversionpolicy_sessionversionpolicy_accountversion",
+      "mvc_core_sessionversionpolicy_sessionversionpolicy_matches",
+      "mvc_core_sessionversionpolicy_sessionversionpolicy_value"
+    ],
+    "39": [
+      "mvc_tests_support_session_version_router",
+      "mvc_tests_support_session_version_router_construct",
+      "mvc_tests_support_session_version_router_php_pdostatement",
+      "mvc_tests_support_session_version_router_prepare"
+    ],
+    "40": [
+      "composer",
+      "composer_require",
+      "composer_require_phpmailer_phpmailer"
+    ],
+    "41": [
+      "mvc_controller_client_category_controller",
+      "mvc_controller_client_category_controller_clientcategorycontroller",
+      "mvc_controller_client_category_controller_closure_1"
+    ],
+    "42": [
+      "mvc_tests_password_recovery_mariadb_preview_test",
+      "mvc_tests_password_recovery_mariadb_preview_test_closure_1",
+      "mvc_tests_password_recovery_mariadb_preview_test_closure_2"
+    ],
+    "43": [
+      "mvc_tests_support_password_recovery_race",
+      "mvc_tests_support_password_recovery_race_closure_1",
+      "mvc_tests_support_password_recovery_race_closure_2"
+    ],
+    "44": [
+      "agents_skills_systematic_debugging_find_polluter",
+      "agents_skills_systematic_debugging_find_polluter_sh__entry"
+    ],
+    "45": [
+      "claude_skills_systematic_debugging_find_polluter",
+      "claude_skills_systematic_debugging_find_polluter_sh__entry"
+    ],
+    "46": [
+      "mvc_middleware_require_admin",
+      "mvc_middleware_require_admin_require_admin"
+    ],
+    "47": [
+      "mvc_tests_database_config_test",
+      "mvc_tests_database_config_test_closure_1"
+    ],
+    "48": [
+      "mvc_tests_setup_duan1_test",
+      "mvc_tests_setup_duan1_test_closure_1"
+    ],
+    "49": [
+      "mvc_view_client_home",
+      "mvc_view_client_home_closure_1"
+    ],
+    "50": [
+      "tools_local_mailpit",
+      "tools_local_mailpit_get_managedmailpit"
+    ],
+    "51": [
+      "mvc_cli_password_recovery_status"
+    ],
+    "52": [
+      "mvc_cli_password_recovery_worker"
+    ],
+    "53": [
+      "mvc_core_bootstrap"
+    ],
+    "54": [
+      "mvc_index"
+    ],
+    "55": [
+      "mvc_tests_account_model_test"
+    ],
+    "56": [
+      "mvc_tests_cart_model_test"
+    ],
+    "57": [
+      "mvc_tests_category_model_test"
+    ],
+    "58": [
+      "mvc_tests_mailpit_smtp_test"
+    ],
+    "59": [
+      "mvc_tests_order_model_test"
+    ],
+    "60": [
+      "mvc_tests_password_recovery_mariadb_preview"
+    ],
+    "61": [
+      "mvc_tests_product_model_test"
+    ],
+    "62": [
+      "mvc_tests_product_variant_model_test"
+    ],
+    "63": [
+      "mvc_tests_support_client_password_router"
+    ],
+    "64": [
+      "mvc_tests_support_local_smtp_failure"
+    ],
+    "65": [
+      "mvc_tests_support_password_recovery_mariadb_router"
+    ],
+    "66": [
+      "mvc_tests_support_password_recovery_router"
+    ],
+    "67": [
+      "mvc_view_admin_account_list"
+    ],
+    "68": [
+      "mvc_view_admin_account_update"
+    ],
+    "69": [
+      "mvc_view_admin_category_add"
+    ],
+    "70": [
+      "mvc_view_admin_category_list"
+    ],
+    "71": [
+      "mvc_view_admin_category_update"
+    ],
+    "72": [
+      "mvc_view_admin_comment_list"
+    ],
+    "73": [
+      "mvc_view_admin_home"
+    ],
+    "74": [
+      "mvc_view_admin_order_detail"
+    ],
+    "75": [
+      "mvc_view_admin_order_list"
+    ],
+    "76": [
+      "mvc_view_admin_partials_sidebar"
+    ],
+    "77": [
+      "mvc_view_admin_product_add"
+    ],
+    "78": [
+      "mvc_view_admin_product_list"
+    ],
+    "79": [
+      "mvc_view_admin_product_update"
+    ],
+    "80": [
+      "mvc_view_admin_product_variant"
+    ],
+    "81": [
+      "mvc_view_assets_js_client_password"
+    ],
+    "82": [
+      "mvc_view_assets_js_client_password_recovery"
+    ],
+    "83": [
+      "mvc_view_assets_js_interface"
+    ],
+    "84": [
+      "mvc_view_client_cart"
+    ],
+    "85": [
+      "mvc_view_client_category"
+    ],
+    "86": [
+      "mvc_view_client_login_forgot_password"
+    ],
+    "87": [
+      "mvc_view_client_login_login"
+    ],
+    "88": [
+      "mvc_view_client_login_register"
+    ],
+    "89": [
+      "mvc_view_client_login_reset_password"
+    ],
+    "90": [
+      "mvc_view_client_order_detail"
+    ],
+    "91": [
+      "mvc_view_client_order_list"
+    ],
+    "92": [
+      "mvc_view_client_partials_footer"
+    ],
+    "93": [
+      "mvc_view_client_partials_header"
+    ],
+    "94": [
+      "mvc_view_client_pay"
+    ],
+    "95": [
+      "mvc_view_client_productdetail"
+    ],
+    "96": [
+      "mvc_view_client_productsearch"
+    ],
+    "97": [
+      "mvc_view_client_profile_profile"
+    ],
+    "98": [
+      "tools_configure_local"
+    ],
+    "99": [
+      "tools_local_recovery_ps1_tools_local_recovery"
+    ]
+  },
+  "cohesion": {
+    "0": 0.06744956338452274,
+    "1": 0.1003921568627451,
+    "2": 0.10693877551020409,
+    "3": 0.1,
+    "4": 0.173109243697479,
+    "5": 0.12962962962962962,
+    "6": 0.1168091168091168,
+    "7": 0.16923076923076924,
+    "8": 0.10822510822510822,
+    "9": 0.16666666666666666,
+    "10": 0.1503267973856209,
+    "11": 0.26143790849673204,
+    "12": 0.19117647058823528,
+    "13": 0.175,
+    "14": 0.20833333333333334,
+    "15": 0.125,
+    "16": 0.18095238095238095,
+    "17": 0.18681318681318682,
+    "18": 0.18681318681318682,
+    "19": 0.18681318681318682,
+    "20": 0.18681318681318682,
+    "21": 0.18681318681318682,
+    "22": 0.18681318681318682,
+    "23": 0.42857142857142855,
+    "24": 0.15384615384615385,
+    "25": 0.21212121212121213,
+    "26": 0.18181818181818182,
+    "27": 0.23636363636363636,
+    "28": 0.2222222222222222,
+    "29": 0.2222222222222222,
+    "30": 0.3055555555555556,
+    "31": 0.3611111111111111,
+    "32": 0.25,
+    "33": 0.25,
+    "34": 0.25,
+    "35": 0.25,
+    "36": 0.2857142857142857,
+    "37": 0.42857142857142855,
+    "38": 0.7,
+    "39": 0.5,
+    "40": 0.6666666666666666,
+    "41": 0.6666666666666666,
+    "42": 0.6666666666666666,
+    "43": 0.6666666666666666,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0
+  },
+  "gods": [
+    {
+      "id": "mvc_tests_support_password_recovery_fixture_recoveryassert",
+      "label": "recoveryAssert()",
+      "degree": 74
+    },
+    {
+      "id": "mvc_model_passwordrecoverymodel_passwordrecoverymodel",
+      "label": "PasswordRecoveryModel",
+      "degree": 28
+    },
+    {
+      "id": "mvc_tests_client_password_change_test_check",
+      "label": "check()",
+      "degree": 26
+    },
+    {
+      "id": "mvc_service_passwordrecoveryservice_passwordrecoveryservice",
+      "label": "PasswordRecoveryService",
+      "degree": 20
+    },
+    {
+      "id": "mvc_model_accountmodel_accountmodel",
+      "label": "AccountModel",
+      "degree": 19
+    },
+    {
+      "id": "mvc_model_cartmodel_cartmodel",
+      "label": "CartModel",
+      "degree": 15
+    },
+    {
+      "id": "mvc_tests_client_password_change_test_passwordtestbrowser",
+      "label": "PasswordTestBrowser",
+      "degree": 15
+    },
+    {
+      "id": "tools_local_recovery_supervise",
+      "label": "supervise()",
+      "degree": 15
+    },
+    {
+      "id": "tools_tests_local_recovery_manager_test_managertests",
+      "label": "ManagerTests",
+      "degree": 15
+    },
+    {
+      "id": "mvc_model_ordermodel_ordermodel",
+      "label": "OrderModel",
+      "degree": 14
+    }
+  ],
+  "surprises": [
+    {
+      "source": "{closure#13}()",
+      "target": "recoveryAssert()",
+      "source_files": [
+        "mvc/tests/client_password_recovery_test.php",
+        "mvc/tests/support/password_recovery_fixture.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities; peripheral node `{closure#13}()` unexpectedly reaches hub `recoveryAssert()`"
+    },
+    {
+      "source": "{closure#1}()",
+      "target": "recoveryAssert()",
+      "source_files": [
+        "mvc/tests/password_recovery_worker_transport_test.php",
+        "mvc/tests/support/password_recovery_fixture.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities; peripheral node `{closure#1}()` unexpectedly reaches hub `recoveryAssert()`"
+    },
+    {
+      "source": "{closure#3}()",
+      "target": "PasswordRecoveryMailer",
+      "source_files": [
+        "mvc/tests/password_recovery_mailer_test.php",
+        "mvc/service/PasswordRecoveryMailer.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `{closure#3}()` unexpectedly reaches hub `PasswordRecoveryMailer`"
+    },
+    {
+      "source": "{closure#3}()",
+      "target": "recoveryAssert()",
+      "source_files": [
+        "mvc/tests/client_password_recovery_test.php",
+        "mvc/tests/support/password_recovery_fixture.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "{closure#4}()",
+      "target": "recoveryAssert()",
+      "source_files": [
+        "mvc/tests/client_password_recovery_test.php",
+        "mvc/tests/support/password_recovery_fixture.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

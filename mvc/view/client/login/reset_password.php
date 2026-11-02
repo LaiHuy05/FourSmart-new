@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="view/assets/css/base.css">
     <link rel="stylesheet" href="view/assets/css/account.css">
     <script src="view/assets/js/client-password-recovery.js" defer></script>
+    <link rel="stylesheet" href="view/assets/css/theme.css">
+    <script src="view/assets/js/interface.js" defer></script>
 </head>
 <body class="auth-page">
 <main class="auth-card">
+    <a class="client-logo auth-brand" href="?client=home">Four<span>Smart</span></a>
     <h1>Đặt lại mật khẩu</h1>
     <p class="auth-subtitle" id="recovery-password-help">Ít nhất 12 ký tự, tối đa 72 byte, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</p>
     <?php if ($error !== ''): ?>
